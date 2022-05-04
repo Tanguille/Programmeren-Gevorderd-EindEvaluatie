@@ -1,0 +1,7 @@
+04/04: Opdracht lezen en eerste versie DCD maken in VP.
+05/04: 2de versie DCD maken en code genereren. Unit tests opzetten.
+20/04: DCD updaten
+25/04: Uitleg vragen in de les over DCD.
+26/04: DCD finaliseren en opnieuw code genereren, repo's toevoegen aan persistentie en bijhorende .txt files met data invoegen.
+30/04: Method KlantIdentificeren uitwerken en unit tests maken
+01/05: Begonnen aan Cui, terwijl ik domeincontroller en andere methods uitwerk.
