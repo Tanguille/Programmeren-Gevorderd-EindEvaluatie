@@ -6,3 +6,4 @@
 30/04: Method KlantIdentificeren uitwerken en unit tests maken
 01/05: Begonnen aan Cui, terwijl ik domeincontroller en andere methods uitwerk.
 04/05: In de les database gemaakt.
+05/05: Methods gemaakt om data in database te steken en bepaalde info uit database te halen

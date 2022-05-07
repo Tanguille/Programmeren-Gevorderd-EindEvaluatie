@@ -2,11 +2,12 @@
 using Microsoft.Data.SqlClient;
 using Microsoft.VisualBasic.FileIO;
 using System;
+using System.Data;
 
 namespace Persistentie {
     public class KlantRepo : IKlantRepo {
         private Klant _geselecteerdeKlant;
-        private string _connectionString;
+        private readonly string _connectionString;
         public KlantRepo(string connectionString) {
             _connectionString = connectionString;
         }
@@ -45,19 +46,43 @@ namespace Persistentie {
             }
         }
 
-        public void klantenDataInDatabank() {
-            using TextFieldParser parser = new TextFieldParser("Klanten.csv");
-            parser.TextFieldType = FieldType.Delimited;
-            parser.SetDelimiters(",");
-            while (!parser.EndOfData) {
-                //Process row
-                string[] fields = parser.ReadFields();
-                for (int i = 0; i < fields.Length; i++) {                    
-                    string[] values = fields[i].Split(',');
-                    Klant klant = new Klant(values[0], values[1], values[2], DateTime.Parse(values[3]), values[4], (KlantType)Enum.Parse(typeof(KlantType), values[5]));
-                  
+        public void KlantenDataInDatabank() {
+            try {
+                using TextFieldParser parser = new("Klanten.csv");
+                parser.TextFieldType = FieldType.Delimited;
+                parser.SetDelimiters(",");
+                while (!parser.EndOfData) {
+                    //Process row
+                    string[] fields = parser.ReadFields();
+                    for (int i = 0; i < fields.Length; i++) {
+                        string[] values = fields[i].Split(',');
+
+                        using SqlConnection connection = new(_connectionString);
+                        connection.Open();
+
+                        string insertSql = $"INSERT INTO Personen (EmailAdres, VoorNaam, AchterNaam, GeboorteDatum, Interesses, KlantType) VALUES (@EmailAdres, @VoorNaam, @AchterNaam, @GeboorteDatum, @Interesses, @KlantType);";
+                        SqlCommand insertCommand = new(insertSql, connection);
+                        insertCommand.Parameters.Add("@EmailAdres", SqlDbType.VarChar);
+                        insertCommand.Parameters["@EmailAdres"].Value = values[0].ToString();
+                        insertCommand.Parameters.Add("@VoorNaam", SqlDbType.VarChar);
+                        insertCommand.Parameters["@VoorNaam"].Value = values[1].ToString();
+                        insertCommand.Parameters.Add("@AchterNaam", SqlDbType.VarChar);
+                        insertCommand.Parameters["@AchterNaam"].Value = values[2].ToString();
+                        insertCommand.Parameters.Add("@GeboorteDatum", SqlDbType.DateTime);
+                        insertCommand.Parameters["@GeboorteDatum"].Value = DateTime.Parse(values[3]);
+                        insertCommand.Parameters.Add("@Interesses", SqlDbType.VarChar);
+                        insertCommand.Parameters["@Interesses"].Value = values[4].ToString();
+                        insertCommand.Parameters.Add("@KlantType", SqlDbType.VarChar);
+                        insertCommand.Parameters["@KlantType"].Value = values[5].ToString();
+
+                        insertCommand.ExecuteNonQuery();
+                        connection.Close();
+                    }
                 }
-            }           
+            }
+            catch (Exception) {
+                throw new Exception("Fout bij data in databank steken.");
+            }
         }
     }
 }

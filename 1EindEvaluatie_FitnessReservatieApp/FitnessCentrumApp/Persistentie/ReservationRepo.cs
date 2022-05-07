@@ -14,7 +14,7 @@ namespace Persistentie {
         /// <param name="duur"></param>
         public void MaakReservatie(FitnessToestel fitnessToestel, DateTime dag, int tijdSlot, int duur, Klant klantNummer) {
 
-            using StreamWriter sw = new StreamWriter("Reservaties.csv");
+            using StreamWriter sw = new("Reservaties.csv");
 
         }
     }
