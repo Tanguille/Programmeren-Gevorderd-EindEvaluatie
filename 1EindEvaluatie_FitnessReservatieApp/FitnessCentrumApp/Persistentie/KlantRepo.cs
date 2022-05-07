@@ -52,12 +52,12 @@ namespace Persistentie {
             while (!parser.EndOfData) {
                 //Process row
                 string[] fields = parser.ReadFields();
-                for (int i = 0; i < fields.Length; i++) {                    
+                for (int i = 0; i < fields.Length; i++) {
                     string[] values = fields[i].Split(',');
                     Klant klant = new Klant(values[0], values[1], values[2], DateTime.Parse(values[3]), values[4], (KlantType)Enum.Parse(typeof(KlantType), values[5]));
-                  
+
                 }
-            }           
+            }
         }
     }
 }
