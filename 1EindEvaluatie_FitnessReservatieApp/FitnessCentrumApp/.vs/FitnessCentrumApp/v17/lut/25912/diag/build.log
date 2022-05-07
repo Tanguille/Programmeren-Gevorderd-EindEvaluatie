@@ -1,0 +1,43 @@
+[15:37:09.859 Verbose] - BuildManager - D:\Tangu\Documents\aaaProgrammeren\Programmeren-Gevorderd-EindEvaluatie\1EindEvaluatie_FitnessReservatieApp\FitnessCentrumApp\Cui\StartUp.cs(9,40): error CS7036: There is no argument given that corresponds to the required formal parameter 'connectionString' of 'KlantRepo.KlantRepo(string)'
+[15:37:09.859 Verbose] - BuildManager - D:\Tangu\Documents\aaaProgrammeren\Programmeren-Gevorderd-EindEvaluatie\1EindEvaluatie_FitnessReservatieApp\FitnessCentrumApp\Cui\FitnessApp.cs(35,21): warning CS0162: Unreachable code detected
+[15:37:09.860 Verbose] - BuildManager - C:\Program Files\Microsoft Visual Studio\2022\Enterprise\MSBuild\Current\Bin\Roslyn\Microsoft.CSharp.Core.targets(75,5): error MSB4181: The "Csc" task returned false but did not log an error.
+[15:37:09.864 Verbose] - BuildManager - Some of the file paths defined in the csproj under the Live Unit Testing build path are missing. Verify whether these files should be present under the Live Unit Testing build path and if necessary update the csproj definition to look these files up in a different place.
+[15:37:09.864 Verbose] - BuildManager - Item _OutputPathItem 'D:\Tangu\Documents\aaaProgrammeren\Programmeren-Gevorderd-EindEvaluatie\1EindEvaluatie_FitnessReservatieApp\FitnessCentrumApp\.vs\FitnessCentrumApp\v17\lut\0\b\Cui\Debug\net5.0\' evaluated via:
+_OutputPathItem: '$(OutDir)' @ C:\Program Files\Microsoft Visual Studio\2022\Enterprise\MSBuild\Current\Bin\amd64\Microsoft.Common.CurrentVersion.targets:310
+  OutDir: '$(OutputPath)' @ C:\Program Files\Microsoft Visual Studio\2022\Enterprise\MSBuild\Current\Bin\amd64\Microsoft.Common.CurrentVersion.targets:228
+    OutputPath: '$(OutputPath)$(TargetFramework.ToLowerInvariant())\' @ C:\Program Files\dotnet\sdk\6.0.202\Sdks\Microsoft.NET.Sdk\targets\Microsoft.NET.TargetFrameworkInference.targets:245
+      OutputPath: '$(BaseOutputPath)$(Configuration)\' @ C:\Program Files\dotnet\sdk\6.0.202\Sdks\Microsoft.NET.Sdk\targets\Microsoft.NET.DefaultOutputPaths.targets:33
+        BaseOutputPath: 'D:\Tangu\Documents\aaaProgrammeren\Programmeren-Gevorderd-EindEvaluatie\1EindEvaluatie_FitnessReservatieApp\FitnessCentrumApp\.vs\FitnessCentrumApp\v17\lut\0\b\Cui\' @ D:\Tangu\Documents\aaaProgrammeren\Programmeren-Gevorderd-EindEvaluatie\1EindEvaluatie_FitnessReservatieApp\FitnessCentrumApp\Cui\Cui.csproj:0
+        Configuration: 'Debug'
+[15:37:09.865 Verbose] - BuildManager - Item AppConfigFileDestination 'D:\Tangu\Documents\aaaProgrammeren\Programmeren-Gevorderd-EindEvaluatie\1EindEvaluatie_FitnessReservatieApp\FitnessCentrumApp\.vs\FitnessCentrumApp\v17\lut\0\b\Cui\Debug\net5.0\Cui.dll.config' evaluated via:
+AppConfigFileDestination: '$(OutDir)$(TargetFileName).config' @ C:\Program Files\Microsoft Visual Studio\2022\Enterprise\MSBuild\Current\Bin\amd64\Microsoft.Common.CurrentVersion.targets:339
+  OutDir: '$(OutputPath)' @ C:\Program Files\Microsoft Visual Studio\2022\Enterprise\MSBuild\Current\Bin\amd64\Microsoft.Common.CurrentVersion.targets:228
+    OutputPath: '$(OutputPath)$(TargetFramework.ToLowerInvariant())\' @ C:\Program Files\dotnet\sdk\6.0.202\Sdks\Microsoft.NET.Sdk\targets\Microsoft.NET.TargetFrameworkInference.targets:245
+      OutputPath: '$(BaseOutputPath)$(Configuration)\' @ C:\Program Files\dotnet\sdk\6.0.202\Sdks\Microsoft.NET.Sdk\targets\Microsoft.NET.DefaultOutputPaths.targets:33
+        BaseOutputPath: 'D:\Tangu\Documents\aaaProgrammeren\Programmeren-Gevorderd-EindEvaluatie\1EindEvaluatie_FitnessReservatieApp\FitnessCentrumApp\.vs\FitnessCentrumApp\v17\lut\0\b\Cui\' @ D:\Tangu\Documents\aaaProgrammeren\Programmeren-Gevorderd-EindEvaluatie\1EindEvaluatie_FitnessReservatieApp\FitnessCentrumApp\Cui\Cui.csproj:0
+        Configuration: 'Debug'
+  TargetFileName: '$(TargetName)$(TargetExt)' @ C:\Program Files\Microsoft Visual Studio\2022\Enterprise\MSBuild\Current\Bin\amd64\Microsoft.Common.CurrentVersion.targets:248
+    TargetName: '$(AssemblyName)' @ C:\Program Files\Microsoft Visual Studio\2022\Enterprise\MSBuild\Current\Bin\amd64\Microsoft.Common.CurrentVersion.targets:240
+      AssemblyName: '$(MSBuildProjectName)' @ C:\Program Files\dotnet\sdk\6.0.202\Sdks\Microsoft.NET.Sdk\targets\Microsoft.NET.Sdk.props:32
+        MSBuildProjectName: 'Cui'
+    TargetExt: '.dll' @ C:\Program Files\dotnet\sdk\6.0.202\Sdks\Microsoft.NET.Sdk\targets\Microsoft.NET.Sdk.BeforeCommon.targets:106
+[15:37:09.865 Verbose] - BuildManager - Item _DebugSymbolsOutputPath 'D:\Tangu\Documents\aaaProgrammeren\Programmeren-Gevorderd-EindEvaluatie\1EindEvaluatie_FitnessReservatieApp\FitnessCentrumApp\.vs\FitnessCentrumApp\v17\lut\0\b\Cui\Debug\net5.0\Cui.pdb' evaluated via:
+_DebugSymbolsOutputPath: '@(_DebugSymbolsIntermediatePath->'$(OutDir)%(Filename)%(Extension)')' @ C:\Program Files\Microsoft Visual Studio\2022\Enterprise\MSBuild\Current\Bin\amd64\Microsoft.Common.CurrentVersion.targets:406
+  OutDir: '$(OutputPath)' @ C:\Program Files\Microsoft Visual Studio\2022\Enterprise\MSBuild\Current\Bin\amd64\Microsoft.Common.CurrentVersion.targets:228
+    OutputPath: '$(OutputPath)$(TargetFramework.ToLowerInvariant())\' @ C:\Program Files\dotnet\sdk\6.0.202\Sdks\Microsoft.NET.Sdk\targets\Microsoft.NET.TargetFrameworkInference.targets:245
+      OutputPath: '$(BaseOutputPath)$(Configuration)\' @ C:\Program Files\dotnet\sdk\6.0.202\Sdks\Microsoft.NET.Sdk\targets\Microsoft.NET.DefaultOutputPaths.targets:33
+        BaseOutputPath: 'D:\Tangu\Documents\aaaProgrammeren\Programmeren-Gevorderd-EindEvaluatie\1EindEvaluatie_FitnessReservatieApp\FitnessCentrumApp\.vs\FitnessCentrumApp\v17\lut\0\b\Cui\' @ D:\Tangu\Documents\aaaProgrammeren\Programmeren-Gevorderd-EindEvaluatie\1EindEvaluatie_FitnessReservatieApp\FitnessCentrumApp\Cui\Cui.csproj:0
+        Configuration: 'Debug'
+[15:37:09.866 Verbose] - BuildManager - Item _ApplicationManifestFinal 'D:\Tangu\Documents\aaaProgrammeren\Programmeren-Gevorderd-EindEvaluatie\1EindEvaluatie_FitnessReservatieApp\FitnessCentrumApp\.vs\FitnessCentrumApp\v17\lut\0\b\Cui\Debug\net5.0\Cui.dll.manifest' evaluated via:
+_ApplicationManifestFinal: '$(OutDir)$(_DeploymentTargetApplicationManifestFileName)' @ C:\Program Files\Microsoft Visual Studio\2022\Enterprise\MSBuild\Current\Bin\amd64\Microsoft.Common.CurrentVersion.targets:444
+  OutDir: '$(OutputPath)' @ C:\Program Files\Microsoft Visual Studio\2022\Enterprise\MSBuild\Current\Bin\amd64\Microsoft.Common.CurrentVersion.targets:228
+    OutputPath: '$(OutputPath)$(TargetFramework.ToLowerInvariant())\' @ C:\Program Files\dotnet\sdk\6.0.202\Sdks\Microsoft.NET.Sdk\targets\Microsoft.NET.TargetFrameworkInference.targets:245
+      OutputPath: '$(BaseOutputPath)$(Configuration)\' @ C:\Program Files\dotnet\sdk\6.0.202\Sdks\Microsoft.NET.Sdk\targets\Microsoft.NET.DefaultOutputPaths.targets:33
+        BaseOutputPath: 'D:\Tangu\Documents\aaaProgrammeren\Programmeren-Gevorderd-EindEvaluatie\1EindEvaluatie_FitnessReservatieApp\FitnessCentrumApp\.vs\FitnessCentrumApp\v17\lut\0\b\Cui\' @ D:\Tangu\Documents\aaaProgrammeren\Programmeren-Gevorderd-EindEvaluatie\1EindEvaluatie_FitnessReservatieApp\FitnessCentrumApp\Cui\Cui.csproj:0
+        Configuration: 'Debug'
+  _DeploymentTargetApplicationManifestFileName: '$(TargetFileName).manifest' @ C:\Program Files\Microsoft Visual Studio\2022\Enterprise\MSBuild\Current\Bin\amd64\Microsoft.Common.CurrentVersion.targets:268
+    TargetFileName: '$(TargetName)$(TargetExt)' @ C:\Program Files\Microsoft Visual Studio\2022\Enterprise\MSBuild\Current\Bin\amd64\Microsoft.Common.CurrentVersion.targets:248
+      TargetName: '$(AssemblyName)' @ C:\Program Files\Microsoft Visual Studio\2022\Enterprise\MSBuild\Current\Bin\amd64\Microsoft.Common.CurrentVersion.targets:240
+        AssemblyName: '$(MSBuildProjectName)' @ C:\Program Files\dotnet\sdk\6.0.202\Sdks\Microsoft.NET.Sdk\targets\Microsoft.NET.Sdk.props:32
+          MSBuildProjectName: 'Cui'
+      TargetExt: '.dll' @ C:\Program Files\dotnet\sdk\6.0.202\Sdks\Microsoft.NET.Sdk\targets\Microsoft.NET.Sdk.BeforeCommon.targets:106

@@ -6,5 +6,5 @@ build_property.ProjectTypeGuids =
 build_property.InvariantGlobalization = 
 build_property.PlatformNeutralAssembly = 
 build_property._SupportedPlatformList = Linux,macOS,Windows
-build_property.RootNamespace = Domein
-build_property.ProjectDir = D:\Tangu\Documents\aaaProgrammeren\Programmeren-Gevorderd-EindEvaluatie\1EindEvaluatie_FitnessReservatieApp\FitnessCentrumApp\Domein\
+build_property.RootNamespace = DomeinTests
+build_property.ProjectDir = D:\Tangu\Documents\aaaProgrammeren\Programmeren-Gevorderd-EindEvaluatie\1EindEvaluatie_FitnessReservatieApp\FitnessCentrumApp\DomeinTests\
