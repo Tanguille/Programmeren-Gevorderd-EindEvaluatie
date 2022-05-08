@@ -15,7 +15,7 @@ namespace Persistentie {
         /// <summary>
         /// Selecteert een klant met al zijn data uit de database.
         /// </summary>
-        public Klant SelecteerKlantData(int? klantNummer, string emailAdres) {
+        public Klant SelecteerKlantData(int? _klantNummer, string _emailAdres) {
             try {
                 using SqlConnection connection = new(_connectionString);
                 connection.Open();
@@ -25,15 +25,15 @@ namespace Persistentie {
                 using SqlDataReader dataReader = sqlCommand.ExecuteReader();
                 if (dataReader.HasRows) {
                     while (dataReader.Read()) {
-                        int KlantNummer = (int)dataReader["KlantNummer"];
-                        string EmailAdres = (string)dataReader["EmailAdres"];
-                        string VoorNaam = (string)dataReader["VoorNaam"];
-                        string AchterNaam = (string)dataReader["AchterNaam"];
-                        DateTime GeboorteDatum = (DateTime)dataReader["GeboorteDatum"];
-                        string Interesses = (string)dataReader["Interesses"];
-                        KlantType KlantType = (KlantType)dataReader["KlantType"];
+                        int klantNummer = (int)dataReader["KlantNummer"];
+                        string emailAdres = (string)dataReader["EmailAdres"];
+                        string voorNaam = (string)dataReader["VoorNaam"];
+                        string achterNaam = (string)dataReader["AchterNaam"];
+                        DateTime geboorteDatum = (DateTime)dataReader["GeboorteDatum"];
+                        string interesses = (string)dataReader["Interesses"];
+                        string klantType = (string)dataReader["KlantType"];
 
-                        _geselecteerdeKlant = new Klant(EmailAdres, VoorNaam, AchterNaam, GeboorteDatum, Interesses, KlantType);
+                        _geselecteerdeKlant = new Klant(emailAdres, voorNaam, achterNaam, geboorteDatum, interesses, (EKlantType)Enum.Parse(typeof(EKlantType), klantType.ToString().ToUpper()));
                     }
                     return _geselecteerdeKlant;
                 }
@@ -41,8 +41,8 @@ namespace Persistentie {
                     throw new Exception("Geen overeenkomstige data in de databank.");
                 }
             }
-            catch (Exception) {
-                throw new Exception("SelecteerKlantData uit database ging mis.");
+            catch (Exception e) {
+                throw new Exception("SelecteerKlantData uit database ging mis.", e);
             }
         }
 
@@ -54,6 +54,7 @@ namespace Persistentie {
                 while (!parser.EndOfData) {
                     //Process row
                     string[] fields = parser.ReadFields();
+
                     for (int i = 0; i < fields.Length; i++) {
                         string[] values = fields[i].Split(',');
 
@@ -63,25 +64,32 @@ namespace Persistentie {
                         string insertSql = $"INSERT INTO Personen (EmailAdres, VoorNaam, AchterNaam, GeboorteDatum, Interesses, KlantType) VALUES (@EmailAdres, @VoorNaam, @AchterNaam, @GeboorteDatum, @Interesses, @KlantType);";
                         SqlCommand insertCommand = new(insertSql, connection);
                         insertCommand.Parameters.Add("@EmailAdres", SqlDbType.VarChar);
-                        insertCommand.Parameters["@EmailAdres"].Value = values[0].ToString();
+                        insertCommand.Parameters["@EmailAdres"].Value = values[0].ToString().Trim('\'');
                         insertCommand.Parameters.Add("@VoorNaam", SqlDbType.VarChar);
-                        insertCommand.Parameters["@VoorNaam"].Value = values[1].ToString();
+                        insertCommand.Parameters["@VoorNaam"].Value = values[1].ToString().Trim('\'');
                         insertCommand.Parameters.Add("@AchterNaam", SqlDbType.VarChar);
-                        insertCommand.Parameters["@AchterNaam"].Value = values[2].ToString();
+                        insertCommand.Parameters["@AchterNaam"].Value = values[2].ToString().Trim('\'');
                         insertCommand.Parameters.Add("@GeboorteDatum", SqlDbType.DateTime);
                         insertCommand.Parameters["@GeboorteDatum"].Value = DateTime.Parse(values[3]);
+                        //Rekening houden met nullable value
                         insertCommand.Parameters.Add("@Interesses", SqlDbType.VarChar);
-                        insertCommand.Parameters["@Interesses"].Value = values[4].ToString();
+                        if (values[4] == "") {
+                            insertCommand.Parameters["@Interesses"].Value = DBNull.Value;
+                        }
+                        else {
+                            insertCommand.Parameters["@Interesses"].Value = values[4].ToString().Trim('\'');
+                        }
+
                         insertCommand.Parameters.Add("@KlantType", SqlDbType.VarChar);
-                        insertCommand.Parameters["@KlantType"].Value = values[5].ToString();
+                        insertCommand.Parameters["@KlantType"].Value = values[5].ToString().Trim('\'');
 
                         insertCommand.ExecuteNonQuery();
                         connection.Close();
                     }
                 }
             }
-            catch (Exception) {
-                throw new Exception("Fout bij data in databank steken.");
+            catch (Exception e) {
+                throw new Exception("Fout bij data in databank steken.", e);
             }
         }
     }

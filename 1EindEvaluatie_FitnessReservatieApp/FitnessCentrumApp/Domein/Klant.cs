@@ -10,9 +10,9 @@ namespace Domein {
         public string AchterNaam { get; private set; }
         public DateTime GeboorteDatum { get; private set; }
         public string Interesses { get; private set; }
-        public KlantType KlantType { get; private set; }
+        public EKlantType KlantType { get; private set; }
 
-        public Klant(string emailAdres, string voorNaam, string achterNaam, DateTime geboorteDatum, string interesses, KlantType klantType) {
+        public Klant(string emailAdres, string voorNaam, string achterNaam, DateTime geboorteDatum, string interesses, EKlantType klantType) {
             EmailAdres = emailAdres;
             VoorNaam = voorNaam;
             AchterNaam = achterNaam;

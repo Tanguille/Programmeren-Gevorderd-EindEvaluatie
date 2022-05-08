@@ -1,11 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Persistentie {
+﻿namespace Persistentie {
     public class DBinfo {
-        public const string DBconnectionString = @"Data Source=.\SQLEXPRESS;Initial Catalog=FitnessCentrumDB;Integrated Security=True;TrustServerCertificate=True";
+        public const string DBconnectionString = @"Data Source=remotesqlexpress.database.windows.net;Initial Catalog=FitnessCentrumRemoteDB;User ID=Tanguille;Password=FuckAzure2022;Connect Timeout=60;Encrypt=True;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False";
     }
 }

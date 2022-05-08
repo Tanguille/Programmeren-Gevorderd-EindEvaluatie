@@ -37,8 +37,8 @@ namespace Persistentie {
                     throw new Exception("Geen overeenkomstige data in de databank.");
                 }
             }
-            catch (Exception) {
-                throw new Exception("SelecteerKlantData uit database ging mis.");
+            catch (Exception e) {
+                throw new Exception("SelecteerKlantData uit database ging mis.", e);
             }
         }
 

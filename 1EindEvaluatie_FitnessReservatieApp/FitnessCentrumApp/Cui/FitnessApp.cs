@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 namespace Cui {
     public class FitnessApp {
-        private DomeinController _domeinController;
+        private readonly DomeinController _domeinController;
 
         public FitnessApp(DomeinController domeinController) {
             _domeinController = domeinController;
@@ -31,8 +31,8 @@ namespace Cui {
                     input = int.Parse(Console.ReadLine());
                 }
                 catch (ArgumentException) {
-                    throw new ArgumentException($"Choice must be between 0 & {options.Count}");
                     validInput = false;
+                    throw new ArgumentException($"Choice must be between 0 & {options.Count}");
                 }
             } while (!validInput);
             return input;

@@ -6,10 +6,13 @@ namespace Cui {
     public class StartUp {
         public static void Main() {
             DomeinController domeinController = new DomeinController();
-            IKlantRepo klantRepo = new KlantRepo();
+            IKlantRepo klantRepo = new KlantRepo(DBinfo.DBconnectionString);
             IReservationRepo reservationRepo = new ReservationRepo();
             IToestellenRepo toestellenRepo = new ToestellenRepo();
             FitnessApp fitnessApp = new FitnessApp(domeinController);
+
+            klantRepo.KlantenDataInDatabank();
+            klantRepo.SelecteerKlantData(null, "Goedele.Jackson@telenet.com");
 
             #region KlantIdentificeren
             Console.WriteLine("Welkom bij FitnessCentrum TangFit! About time to get ripped ;)");
