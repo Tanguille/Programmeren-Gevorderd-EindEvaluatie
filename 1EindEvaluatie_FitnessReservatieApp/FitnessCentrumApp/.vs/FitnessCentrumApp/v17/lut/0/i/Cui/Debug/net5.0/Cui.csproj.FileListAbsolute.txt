@@ -1,0 +1,4 @@
+D:\Tangu\Documents\aaaProgrammeren\Programmeren-Gevorderd-EindEvaluatie\1EindEvaluatie_FitnessReservatieApp\FitnessCentrumApp\.vs\FitnessCentrumApp\v17\lut\0\i\Cui\Debug\net5.0\Cui.csproj.AssemblyReference.cache
+D:\Tangu\Documents\aaaProgrammeren\Programmeren-Gevorderd-EindEvaluatie\1EindEvaluatie_FitnessReservatieApp\FitnessCentrumApp\.vs\FitnessCentrumApp\v17\lut\0\i\Cui\Debug\net5.0\Cui.GeneratedMSBuildEditorConfig.editorconfig
+D:\Tangu\Documents\aaaProgrammeren\Programmeren-Gevorderd-EindEvaluatie\1EindEvaluatie_FitnessReservatieApp\FitnessCentrumApp\.vs\FitnessCentrumApp\v17\lut\0\i\Cui\Debug\net5.0\Cui.AssemblyInfoInputs.cache
+D:\Tangu\Documents\aaaProgrammeren\Programmeren-Gevorderd-EindEvaluatie\1EindEvaluatie_FitnessReservatieApp\FitnessCentrumApp\.vs\FitnessCentrumApp\v17\lut\0\i\Cui\Debug\net5.0\Cui.AssemblyInfo.cs

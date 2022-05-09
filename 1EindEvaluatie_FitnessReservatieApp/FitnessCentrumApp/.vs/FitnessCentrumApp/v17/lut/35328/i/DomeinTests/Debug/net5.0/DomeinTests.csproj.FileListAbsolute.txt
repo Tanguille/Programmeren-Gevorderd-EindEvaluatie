@@ -1,0 +1,5 @@
+D:\Tangu\Documents\aaaProgrammeren\Programmeren-Gevorderd-EindEvaluatie\1EindEvaluatie_FitnessReservatieApp\FitnessCentrumApp\.vs\FitnessCentrumApp\v17\lut\0\b\DomeinTests\Debug\net5.0\CoverletSourceRootsMapping
+D:\Tangu\Documents\aaaProgrammeren\Programmeren-Gevorderd-EindEvaluatie\1EindEvaluatie_FitnessReservatieApp\FitnessCentrumApp\.vs\FitnessCentrumApp\v17\lut\0\i\DomeinTests\Debug\net5.0\DomeinTests.csproj.AssemblyReference.cache
+D:\Tangu\Documents\aaaProgrammeren\Programmeren-Gevorderd-EindEvaluatie\1EindEvaluatie_FitnessReservatieApp\FitnessCentrumApp\.vs\FitnessCentrumApp\v17\lut\0\i\DomeinTests\Debug\net5.0\DomeinTests.GeneratedMSBuildEditorConfig.editorconfig
+D:\Tangu\Documents\aaaProgrammeren\Programmeren-Gevorderd-EindEvaluatie\1EindEvaluatie_FitnessReservatieApp\FitnessCentrumApp\.vs\FitnessCentrumApp\v17\lut\0\i\DomeinTests\Debug\net5.0\DomeinTests.AssemblyInfoInputs.cache
+D:\Tangu\Documents\aaaProgrammeren\Programmeren-Gevorderd-EindEvaluatie\1EindEvaluatie_FitnessReservatieApp\FitnessCentrumApp\.vs\FitnessCentrumApp\v17\lut\0\i\DomeinTests\Debug\net5.0\DomeinTests.AssemblyInfo.cs

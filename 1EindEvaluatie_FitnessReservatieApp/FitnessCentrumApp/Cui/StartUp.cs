@@ -12,7 +12,7 @@ namespace Cui {
             FitnessApp fitnessApp = new FitnessApp(domeinController);
 
             klantRepo.KlantenDataInDatabank();
-            klantRepo.SelecteerKlantData(null, "Goedele.Jackson@telenet.com");
+            //klantRepo.SelecteerKlantData(null, "Goedele.Jackson@telenet.com");
 
             #region KlantIdentificeren
             Console.WriteLine("Welkom bij FitnessCentrum TangFit! About time to get ripped ;)");

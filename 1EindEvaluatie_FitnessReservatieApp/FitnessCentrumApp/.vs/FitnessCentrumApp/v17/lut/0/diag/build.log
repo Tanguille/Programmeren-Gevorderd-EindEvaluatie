@@ -1,0 +1,54 @@
+[17:33:27.899 Verbose] - BuildManager - System.IO.FileNotFoundException: Could not find file 'D:\Tangu\Documents\aaaProgrammeren\Programmeren-Gevorderd-EindEvaluatie\1EindEvaluatie_FitnessReservatieApp\FitnessCentrumApp\.vs\FitnessCentrumApp\v17\lut\0\i\Persistentie\Debug\net5.0\ref\Persistentie.dll'.
+File name: 'D:\Tangu\Documents\aaaProgrammeren\Programmeren-Gevorderd-EindEvaluatie\1EindEvaluatie_FitnessReservatieApp\FitnessCentrumApp\.vs\FitnessCentrumApp\v17\lut\0\i\Persistentie\Debug\net5.0\ref\Persistentie.dll'
+   at System.IO.__Error.WinIOError(Int32 errorCode, String maybeFullPath)
+   at System.IO.FileStream.Init(String path, FileMode mode, FileAccess access, Int32 rights, Boolean useRights, FileShare share, Int32 bufferSize, FileOptions options, SECURITY_ATTRIBUTES secAttrs, String msgPath, Boolean bFromProxy, Boolean useLongPath, Boolean checkHost)
+   at System.IO.FileStream..ctor(String path, FileMode mode, FileAccess access, FileShare share)
+   at Roslyn.Utilities.StandardFileSystem.OpenFile(String filePath, FileMode mode, FileAccess access, FileShare share)
+   at Roslyn.Utilities.CommonCompilerFileSystemExtensions.OpenFileWithNormalizedException(ICommonCompilerFileSystem fileSystem, String filePath, FileMode fileMode, FileAccess fileAccess, FileShare fileShare)
+   at Microsoft.CodeAnalysis.LiveUnitTesting.BuildManagement.Legacy.CompilationComparer.TryGetReference(CommandLineReference commandLineReference, Logger logger, MetadataReference& reference)
+[17:33:28.174 Verbose] - BuildManager - D:\Tangu\Documents\aaaProgrammeren\Programmeren-Gevorderd-EindEvaluatie\1EindEvaluatie_FitnessReservatieApp\FitnessCentrumApp\Cui\StartUp.cs(2,7): error CS0246: The type or namespace name 'Persistentie' could not be found (are you missing a using directive or an assembly reference?)
+[17:33:28.174 Verbose] - BuildManager - D:\Tangu\Documents\aaaProgrammeren\Programmeren-Gevorderd-EindEvaluatie\1EindEvaluatie_FitnessReservatieApp\FitnessCentrumApp\Cui\StartUp.cs(9,40): error CS0246: The type or namespace name 'KlantRepo' could not be found (are you missing a using directive or an assembly reference?)
+[17:33:28.174 Verbose] - BuildManager - D:\Tangu\Documents\aaaProgrammeren\Programmeren-Gevorderd-EindEvaluatie\1EindEvaluatie_FitnessReservatieApp\FitnessCentrumApp\Cui\StartUp.cs(9,50): error CS0103: The name 'DBinfo' does not exist in the current context
+[17:33:28.174 Verbose] - BuildManager - D:\Tangu\Documents\aaaProgrammeren\Programmeren-Gevorderd-EindEvaluatie\1EindEvaluatie_FitnessReservatieApp\FitnessCentrumApp\Cui\StartUp.cs(10,52): error CS0246: The type or namespace name 'ReservationRepo' could not be found (are you missing a using directive or an assembly reference?)
+[17:33:28.174 Verbose] - BuildManager - D:\Tangu\Documents\aaaProgrammeren\Programmeren-Gevorderd-EindEvaluatie\1EindEvaluatie_FitnessReservatieApp\FitnessCentrumApp\Cui\StartUp.cs(11,50): error CS0246: The type or namespace name 'ToestellenRepo' could not be found (are you missing a using directive or an assembly reference?)
+[17:33:28.175 Verbose] - BuildManager - C:\Program Files\Microsoft Visual Studio\2022\Enterprise\MSBuild\Current\Bin\Roslyn\Microsoft.CSharp.Core.targets(75,5): error MSB4181: The "Csc" task returned false but did not log an error.
+[17:33:28.195 Verbose] - BuildManager - Some of the file paths defined in the csproj under the Live Unit Testing build path are missing. Verify whether these files should be present under the Live Unit Testing build path and if necessary update the csproj definition to look these files up in a different place.
+[17:33:28.196 Verbose] - BuildManager - Item _OutputPathItem 'D:\Tangu\Documents\aaaProgrammeren\Programmeren-Gevorderd-EindEvaluatie\1EindEvaluatie_FitnessReservatieApp\FitnessCentrumApp\.vs\FitnessCentrumApp\v17\lut\0\b\Cui\Debug\net5.0\' evaluated via:
+_OutputPathItem: '$(OutDir)' @ C:\Program Files\Microsoft Visual Studio\2022\Enterprise\MSBuild\Current\Bin\amd64\Microsoft.Common.CurrentVersion.targets:310
+  OutDir: '$(OutputPath)' @ C:\Program Files\Microsoft Visual Studio\2022\Enterprise\MSBuild\Current\Bin\amd64\Microsoft.Common.CurrentVersion.targets:228
+    OutputPath: '$(OutputPath)$(TargetFramework.ToLowerInvariant())\' @ C:\Program Files\dotnet\sdk\6.0.202\Sdks\Microsoft.NET.Sdk\targets\Microsoft.NET.TargetFrameworkInference.targets:245
+      OutputPath: '$(BaseOutputPath)$(Configuration)\' @ C:\Program Files\dotnet\sdk\6.0.202\Sdks\Microsoft.NET.Sdk\targets\Microsoft.NET.DefaultOutputPaths.targets:33
+        BaseOutputPath: 'D:\Tangu\Documents\aaaProgrammeren\Programmeren-Gevorderd-EindEvaluatie\1EindEvaluatie_FitnessReservatieApp\FitnessCentrumApp\.vs\FitnessCentrumApp\v17\lut\0\b\Cui\' @ D:\Tangu\Documents\aaaProgrammeren\Programmeren-Gevorderd-EindEvaluatie\1EindEvaluatie_FitnessReservatieApp\FitnessCentrumApp\Cui\Cui.csproj:0
+        Configuration: 'Debug'
+[17:33:28.198 Verbose] - BuildManager - Item AppConfigFileDestination 'D:\Tangu\Documents\aaaProgrammeren\Programmeren-Gevorderd-EindEvaluatie\1EindEvaluatie_FitnessReservatieApp\FitnessCentrumApp\.vs\FitnessCentrumApp\v17\lut\0\b\Cui\Debug\net5.0\Cui.dll.config' evaluated via:
+AppConfigFileDestination: '$(OutDir)$(TargetFileName).config' @ C:\Program Files\Microsoft Visual Studio\2022\Enterprise\MSBuild\Current\Bin\amd64\Microsoft.Common.CurrentVersion.targets:339
+  OutDir: '$(OutputPath)' @ C:\Program Files\Microsoft Visual Studio\2022\Enterprise\MSBuild\Current\Bin\amd64\Microsoft.Common.CurrentVersion.targets:228
+    OutputPath: '$(OutputPath)$(TargetFramework.ToLowerInvariant())\' @ C:\Program Files\dotnet\sdk\6.0.202\Sdks\Microsoft.NET.Sdk\targets\Microsoft.NET.TargetFrameworkInference.targets:245
+      OutputPath: '$(BaseOutputPath)$(Configuration)\' @ C:\Program Files\dotnet\sdk\6.0.202\Sdks\Microsoft.NET.Sdk\targets\Microsoft.NET.DefaultOutputPaths.targets:33
+        BaseOutputPath: 'D:\Tangu\Documents\aaaProgrammeren\Programmeren-Gevorderd-EindEvaluatie\1EindEvaluatie_FitnessReservatieApp\FitnessCentrumApp\.vs\FitnessCentrumApp\v17\lut\0\b\Cui\' @ D:\Tangu\Documents\aaaProgrammeren\Programmeren-Gevorderd-EindEvaluatie\1EindEvaluatie_FitnessReservatieApp\FitnessCentrumApp\Cui\Cui.csproj:0
+        Configuration: 'Debug'
+  TargetFileName: '$(TargetName)$(TargetExt)' @ C:\Program Files\Microsoft Visual Studio\2022\Enterprise\MSBuild\Current\Bin\amd64\Microsoft.Common.CurrentVersion.targets:248
+    TargetName: '$(AssemblyName)' @ C:\Program Files\Microsoft Visual Studio\2022\Enterprise\MSBuild\Current\Bin\amd64\Microsoft.Common.CurrentVersion.targets:240
+      AssemblyName: '$(MSBuildProjectName)' @ C:\Program Files\dotnet\sdk\6.0.202\Sdks\Microsoft.NET.Sdk\targets\Microsoft.NET.Sdk.props:32
+        MSBuildProjectName: 'Cui'
+    TargetExt: '.dll' @ C:\Program Files\dotnet\sdk\6.0.202\Sdks\Microsoft.NET.Sdk\targets\Microsoft.NET.Sdk.BeforeCommon.targets:106
+[17:33:28.199 Verbose] - BuildManager - Item _DebugSymbolsOutputPath 'D:\Tangu\Documents\aaaProgrammeren\Programmeren-Gevorderd-EindEvaluatie\1EindEvaluatie_FitnessReservatieApp\FitnessCentrumApp\.vs\FitnessCentrumApp\v17\lut\0\b\Cui\Debug\net5.0\Cui.pdb' evaluated via:
+_DebugSymbolsOutputPath: '@(_DebugSymbolsIntermediatePath->'$(OutDir)%(Filename)%(Extension)')' @ C:\Program Files\Microsoft Visual Studio\2022\Enterprise\MSBuild\Current\Bin\amd64\Microsoft.Common.CurrentVersion.targets:406
+  OutDir: '$(OutputPath)' @ C:\Program Files\Microsoft Visual Studio\2022\Enterprise\MSBuild\Current\Bin\amd64\Microsoft.Common.CurrentVersion.targets:228
+    OutputPath: '$(OutputPath)$(TargetFramework.ToLowerInvariant())\' @ C:\Program Files\dotnet\sdk\6.0.202\Sdks\Microsoft.NET.Sdk\targets\Microsoft.NET.TargetFrameworkInference.targets:245
+      OutputPath: '$(BaseOutputPath)$(Configuration)\' @ C:\Program Files\dotnet\sdk\6.0.202\Sdks\Microsoft.NET.Sdk\targets\Microsoft.NET.DefaultOutputPaths.targets:33
+        BaseOutputPath: 'D:\Tangu\Documents\aaaProgrammeren\Programmeren-Gevorderd-EindEvaluatie\1EindEvaluatie_FitnessReservatieApp\FitnessCentrumApp\.vs\FitnessCentrumApp\v17\lut\0\b\Cui\' @ D:\Tangu\Documents\aaaProgrammeren\Programmeren-Gevorderd-EindEvaluatie\1EindEvaluatie_FitnessReservatieApp\FitnessCentrumApp\Cui\Cui.csproj:0
+        Configuration: 'Debug'
+[17:33:28.201 Verbose] - BuildManager - Item _ApplicationManifestFinal 'D:\Tangu\Documents\aaaProgrammeren\Programmeren-Gevorderd-EindEvaluatie\1EindEvaluatie_FitnessReservatieApp\FitnessCentrumApp\.vs\FitnessCentrumApp\v17\lut\0\b\Cui\Debug\net5.0\Cui.dll.manifest' evaluated via:
+_ApplicationManifestFinal: '$(OutDir)$(_DeploymentTargetApplicationManifestFileName)' @ C:\Program Files\Microsoft Visual Studio\2022\Enterprise\MSBuild\Current\Bin\amd64\Microsoft.Common.CurrentVersion.targets:444
+  OutDir: '$(OutputPath)' @ C:\Program Files\Microsoft Visual Studio\2022\Enterprise\MSBuild\Current\Bin\amd64\Microsoft.Common.CurrentVersion.targets:228
+    OutputPath: '$(OutputPath)$(TargetFramework.ToLowerInvariant())\' @ C:\Program Files\dotnet\sdk\6.0.202\Sdks\Microsoft.NET.Sdk\targets\Microsoft.NET.TargetFrameworkInference.targets:245
+      OutputPath: '$(BaseOutputPath)$(Configuration)\' @ C:\Program Files\dotnet\sdk\6.0.202\Sdks\Microsoft.NET.Sdk\targets\Microsoft.NET.DefaultOutputPaths.targets:33
+        BaseOutputPath: 'D:\Tangu\Documents\aaaProgrammeren\Programmeren-Gevorderd-EindEvaluatie\1EindEvaluatie_FitnessReservatieApp\FitnessCentrumApp\.vs\FitnessCentrumApp\v17\lut\0\b\Cui\' @ D:\Tangu\Documents\aaaProgrammeren\Programmeren-Gevorderd-EindEvaluatie\1EindEvaluatie_FitnessReservatieApp\FitnessCentrumApp\Cui\Cui.csproj:0
+        Configuration: 'Debug'
+  _DeploymentTargetApplicationManifestFileName: '$(TargetFileName).manifest' @ C:\Program Files\Microsoft Visual Studio\2022\Enterprise\MSBuild\Current\Bin\amd64\Microsoft.Common.CurrentVersion.targets:268
+    TargetFileName: '$(TargetName)$(TargetExt)' @ C:\Program Files\Microsoft Visual Studio\2022\Enterprise\MSBuild\Current\Bin\amd64\Microsoft.Common.CurrentVersion.targets:248
+      TargetName: '$(AssemblyName)' @ C:\Program Files\Microsoft Visual Studio\2022\Enterprise\MSBuild\Current\Bin\amd64\Microsoft.Common.CurrentVersion.targets:240
+        AssemblyName: '$(MSBuildProjectName)' @ C:\Program Files\dotnet\sdk\6.0.202\Sdks\Microsoft.NET.Sdk\targets\Microsoft.NET.Sdk.props:32
+          MSBuildProjectName: 'Cui'
+      TargetExt: '.dll' @ C:\Program Files\dotnet\sdk\6.0.202\Sdks\Microsoft.NET.Sdk\targets\Microsoft.NET.Sdk.BeforeCommon.targets:106

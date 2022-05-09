@@ -1,1 +1,0 @@
-D:\Users\Tangu\Documents\1Programmeren\Programmeren Gevorderd\Programmeren-Gevorderd-Eind-Evaluatie\1EindEvaluatie_FitnessReservatieApp\FitnessCentrumApp\.vs\FitnessCentrumApp\v17\lut\20076\i\Persistentie\Debug\net5.0\Persistentie.GeneratedMSBuildEditorConfig.editorconfig
