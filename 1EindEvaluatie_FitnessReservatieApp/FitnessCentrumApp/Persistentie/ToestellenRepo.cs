@@ -1,11 +1,12 @@
 ﻿using Domein;
 using Microsoft.Data.SqlClient;
-using Microsoft.VisualBasic.FileIO;
 using System;
+using System.Data;
+using System.IO;
 
 namespace Persistentie {
     public class ToestellenRepo : IToestellenRepo {
-        private readonly FitnessToestel _geselecteerdToestel;
+        private FitnessToestel _geselecteerdToestel;
         private readonly string _connectionString;
 
         public ToestellenRepo(string connectionString) {
@@ -46,10 +47,12 @@ namespace Persistentie {
 
                         if (toestelType.ToLower() == "loopband") {
                             FitnessToestel fitnessToestel = new Loopband(int.Parse(toestelType));
+                            _geselecteerdToestel = fitnessToestel;
                             return _geselecteerdToestel;
                         }
                         else if (toestelType.ToLower() == "fiets") {
                             FitnessToestel fitnessToestel = new Fiets(int.Parse(toestelType));
+                            _geselecteerdToestel = fitnessToestel;
                             return _geselecteerdToestel;
                         }
                     }
@@ -65,36 +68,38 @@ namespace Persistentie {
         }
 
         /// <summary>
-        /// TODO: Hier voortwerken
+        /// Haalt toestellendata uit CSV file en steekt die in databank
         /// </summary>
         /// <returns></returns>
         /// <exception cref="NotSupportedException"></exception>
-        public FitnessToestel ToestellenDataInDatabank() {
+        public void ToestellenDataInDatabank() {
             try {
-                using TextFieldParser parser = new TextFieldParser("Toestellen.csv");
-                parser.TextFieldType = FieldType.Delimited;
-                parser.SetDelimiters(",");
-                while (!parser.EndOfData) {
-                    //Process row
-                    string[] fields = parser.ReadFields();
-                    for (int i = 0; i < fields.Length; i++) {
-                        string[] values = fields[i].Split(',');
+                string[] values = new string[2];
+                string[] rows = File.ReadAllLines("FitnessToestellen.csv");
 
-                        if (values[1].ToLower() == "loopband") {
-                            FitnessToestel fitnessToestel = new Loopband(int.Parse(values[0]));
-                            return fitnessToestel;
-                        }
-                        else if (values[1].ToLower() == "fiets") {
-                            FitnessToestel fitnessToestel = new Fiets(int.Parse(values[0]));
-                            return fitnessToestel;
-                        }
-                    }
+                for (int i = 0; i < rows.Length; i++) {
+                    values = rows[i].Split(',');
+
+                    using SqlConnection connection = new(_connectionString);
+                    connection.Open();
+
+                    string insertSql = $"INSERT INTO FitnessToestel (ToestelType) "
+                        + $"VALUES (@ToestelType);";
+
+                    SqlCommand insertCommand = new(insertSql, connection);
+                    insertCommand.Parameters.Add("@ToestelType", SqlDbType.VarChar);
+                    insertCommand.Parameters["@ToestelType"].Value = values[1].ToString();
+
+                    insertCommand.ExecuteNonQuery();
+                    connection.Close();
                 }
             }
-            catch (Exception) {
-                throw new NotSupportedException("Toestel is niet gekend.");
+            catch (Exception e) {
+                throw new NotSupportedException("Toestel is niet gekend.", e);
             }
-            return null;
         }
+
     }
 }
+
+

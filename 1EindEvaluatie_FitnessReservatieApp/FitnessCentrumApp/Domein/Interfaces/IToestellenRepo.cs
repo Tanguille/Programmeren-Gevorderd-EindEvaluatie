@@ -1,5 +1,6 @@
 namespace Domein {
     public interface IToestellenRepo {
-        //TODO: FitnessToestel LeesToestellenData();
+        FitnessToestel SelecteerToestelData(int? _toestelID, string _toestelType);
+        public void ToestellenDataInDatabank();
     }
 }

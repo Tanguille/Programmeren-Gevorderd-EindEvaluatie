@@ -8,14 +8,15 @@ namespace Cui {
             DomeinController domeinController = new DomeinController();
             IKlantRepo klantRepo = new KlantRepo(DBinfo.DBconnectionString);
             IReservationRepo reservationRepo = new ReservationRepo();
-            IToestellenRepo toestellenRepo = new ToestellenRepo();
+            IToestellenRepo toestellenRepo = new ToestellenRepo(DBinfo.DBconnectionString);
             FitnessApp fitnessApp = new FitnessApp(domeinController);
 
             //klantRepo.KlantenDataInDatabank();
-            Klant goedele = klantRepo.SelecteerKlantData(null, "Goedele.Jackson@telenet.com");
+            //Klant goedele = klantRepo.SelecteerKlantData(null, "Goedele.Jackson@telenet.com");
 
-            Console.WriteLine(goedele.AchterNaam);
+            //toestellenRepo.ToestellenDataInDatabank();
 
+            //Console.WriteLine(goedele.AchterNaam);
 
             #region KlantIdentificeren
             Console.WriteLine("Welkom bij FitnessCentrum TangFit! About time to get ripped ;)");

@@ -71,7 +71,7 @@ namespace Persistentie {
         }
 
         /// <summary>
-        /// Haalt data uit CSV file en steekt die in databank
+        /// Haalt klantdata uit CSV file en steekt die in databank
         /// </summary>
         /// <exception cref="Exception"></exception>
         public void KlantenDataInDatabank() {
@@ -85,8 +85,8 @@ namespace Persistentie {
                     using SqlConnection connection = new(_connectionString);
                     connection.Open();
 
-                    string insertSql = $"INSERT INTO Klant (EmailAdres, VoorNaam, AchterNaam, Adres, GeboorteDatum, Interesses, KlantType) " +
-                        $"VALUES (@EmailAdres, @VoorNaam, @AchterNaam, @Adres, @GeboorteDatum, @Interesses, @KlantType);";
+                    string insertSql = $"INSERT INTO Klant (EmailAdres, VoorNaam, AchterNaam, Adres, GeboorteDatum, Interesses, KlantType) "
+                        + $"VALUES (@EmailAdres, @VoorNaam, @AchterNaam, @Adres, @GeboorteDatum, @Interesses, @KlantType);";
 
                     SqlCommand insertCommand = new(insertSql, connection);
                     insertCommand.Parameters.Add("@EmailAdres", SqlDbType.VarChar);
