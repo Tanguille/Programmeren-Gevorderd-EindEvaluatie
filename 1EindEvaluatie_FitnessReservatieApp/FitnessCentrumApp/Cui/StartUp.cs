@@ -11,8 +11,11 @@ namespace Cui {
             IToestellenRepo toestellenRepo = new ToestellenRepo();
             FitnessApp fitnessApp = new FitnessApp(domeinController);
 
-            klantRepo.KlantenDataInDatabank();
-            //klantRepo.SelecteerKlantData(null, "Goedele.Jackson@telenet.com");
+            //klantRepo.KlantenDataInDatabank();
+            Klant goedele = klantRepo.SelecteerKlantData(null, "Goedele.Jackson@telenet.com");
+
+            Console.WriteLine(goedele.AchterNaam);
+
 
             #region KlantIdentificeren
             Console.WriteLine("Welkom bij FitnessCentrum TangFit! About time to get ripped ;)");

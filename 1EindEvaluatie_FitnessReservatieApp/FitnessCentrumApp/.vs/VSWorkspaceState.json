@@ -1,7 +1,9 @@
 {
   "ExpandedNodes": [
-    ""
+    "",
+    "\\Cui",
+    "\\Domein"
   ],
-  "SelectedNode": "\\FitnessCentrumApp.sln",
+  "SelectedNode": "\\Cui\\Cui.csproj",
   "PreviewInSolutionExplorer": false
 }

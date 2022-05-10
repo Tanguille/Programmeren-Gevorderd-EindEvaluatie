@@ -27,7 +27,5 @@ namespace Domein {
         public void MaakReservatie(DateTime dag, int slot, FitnessToestel toestel) {
             throw new System.NotImplementedException("Not implemented");
         }
-
-
     }
 }
