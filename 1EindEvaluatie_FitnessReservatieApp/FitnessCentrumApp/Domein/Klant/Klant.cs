@@ -34,6 +34,11 @@ namespace Domein {
             KlantType = klantType;
         }
 
+        //Nodig om klant aan te maken in ReservationRepo
+        public Klant(int klantNummer) {
+            KlantNummer = klantNummer;
+        }
+
         //Nodig om object aan te maken in UnitTests
         public Klant() {
         }

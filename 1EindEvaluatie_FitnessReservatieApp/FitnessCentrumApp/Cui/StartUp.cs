@@ -15,9 +15,9 @@ namespace Cui {
             Klant goedele = klantRepo.SelecteerKlantData(null, "Goedele.Jackson@telenet.com");
 
             //toestellenRepo.ToestellenDataInDatabank();
-            FitnessToestel testToestel = toestellenRepo.SelecteerToestelData(1,null);
+            FitnessToestel testToestel = toestellenRepo.SelecteerToestelData(1, "");
 
-            Reservatie reservatieTest = new(new DateTime(2022-05-25), goedele, testToestel, 2, 2);
+            Reservatie reservatieTest = new(new DateTime(2022 - 05 - 25), goedele, testToestel, 2, 2);
             reservationRepo.ZetReservatieInDB(reservatieTest);
 
             #region KlantIdentificeren

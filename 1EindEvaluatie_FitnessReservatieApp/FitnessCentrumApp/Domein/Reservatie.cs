@@ -12,7 +12,7 @@ namespace Domein {
         public Reservatie(DateTime datum, Klant klant, FitnessToestel gereserveerdToestel, int beginSlot, int aantalSlots) {
             Klant = klant;
             Datum = datum;
-            GereserveerdToestel = gereserveerdToestel;            
+            GereserveerdToestel = gereserveerdToestel;
             BeginSlot = beginSlot;
 
             if (aantalSlots < 1 || aantalSlots > 2) {
@@ -23,13 +23,9 @@ namespace Domein {
             }
         }
 
-        //TODO: Uitzoeken welke methode meest gepast is
-        public void MaakReservatie(FitnessToestel fitnessToestel, DateTime dag, int tijdSlot, int duur, Klant klantNummer) {
-            throw new System.NotImplementedException("Not implemented");
-        }
-
-        public void MaakReservatie(DateTime dag, int slot, FitnessToestel toestel) {
-            throw new System.NotImplementedException("Not implemented");
+        public Reservatie MaakReservatie(DateTime dag, Klant klant, FitnessToestel fitnessToestel, int beginSlot, int aantalSlots) {
+            Reservatie reservatie = new Reservatie(dag, klant, fitnessToestel, beginSlot, aantalSlots);
+            return reservatie;
         }
     }
 }

@@ -21,18 +21,19 @@ namespace Persistentie {
                 using SqlConnection connection = new(_connectionString);
                 connection.Open();
 
-                string query = "SELECT ToestelID, ToestelType FROM Klant WHERE ";
+                string query = "SELECT TOP 1 * FROM FitnessToestel ";
                 if (_toestelID.HasValue) {
-                    query += "WHERE ToestelID = @ToestelID;";
+                    query += "WHERE ID = @ID;";
                 }
                 else {
-                    query += "WHERE ToestelType = @ToestelType;";
+                    //Enkel beschikbare toestellen returnen
+                    query += "WHERE (ToestelType = '@ToestelType) AND (ToestelStatus = 'beschikbaar');;";
                 }
 
                 SqlCommand sqlCommand = new(query, connection);
 
                 if (_toestelID.HasValue) {
-                    sqlCommand.Parameters.AddWithValue("@ToestelID", _toestelID);
+                    sqlCommand.Parameters.AddWithValue("@ID", _toestelID);
                 }
                 else {
                     sqlCommand.Parameters.AddWithValue("@ToestelType", _toestelType);
@@ -41,17 +42,16 @@ namespace Persistentie {
                 using SqlDataReader dataReader = sqlCommand.ExecuteReader();
                 if (dataReader.HasRows) {
                     while (dataReader.Read()) {
-                        int toestelID = (int)dataReader["ToestelID"];
+                        int toestelID = (int)dataReader["ID"];
                         string toestelType = (string)dataReader["ToestelType"];
 
-
                         if (toestelType.ToLower() == "loopband") {
-                            FitnessToestel fitnessToestel = new Loopband(int.Parse(toestelType));
+                            FitnessToestel fitnessToestel = new Loopband(toestelID);
                             _geselecteerdToestel = fitnessToestel;
                             return _geselecteerdToestel;
                         }
                         else if (toestelType.ToLower() == "fiets") {
-                            FitnessToestel fitnessToestel = new Fiets(int.Parse(toestelType));
+                            FitnessToestel fitnessToestel = new Fiets(toestelID);
                             _geselecteerdToestel = fitnessToestel;
                             return _geselecteerdToestel;
                         }
@@ -63,7 +63,7 @@ namespace Persistentie {
                 }
             }
             catch (Exception e) {
-                throw new Exception("SelecteerKlantData uit database ging mis.", e);
+                throw new Exception("SelecteerToestelData uit database ging mis.", e);
             }
         }
 
