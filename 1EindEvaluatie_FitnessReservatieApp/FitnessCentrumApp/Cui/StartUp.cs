@@ -7,16 +7,18 @@ namespace Cui {
         public static void Main() {
             DomeinController domeinController = new DomeinController();
             IKlantRepo klantRepo = new KlantRepo(DBinfo.DBconnectionString);
-            IReservationRepo reservationRepo = new ReservationRepo();
+            IReservationRepo reservationRepo = new ReservationRepo(DBinfo.DBconnectionString);
             IToestellenRepo toestellenRepo = new ToestellenRepo(DBinfo.DBconnectionString);
             FitnessApp fitnessApp = new FitnessApp(domeinController);
 
             //klantRepo.KlantenDataInDatabank();
-            //Klant goedele = klantRepo.SelecteerKlantData(null, "Goedele.Jackson@telenet.com");
+            Klant goedele = klantRepo.SelecteerKlantData(null, "Goedele.Jackson@telenet.com");
 
             //toestellenRepo.ToestellenDataInDatabank();
+            FitnessToestel testToestel = toestellenRepo.SelecteerToestelData(1,null);
 
-            //Console.WriteLine(goedele.AchterNaam);
+            Reservatie reservatieTest = new(new DateTime(2022-05-25), goedele, testToestel, 2, 2);
+            reservationRepo.ZetReservatieInDB(reservatieTest);
 
             #region KlantIdentificeren
             Console.WriteLine("Welkom bij FitnessCentrum TangFit! About time to get ripped ;)");
