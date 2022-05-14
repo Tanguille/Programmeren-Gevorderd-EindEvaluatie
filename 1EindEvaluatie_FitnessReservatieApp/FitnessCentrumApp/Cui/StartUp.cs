@@ -5,17 +5,20 @@ using System;
 namespace Cui {
     public class StartUp {
         public static void Main() {
-            DomeinController domeinController = new DomeinController();
             IKlantRepo klantRepo = new KlantRepo(DBinfo.DBconnectionString);
             IReservationRepo reservationRepo = new ReservationRepo(DBinfo.DBconnectionString);
             IToestellenRepo toestellenRepo = new ToestellenRepo(DBinfo.DBconnectionString);
+            DomeinController domeinController = new DomeinController(klantRepo, reservationRepo, toestellenRepo);
             FitnessApp fitnessApp = new FitnessApp(domeinController);
 
+            toestellenRepo.VeranderToestelStatus(1, "Bezet");
+
             //klantRepo.KlantenDataInDatabank();
-            Klant goedele = klantRepo.SelecteerKlantData(null, "Goedele.Jackson@telenet.com");
+            Klant goedele = klantRepo.SelecteerKlantData("Goedele.Jackson@telenet.com");
 
             //toestellenRepo.ToestellenDataInDatabank();
             FitnessToestel testToestel = toestellenRepo.SelecteerToestelData(1, "");
+
 
             Reservatie reservatieTest = new(new DateTime(2022 - 05 - 25), goedele, testToestel, 2, 2);
             reservationRepo.ZetReservatieInDB(reservatieTest);
@@ -28,7 +31,7 @@ namespace Cui {
             bool gelukt = true;
             do {
                 try {
-                    domeinController.KlantIdentificeren(identificatieString);
+                    //domeinController.KlantIdentificeren(identificatieString);
                 }
                 catch (FormatException) {
                     gelukt = false;
@@ -43,51 +46,7 @@ namespace Cui {
             Console.Write("Op welke datum wenst u een reservatie te maken? (Gelieve dd/mm/yyyy formaat te gebruiken): ");
             DateTime datumReservatie = DateTime.Parse(Console.ReadLine());
             Console.WriteLine(datumReservatie);
-            #endregion 
-
-            //List<string> menu = new List<string>() { "Add aircraft", "Add charter" };
-            //List<string> types = new List<string>() { "Passenger", "Cargo" };
-            //int destinationIndex;
-            //int typeChoice;
-            //int loadAmount;
-            //bool stop = false;
-            //try {
-            //    do {
-            //        Console.Clear();
-            //        int optionChoice = fitnessApp.MakeChoiceFromOptions("Menu", menu, "Stop");
-            //        switch (optionChoice) {
-            //            case 0:
-            //                stop = true;
-            //                //if (!domeinController.GetAircraftOnPlanner().Any()) {
-            //                //    Console.WriteLine("No flights were added to planner!");
-            //                //}
-            //                //else {
-            //                //    foreach (string aircraft in domeinController.GetAircraftOnPlanner()) {
-            //                //        Console.WriteLine(aircraft);
-            //                //    }
-            //                //}
-            //                break;
-            //            case 1:
-            //                destinationIndex = fitnessApp.MakeChoiceFromOptions("Pick a destination", destinationMapper.GetDestinations(), "Don't select a destination.");
-            //                typeChoice = fitnessApp.MakeChoiceFromOptions("Pick an aircraft type", types, "don't select a type");
-            //                loadAmount = fitnessApp.LoadAmountSelector(typeChoice == 1 ? "Passenger" : typeChoice == 2 ? "Cargo" : throw new FormatException());
-            //                domeinController.PlaceAircraftOnPlanner(destinationIndex - 1, loadAmount.ToString(), typeChoice.ToString());
-            //                break;
-            //            case 2:
-            //                Console.WriteLine("Please provide amount of fuel");
-            //                domeinController.PlaceCharterAircraftOnPlanner(double.Parse(Console.ReadLine()));
-            //                break;
-            //            default:
-            //                throw new FormatException();
-            //        }
-            //    } while (!stop);
-            //}
-            //catch (Exception exception) {
-            //    Console.WriteLine($"{exception.GetType().Name}: {exception.Message}");
-
-            //    //DEBUG
-            //    //Console.WriteLine(exception.StackTrace);
-            //}
+            #endregion             
         }
 
 

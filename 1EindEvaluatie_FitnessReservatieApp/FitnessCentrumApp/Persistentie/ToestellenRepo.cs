@@ -68,6 +68,24 @@ namespace Persistentie {
         }
 
         /// <summary>
+        /// Verandert status van het toestel
+        /// </summary>
+        /// <param name="iD"></param>
+        /// <param name="toestelStatus"></param>
+        public void VeranderToestelStatus(int iD, string toestelStatus) {
+            using SqlConnection connection = new(_connectionString);
+            connection.Open();
+
+            SqlCommand sqlUpdateCommand = new("UPDATE FitnessToestel SET ToestelStatus = @ToestelStatus WHERE ID = @ID;", connection);
+
+            sqlUpdateCommand.Parameters.AddWithValue("@ToestelStatus", toestelStatus);
+            sqlUpdateCommand.Parameters.AddWithValue("@ID", iD);
+
+            sqlUpdateCommand.ExecuteNonQuery();
+            connection.Close();
+        }
+
+        /// <summary>
         /// Haalt toestellendata uit CSV file en steekt die in databank
         /// </summary>
         /// <returns></returns>

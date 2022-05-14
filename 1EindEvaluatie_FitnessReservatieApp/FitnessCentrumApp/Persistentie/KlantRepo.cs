@@ -3,11 +3,14 @@ using Microsoft.Data.SqlClient;
 using System;
 using System.Data;
 using System.IO;
+using System.Net.Mail;
+using System.Text.RegularExpressions;
 
 namespace Persistentie {
     public class KlantRepo : IKlantRepo {
         private Klant _geselecteerdeKlant;
         private readonly string _connectionString;
+
         public KlantRepo(string connectionString) {
             _connectionString = connectionString;
         }
@@ -15,27 +18,14 @@ namespace Persistentie {
         /// <summary>
         /// Selecteert een klant met al zijn data uit de database.
         /// </summary>
-        public Klant SelecteerKlantData(int? _klantNummer, string _emailAdres) {
+        public Klant SelecteerKlantData(string identificatieString) {
             try {
                 using SqlConnection connection = new(_connectionString);
                 connection.Open();
 
-                string query = "SELECT KlantNummer, EmailAdres, VoorNaam, Achternaam, Adres, GeboorteDatum, Interesses, KlantType FROM Klant ";
-                if (_klantNummer.HasValue) {
-                    query += "WHERE KlantNummer = @KlantNummer;";
-                }
-                else {
-                    query += "WHERE EmailAdres = @EmailAdres;";
-                }
-
+                string query = QuerySelector(identificatieString);
                 SqlCommand sqlCommand = new(query, connection);
-
-                if (_klantNummer.HasValue) {
-                    sqlCommand.Parameters.AddWithValue("@KlantNummer", _klantNummer);
-                }
-                else {
-                    sqlCommand.Parameters.AddWithValue("@EmailAdres", _emailAdres);
-                }
+                sqlCommand.Parameters.AddWithValue("@value", identificatieString);
 
                 using SqlDataReader dataReader = sqlCommand.ExecuteReader();
                 if (dataReader.HasRows) {
@@ -68,6 +58,29 @@ namespace Persistentie {
             catch (Exception e) {
                 throw new Exception("SelecteerKlantData uit database ging mis.", e);
             }
+        }
+
+
+        private string QuerySelector(string identificatieString) {
+            int klantNummer;
+            if (int.TryParse(identificatieString, out klantNummer)) {
+                if (klantNummer == 0) {
+                    throw new Exception("Klantnummer kan niet 0 zijn.");
+                }
+                return "SELECT KlantNummer, EmailAdres, VoorNaam, Achternaam, Adres, GeboorteDatum, Interesses, KlantType FROM Klant WHERE KlantNummer = @value;";
+            }
+            if (!IsValidEmail(identificatieString)) {
+                throw new Exception("Email ongeldig.");
+            }
+            else {
+                MailAddress verifiedMail = new(identificatieString);
+            }
+            return "SELECT KlantNummer, EmailAdres, VoorNaam, Achternaam, Adres, GeboorteDatum, Interesses, KlantType FROM Klant WHERE EmailAdres = @value;";
+        }
+        public bool IsValidEmail(string email) {
+            string pattern = @"^(?!\.)(""([^""\r\\]|\\[""\r\\])*""|" + @"([-a-z0-9!#$%&'*+/=?^_`{|}~]|(?<!\.)\.)*)(?<!\.)" + @"@[a-z0-9][\w\.-]*[a-z0-9]\.[a-z][a-z\.]*[a-z]$";
+            var regex = new Regex(pattern, RegexOptions.IgnoreCase);
+            return regex.IsMatch(email);
         }
 
         /// <summary>

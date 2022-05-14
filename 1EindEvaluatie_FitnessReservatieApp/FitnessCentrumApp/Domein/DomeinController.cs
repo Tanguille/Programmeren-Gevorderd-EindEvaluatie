@@ -7,13 +7,23 @@ namespace Domein {
         private Klant _klant;
         private IKlantRepo _klantRepo;
         private IReservationRepo _reservationRepo;
+        private IToestellenRepo _toestellenRepo;
 
-        public void KlantIdentificeren(string identificatieString) {
-            _klant.KlantIdentificeren(identificatieString);
+        public DomeinController(IKlantRepo klantRepo, IReservationRepo reservationRepo, IToestellenRepo toestellenRepo) {
+            _klantRepo = klantRepo;
+            _reservationRepo = reservationRepo;
+            _toestellenRepo = toestellenRepo;
         }
 
-        public void SelecteerKlantData(int klantNummer, string emailAdres) {
-            _klantRepo.SelecteerKlantData(klantNummer, emailAdres);
+        public Klant SelecteerKlantData(string identificatieString) {
+            Klant klant = _klantRepo.SelecteerKlantData(identificatieString);
+            AangemeldeKlant = klant;
+            return AangemeldeKlant;
+        }
+
+        public FitnessToestel SelecteerToestelData(int? toestelID, string toestelType) {
+            FitnessToestel toestel = _toestellenRepo.SelecteerToestelData(toestelID, toestelType);
+            return toestel;
         }
 
         public void ZetReservatieInDB(Reservatie reservatie) {

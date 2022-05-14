@@ -1,12 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Domein {
-    public enum ToestelStatus {
+﻿namespace Domein {
+    public enum EToestelStatus {
         Beschikbaar,
+        Bezet,
         InOnderhoud,
         Verwijderd,
     }

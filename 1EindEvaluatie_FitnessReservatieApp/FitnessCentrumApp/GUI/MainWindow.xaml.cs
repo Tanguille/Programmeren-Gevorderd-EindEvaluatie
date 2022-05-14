@@ -1,4 +1,4 @@
-﻿using System;
+﻿using Domein;
 using System.Windows;
 
 namespace GUI {
@@ -6,12 +6,19 @@ namespace GUI {
     /// Interaction logic for MainWindow.xaml
     /// </summary>
     public partial class MainWindow : Window {
-        public MainWindow() {
+        private DomeinController _domeinController;
+        public MainWindow(DomeinController domeinController) {
             InitializeComponent();
+            _domeinController = domeinController;
         }
 
         private void Button_Click_Login(object sender, RoutedEventArgs e) {
-            throw new NotImplementedException();
+            string identificatieString = LoginInputBox.Text;
+            Klant klant = _domeinController.SelecteerKlantData(identificatieString);
+
+            RegistratieWindow registratieWindow = new(_domeinController, klant);
+            this.Close();
+            registratieWindow.Show();
         }
     }
 }

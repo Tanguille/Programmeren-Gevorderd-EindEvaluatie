@@ -22,8 +22,7 @@ namespace Persistentie {
                 throw new NotImplementedException();
             }
             catch (Exception e) {
-
-                throw new Exception();
+                throw new Exception("Reservaties uit databank halen ging mis", e);
             }
         }
 
@@ -49,10 +48,6 @@ namespace Persistentie {
             catch (Exception e) {
                 throw new Exception("Fout bij reservatie in Databank steken.", e);
             }
-        }
-
-        public bool ToestelBeschikbaar(int toestelID) {
-            throw new NotImplementedException();
         }
     }
 }
