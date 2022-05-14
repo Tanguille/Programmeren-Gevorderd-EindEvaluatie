@@ -29,8 +29,13 @@ namespace GUI {
 
         private void ReserveerButton_Click(object sender, RoutedEventArgs e) {
             string geselecteerdToestel = ToestelSelectieBox.Text.ToLower();
-            _geselecteerdToestel = _domeinController.SelecteerToestelData(null, geselecteerdToestel);
+            //TODO: Reservatie implementeren
+            //_geselecteerdToestel = _domeinController.SelecteerToestelData(null, geselecteerdToestel);
             //_domeinController.MaakReservatie(RegistrationDatePicker.Text, _aangemeldeKlant.KlantNummer, _geselecteerdToestel);
+
+            RegistratieLandingWindow registratieLandingWindow = new(_domeinController, _aangemeldeKlant);
+            this.Close();
+            registratieLandingWindow.Show();
         }
     }
 }

@@ -27,7 +27,7 @@ namespace Persistentie {
                 }
                 else {
                     //Enkel beschikbare toestellen returnen
-                    query += "WHERE (ToestelType = '@ToestelType) AND (ToestelStatus = 'beschikbaar');;";
+                    query += "WHERE (ToestelType = '@ToestelType) AND (ToestelStatus = 'beschikbaar');";
                 }
 
                 SqlCommand sqlCommand = new(query, connection);
