@@ -13,7 +13,7 @@ namespace Cui {
 
             toestellenRepo.VeranderToestelStatus(1, "Bezet");
 
-            //klantRepo.KlantenDataInDatabank();
+            //klantRepo.KlantenDataInDatabank();           
             Klant goedele = klantRepo.SelecteerKlantData("Goedele.Jackson@telenet.com");
 
             //toestellenRepo.ToestellenDataInDatabank();

@@ -43,7 +43,7 @@
         <Grid Height="500" Background="{StaticResource GroundBrush}">
 
             <!--Goedzetten verhouding grids-->
-                <Grid.RowDefinitions>
+            <Grid.RowDefinitions>
                 <RowDefinition Height="280*"/>
                 <RowDefinition Height="250*"/>
             </Grid.RowDefinitions>
@@ -85,9 +85,9 @@
                               FontSize="20" Margin="10 0 -10 0"
                         />
                     </Grid>
-                    
+
                     <!--Inlog button-->
-                    <Grid Margin="50 10 50 50" Grid.Row="1" Width="200" MinWidth="100">
+                    <Grid Margin="50 10 50 50" Grid.Row="1" Width="200" MinWidth="100">                        
                         <Button Name="LoginButton" IsDefault="True"
                             FontSize="20"
                             Style="{StaticResource MaterialDesignRaisedDarkButton}"

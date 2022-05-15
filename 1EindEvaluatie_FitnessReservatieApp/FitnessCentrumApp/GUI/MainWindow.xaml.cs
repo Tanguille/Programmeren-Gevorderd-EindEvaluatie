@@ -16,9 +16,17 @@ namespace GUI {
             string identificatieString = LoginInputBox.Text;
             Klant klant = _domeinController.SelecteerKlantData(identificatieString);
 
-            RegistratieWindow registratieWindow = new(_domeinController, klant);
-            this.Close();
-            registratieWindow.Show();
+            //admin panel mogelijk maken
+            if (klant.EmailAdres == "beheerder@tangfit.be") {
+                AdminWindow adminWindow = new AdminWindow(_domeinController);
+                this.Close();
+                adminWindow.Show();
+            }
+            else {
+                RegistratieWindow registratieWindow = new(_domeinController, klant);
+                this.Close();
+                registratieWindow.Show();
+            }
         }
     }
 }
