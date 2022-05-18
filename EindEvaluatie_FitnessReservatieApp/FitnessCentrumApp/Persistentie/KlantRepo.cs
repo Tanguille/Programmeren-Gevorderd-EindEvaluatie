@@ -1,14 +1,13 @@
 ﻿using Domein;
+using Domein.Exceptions;
 using Microsoft.Data.SqlClient;
 using System;
 using System.Data;
 using System.IO;
-using System.Net.Mail;
-using System.Text.RegularExpressions;
 
 namespace Persistentie {
     public class KlantRepo : IKlantRepo {
-        private Klant _geselecteerdeKlant;
+        public Klant _geselecteerdeKlant;
         private readonly string _connectionString;
 
         public KlantRepo(string connectionString) {
@@ -52,44 +51,39 @@ namespace Persistentie {
                     return _geselecteerdeKlant;
                 }
                 else {
-                    throw new Exception("Geen overeenkomstige data in de databank.");
+                    throw new RepoException("Geen overeenkomstige data in de databank.");
                 }
             }
-            catch (Exception e) {
-                throw new Exception("SelecteerKlantData uit database ging mis.", e);
+            catch (RepoException e) {
+                throw new RepoException("SelecteerKlantData uit database ging mis.", e);
             }
         }
-
-
+        //TODO: Fix stringwaarde
         private string QuerySelector(string identificatieString) {
-            int klantNummer;
-            if (int.TryParse(identificatieString, out klantNummer)) {
-                if (klantNummer == 0) {
-                    throw new Exception("Klantnummer kan niet 0 zijn.");
+            try {
+                int klantNummer;
+                if (int.TryParse(identificatieString, out klantNummer)) {
+                    return "SELECT KlantNummer, EmailAdres, VoorNaam, Achternaam, Adres, GeboorteDatum, Interesses, KlantType FROM Klant WHERE KlantNummer = @value;";
                 }
-                return "SELECT KlantNummer, EmailAdres, VoorNaam, Achternaam, Adres, GeboorteDatum, Interesses, KlantType FROM Klant WHERE KlantNummer = @value;";
+                else if (!_geselecteerdeKlant.IsValidEmail(identificatieString)) {
+                    throw new RepoException("Email ongeldig.");
+                }
+                else {
+                    return "SELECT KlantNummer, EmailAdres, VoorNaam, Achternaam, Adres, GeboorteDatum, Interesses, KlantType FROM Klant WHERE EmailAdres = @value;";
+                }
             }
-            if (!IsValidEmail(identificatieString)) {
-                throw new Exception("Email ongeldig.");
+            catch (RepoException e) {
+                throw new RepoException("QuerySelector ging mis.", e);
             }
-            else {
-                MailAddress verifiedMail = new(identificatieString);
-            }
-            return "SELECT KlantNummer, EmailAdres, VoorNaam, Achternaam, Adres, GeboorteDatum, Interesses, KlantType FROM Klant WHERE EmailAdres = @value;";
-        }
-        public bool IsValidEmail(string email) {
-            string pattern = @"^(?!\.)(""([^""\r\\]|\\[""\r\\])*""|" + @"([-a-z0-9!#$%&'*+/=?^_`{|}~]|(?<!\.)\.)*)(?<!\.)" + @"@[a-z0-9][\w\.-]*[a-z0-9]\.[a-z][a-z\.]*[a-z]$";
-            var regex = new Regex(pattern, RegexOptions.IgnoreCase);
-            return regex.IsMatch(email);
         }
 
         /// <summary>
         /// Haalt klantdata uit CSV file en steekt die in databank
         /// </summary>
-        /// <exception cref="Exception"></exception>
+        /// <exception cref="RepoException"></exception>
         public void KlantenDataInDatabank() {
             try {
-                string[] values = new string[7];
+                string[] values;
                 string[] rows = File.ReadAllLines("klanten.csv");
 
                 for (int i = 0; i < rows.Length; i++) {
@@ -129,8 +123,8 @@ namespace Persistentie {
                     connection.Close();
                 }
             }
-            catch (Exception e) {
-                throw new Exception("Fout bij data in databank steken.", e);
+            catch (RepoException e) {
+                throw new RepoException("Fout bij data in databank steken.", e);
             }
         }
     }

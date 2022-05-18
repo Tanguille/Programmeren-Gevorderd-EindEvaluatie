@@ -1,4 +1,5 @@
 ﻿using Domein;
+using Domein.Exceptions;
 using System;
 using System.Windows;
 using System.Windows.Controls;
@@ -8,11 +9,13 @@ namespace GUI {
     /// Interaction logic for RegistratieWindow.xaml
     /// </summary>
     public partial class RegistratieWindow : Window {
-        private DomeinController _domeinController;     
-        
-        public RegistratieWindow(DomeinController domeinController) {
+        private DomeinController _domeinController;
+        private int _aangemeldeKlantNummer;
+
+        public RegistratieWindow(DomeinController domeinController, int aangemeldeKlantNummer) {
             InitializeComponent();
-            _domeinController = domeinController;            
+            _domeinController = domeinController;
+            _aangemeldeKlantNummer = aangemeldeKlantNummer;
 
             txtLabel_Titel.Content = "Welkom " + domeinController.GetKlantNaam() + "!";
 
@@ -20,20 +23,28 @@ namespace GUI {
             RegistrationDatePicker.BlackoutDates.Add(new CalendarDateRange(DateTime.Today.AddDays(8), DateTime.MaxValue));
         }
 
-        //TODO: Toepassen
-        private void ToestelWeergevenOpType(string toestelType) {
-            string toestelInfo = _domeinController.SelecteerToestelData(null, toestelType);            
-        }
-
         private void ReserveerButton_Click(object sender, RoutedEventArgs e) {
-            string geselecteerdToestel = ToestelSelectieBox.Text.ToLower();
-            //TODO: Reservatie implementeren
-            //_geselecteerdToestel = _domeinController.SelecteerToestelData(null, geselecteerdToestel);
-            //_domeinController.MaakReservatie(RegistrationDatePicker.Text, _aangemeldeKlant.KlantNummer, _geselecteerdToestel);
+            try {
+                string geselecteerdToestel = ToestelSelectieBox.Text.ToLower();
+                int beginUur = RegistrationHourPicker.SelectedTime.Value.Hour;
+                int duur;
 
-            RegistratieLandingWindow registratieLandingWindow = new(_domeinController);
-            this.Close();
-            registratieLandingWindow.Show();
+                if (DuurSelectieBox.SelectedIndex == 0) {
+                    duur = 1;
+                }
+                else {
+                    duur = 2;
+                }
+
+                _domeinController.MaakReservatie(RegistrationDatePicker.SelectedDate.Value, _domeinController.SelecteerToestelData(null, geselecteerdToestel), beginUur, duur);
+
+                RegistratieLandingWindow registratieLandingWindow = new(_domeinController, _aangemeldeKlantNummer);
+                this.Close();
+                registratieLandingWindow.Show();
+            }
+            catch (ReserveerException reserveerE) {
+                MessageBox.Show(reserveerE.Message);
+            }
         }
     }
 }

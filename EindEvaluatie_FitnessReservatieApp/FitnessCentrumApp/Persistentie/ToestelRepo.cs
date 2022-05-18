@@ -1,4 +1,5 @@
 ﻿using Domein;
+using Domein.Exceptions;
 using Microsoft.Data.SqlClient;
 using System;
 using System.Data;
@@ -23,11 +24,11 @@ namespace Persistentie {
 
                 string query = "SELECT TOP 1 * FROM FitnessToestel ";
                 if (_toestelID.HasValue) {
-                    query += "WHERE ID = @ID;";
+                    query += "WHERE ID = @ID";
                 }
                 else {
                     //Enkel beschikbare toestellen returnen
-                    query += "WHERE (ToestelType = '@ToestelType) AND (ToestelStatus = 'beschikbaar');";
+                    query += "WHERE (ToestelType = @ToestelType) AND (ToestelStatus = 'beschikbaar')";
                 }
 
                 SqlCommand sqlCommand = new(query, connection);
@@ -59,11 +60,11 @@ namespace Persistentie {
                     return _geselecteerdToestel;
                 }
                 else {
-                    throw new Exception("Geen overeenkomstige data in de databank.");
+                    throw new RepoException("Geen overeenkomstige data in de databank.");
                 }
             }
-            catch (Exception e) {
-                throw new Exception("SelecteerToestelData uit database ging mis.", e);
+            catch (RepoException e) {
+                throw new RepoException("SelecteerToestelData uit database ging mis.", e);
             }
         }
 
@@ -92,7 +93,7 @@ namespace Persistentie {
         /// <exception cref="NotSupportedException"></exception>
         public void ToestellenDataInDatabank() {
             try {
-                string[] values = new string[2];
+                string[] values;
                 string[] rows = File.ReadAllLines("FitnessToestellen.csv");
 
                 for (int i = 0; i < rows.Length; i++) {

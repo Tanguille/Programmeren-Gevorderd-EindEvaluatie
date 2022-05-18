@@ -11,7 +11,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Persistentie", "Persistenti
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DomeinTests", "DomeinTests\DomeinTests.csproj", "{E4A7867A-5442-404C-8917-370D0D63A817}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GUI", "GUI\GUI.csproj", "{A893AB94-4094-4CFB-A86D-FCCB35277BEB}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Gui", "GUI\Gui.csproj", "{A893AB94-4094-4CFB-A86D-FCCB35277BEB}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

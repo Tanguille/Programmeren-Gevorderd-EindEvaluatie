@@ -1,6 +1,6 @@
 ﻿using Domein;
-using System.Windows;
 using Domein.Exceptions;
+using System.Windows;
 
 namespace GUI {
     /// <summary>
@@ -8,15 +8,16 @@ namespace GUI {
     /// </summary>
     public partial class MainWindow : Window {
         private DomeinController _domeinController;
+        private int _aangemeldeKlantNummer;
         public MainWindow(DomeinController domeinController) {
             InitializeComponent();
             _domeinController = domeinController;
-        } 
-        
+        }
+
         private void Button_Click_Login(object sender, RoutedEventArgs e) {
             try {
                 string identificatieString = LoginInputBox.Text;
-                int klantNummer = _domeinController.SelecteerKlantData(identificatieString);
+                _aangemeldeKlantNummer = _domeinController.SelecteerKlantData(identificatieString);
 
                 //admin panel mogelijk maken
                 if (_domeinController.IsBeheerder()) {
@@ -24,17 +25,15 @@ namespace GUI {
                     this.Close();
                     adminWindow.Show();
                 }
-                else {
-                    RegistratieWindow registratieWindow = new(_domeinController);
+                if (!_domeinController.IsBeheerder()) {
+                    RegistratieWindow registratieWindow = new(_domeinController, _aangemeldeKlantNummer);
                     this.Close();
                     registratieWindow.Show();
                 }
             }
             catch (LoginException loginE) {
-                //HACK: Exceptions herzien
                 MessageBox.Show(loginE.Message);
-                throw new LoginException("Er ging iets mis met uw login.", loginE);            
-            }           
+            }
         }
     }
 }

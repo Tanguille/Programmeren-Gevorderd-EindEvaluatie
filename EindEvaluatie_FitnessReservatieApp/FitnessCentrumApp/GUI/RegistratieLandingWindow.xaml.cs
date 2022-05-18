@@ -6,10 +6,12 @@ namespace GUI {
     /// Interaction logic for RegistratieLandingWindow.xaml
     /// </summary>
     public partial class RegistratieLandingWindow : Window {
-        private DomeinController _domeinController;        
-        public RegistratieLandingWindow(DomeinController domeinController) {
+        private DomeinController _domeinController;
+        private int _aangemeldeKlantNummer;
+        public RegistratieLandingWindow(DomeinController domeinController, int aangemeldeKlantNummer) {
             InitializeComponent();
-            _domeinController = domeinController;            
+            _domeinController = domeinController;
+            _aangemeldeKlantNummer = aangemeldeKlantNummer;
         }
         public string InfoString {
             get {
@@ -18,7 +20,7 @@ namespace GUI {
             }
         }
         private void NieuweAfspraakButton_Click(object sender, RoutedEventArgs e) {
-            RegistratieWindow registratieWindow = new(_domeinController);
+            RegistratieWindow registratieWindow = new(_domeinController, _aangemeldeKlantNummer);
             this.Close();
             registratieWindow.Show();
         }
@@ -30,6 +32,13 @@ namespace GUI {
 
             this.Close();
             mainWindow.Show();
+        }
+
+
+        //TODO: Toepassen: Veranderen naar method die gemaakte reservaties returned?
+
+        private int ToestelWeergevenOpType(string toestelType) {
+            return _domeinController.SelecteerToestelData(null, toestelType);
         }
 
     }

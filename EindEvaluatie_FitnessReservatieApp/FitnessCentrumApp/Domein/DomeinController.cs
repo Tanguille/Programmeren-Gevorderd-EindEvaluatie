@@ -16,18 +16,18 @@ namespace Domein {
         }
 
         public int SelecteerKlantData(string identificatieString) {
-            Klant klant = _klantRepo.SelecteerKlantData(identificatieString);
-            AangemeldeKlant = klant;
-            return AangemeldeKlant.KlantNummer;
+            _klant = _klantRepo.SelecteerKlantData(identificatieString);
+            return _klant.KlantNummer;
         }
 
         public string GetKlantNaam() {
             return $"{AangemeldeKlant.VoorNaam} {AangemeldeKlant.AchterNaam}";
         }
 
-        public string SelecteerToestelData(int? toestelID, string toestelType) {
+        public int SelecteerToestelData(int? toestelID, string toestelType) {
             FitnessToestel toestel = _toestelRepo.SelecteerToestelData(toestelID, toestelType);
-            return $"{toestel.GetType().Name}: ";
+            return toestel.ToestelID;
+            //ToString method: $"{toestel.GetType().Name}: {toestel.ToestelID}";
         }
 
         public void MaakReservatie(DateTime dag, int toestelID, int beginSlot, int aantalSlots) {

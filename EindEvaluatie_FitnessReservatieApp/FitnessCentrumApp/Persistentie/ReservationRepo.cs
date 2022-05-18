@@ -1,13 +1,11 @@
 ﻿using Domein;
+using Domein.Exceptions;
 using Microsoft.Data.SqlClient;
 using System;
 
 namespace Persistentie {
     public class ReservationRepo : IReservationRepo {
         private readonly string _connectionstring;
-        private readonly Klant _aangemeldeKlant;
-        private readonly FitnessToestel _fitnessToestel;
-        private readonly Reservatie _reservatie;
 
         public ReservationRepo(string connectionstring) {
             _connectionstring = connectionstring;
@@ -21,8 +19,8 @@ namespace Persistentie {
             try {
                 throw new NotImplementedException();
             }
-            catch (Exception e) {
-                throw new Exception("Reservaties uit databank halen ging mis", e);
+            catch (RepoException e) {
+                throw new RepoException("Reservaties uit databank halen ging mis", e);
             }
         }
 
@@ -34,19 +32,19 @@ namespace Persistentie {
                 using SqlConnection connection = new(_connectionstring);
                 connection.Open();
 
-                SqlCommand insertCommand = new("INSERT INTO Reservatie (KlantNummer, FitnessToestelID, Datum, BeginSlot, AantalSlots "
-                    + "VALUES (@KlantNummer, @FitnessToestelID, @Datum, @BeginSlot, @AantalSlots);", connection);
-                insertCommand.Parameters.AddWithValue("@KlantNummer", _aangemeldeKlant.KlantNummer);
-                insertCommand.Parameters.AddWithValue("@FitnessToestelID", _fitnessToestel.ToestelID);
-                insertCommand.Parameters.AddWithValue("@Datum", _reservatie.Datum);
-                insertCommand.Parameters.AddWithValue("@BeginSlot", _reservatie.BeginSlot);
-                insertCommand.Parameters.AddWithValue("@AantalSlots", _reservatie.AantalSlots);
+                SqlCommand insertCommand = new("INSERT INTO Reservatie (KlantNummer, FitnessToestelID, Datum, BeginSlot, AantalSlots) "
+                    + "VALUES (@KlantNummer, @FitnessToestelID, @Datum, @BeginSlot, @AantalSlots)", connection);
+                insertCommand.Parameters.AddWithValue("@KlantNummer", reservatie.Klant.KlantNummer);
+                insertCommand.Parameters.AddWithValue("@FitnessToestelID", reservatie.GereserveerdToestel.ToestelID);
+                insertCommand.Parameters.AddWithValue("@Datum", reservatie.Datum);
+                insertCommand.Parameters.AddWithValue("@BeginSlot", reservatie.BeginSlot);
+                insertCommand.Parameters.AddWithValue("@AantalSlots", reservatie.AantalSlots);
 
                 insertCommand.ExecuteNonQuery();
                 connection.Close();
             }
-            catch (Exception e) {
-                throw new Exception("Fout bij reservatie in Databank steken.", e);
+            catch (RepoException e) {
+                throw new RepoException("Fout bij reservatie in Databank steken.", e);
             }
         }
     }

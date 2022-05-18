@@ -1,15 +1,18 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Domein.Exceptions {
     public class LoginException : Exception {
-        public LoginException(string message) : base(message) {
+        private string _message;
+        public override string Message => _message;
+        public LoginException(string message) {
+            _message = message;
         }
 
-        public LoginException(string message, Exception innerException) : base(message, innerException) {
+        public LoginException() : base("Er ging iets mis met de login.") {
+        }
+
+        public LoginException(string message, Exception innerException) : base("Er ging iets mis met de login.", innerException) {
+            _message = message;
         }
     }
 }
