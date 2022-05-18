@@ -11,12 +11,6 @@ namespace Domein.Tests {
             _klant = new();
         }
 
-        //unit testen op constructors nodig?
-        [TestMethod()]
-        [DataRow()]
-        public void KlantTest() {
-
-        }
 
         [TestMethod()]
         [DataRow("0")]
@@ -95,14 +89,14 @@ namespace Domein.Tests {
         [DataRow("mailto:mailto:email@domain.com")]
         [DataRow("Display Name <email@plus.com> (after name with display)")]
         public void KlantIdentificerenTest_Exception(string testString) {
-            Assert.ThrowsException<Exception>(() => _klant.KlantIdentificeren(testString));
+            Assert.ThrowsException<Exception>(() => _klant.IsValidEmail(testString));
         }
 
         [TestMethod()]
         [DataRow("1")]
         [DataRow("tanguille@hotmail.be")]
         public void KlantIdentificerenTest_NonException(string testString) {
-            _klant.KlantIdentificeren(testString);
+            _klant.IsValidEmail(testString);
         }
     }
 }

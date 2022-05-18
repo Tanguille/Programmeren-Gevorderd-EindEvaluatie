@@ -1,6 +1,5 @@
 using Domein.Exceptions;
 using System;
-using System.Net.Mail;
 using System.Text.RegularExpressions;
 
 namespace Domein {
@@ -25,11 +24,11 @@ namespace Domein {
         }
 
         public Klant(int klantNummer, string emailAdres, string voorNaam, string achterNaam, string adres, DateTime geboorteDatum, string interesses, EKlantType klantType) {
-            if (klantNummer < 1) {
-                throw new KlantException("KlantNummer mag niet kleiner dan 1 zijn.");
+            if (klantNummer > 0) {
+                KlantNummer = klantNummer;
             }
             else {
-                klantNummer = KlantNummer;
+                throw new KlantException("KlantNummer mag niet kleiner dan 1 zijn.");
             }
 
             EmailAdres = emailAdres;
@@ -41,25 +40,18 @@ namespace Domein {
             KlantType = klantType;
         }
 
-        //Nodig om klant aan te maken in ReservationRepo
-        public Klant(int klantNummer) {
-            KlantNummer = klantNummer;
-        }
-
         //Nodig om object aan te maken in UnitTests
         public Klant() {
         }
 
         public bool IsValidEmail(string email) {
             try {
-                MailAddress verifiedMail = new(email);
-                string pattern = @"^(?!\.)(""([^""\r\\]|\\[""\r\\])*""|" + @"([-a-z0-9!#$%&'*+/=?^_`{|}~]|(?<!\.)\.)*)(?<!\.)" + @"@[a-z0-9][\w\.-]*[a-z0-9]\.[a-z][a-z\.]*[a-z]$";
+                string pattern = @"^\\S+@\\S+\\.\\S+$";
                 var regex = new Regex(pattern, RegexOptions.IgnoreCase);
-                //Extra check omdat dit betere resultaten gaf bij UnitTests.
-                return regex.IsMatch(verifiedMail.ToString());
+                return regex.IsMatch(email);
             }
             catch (RepoException e) {
-                throw new RepoException("Email valideren ging mis.", e);
+                throw new NullReferenceException("Email valideren ging mis.", e);
             }
         }
     }

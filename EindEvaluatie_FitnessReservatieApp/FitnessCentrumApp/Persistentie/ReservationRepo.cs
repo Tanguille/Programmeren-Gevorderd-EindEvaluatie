@@ -2,6 +2,7 @@
 using Domein.Exceptions;
 using Microsoft.Data.SqlClient;
 using System;
+using System.Collections.Generic;
 
 namespace Persistentie {
     public class ReservationRepo : IReservationRepo {
@@ -15,8 +16,26 @@ namespace Persistentie {
         /// Selecteert een reservatie met al zijn data uit de database voor een overzicht aan klant te geven
         /// </summary>
         /// <returns>Reservatie</returns>
-        public Reservatie SelecteerReservaties(int klantNummer) {
+        /// TODO: Implementeren!
+        public List<Reservatie> GeefReservaties(int klantNummer) {
             try {
+                List<Reservatie> reservaties = new List<Reservatie>();
+
+                using SqlConnection connection = new(_connectionstring);
+                connection.Open();
+
+                SqlCommand sqlCommand = new("SELECT * FROM Reservatie WHERE KlantNummer = @klantNummer", connection);
+                sqlCommand.Parameters.AddWithValue("@klantNummer", klantNummer);
+                //Hoe fiksen om list op te vangen?
+
+                using SqlDataReader dataReader = sqlCommand.ExecuteReader();
+                if (dataReader.HasRows) {
+                    while (dataReader.Read()) {
+
+                        //reservaties.Add(new Reservatie());
+                    }
+                }
+
                 throw new NotImplementedException();
             }
             catch (RepoException e) {
@@ -33,7 +52,7 @@ namespace Persistentie {
                 connection.Open();
 
                 SqlCommand insertCommand = new("INSERT INTO Reservatie (KlantNummer, FitnessToestelID, Datum, BeginSlot, AantalSlots) "
-                    + "VALUES (@KlantNummer, @FitnessToestelID, @Datum, @BeginSlot, @AantalSlots)", connection);
+                + "VALUES (@KlantNummer, @FitnessToestelID, @Datum, @BeginSlot, @AantalSlots)", connection);
                 insertCommand.Parameters.AddWithValue("@KlantNummer", reservatie.Klant.KlantNummer);
                 insertCommand.Parameters.AddWithValue("@FitnessToestelID", reservatie.GereserveerdToestel.ToestelID);
                 insertCommand.Parameters.AddWithValue("@Datum", reservatie.Datum);

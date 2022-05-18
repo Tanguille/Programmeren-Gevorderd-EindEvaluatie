@@ -37,7 +37,7 @@ namespace GUI {
 
         //TODO: Toepassen: Veranderen naar method die gemaakte reservaties returned?
 
-        private int ToestelWeergevenOpType(string toestelType) {
+        private int GeefReservaties(string toestelType) {
             return _domeinController.SelecteerToestelData(null, toestelType);
         }
 

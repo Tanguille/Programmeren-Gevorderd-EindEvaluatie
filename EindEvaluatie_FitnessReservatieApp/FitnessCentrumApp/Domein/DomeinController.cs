@@ -16,8 +16,8 @@ namespace Domein {
         }
 
         public int SelecteerKlantData(string identificatieString) {
-            _klant = _klantRepo.SelecteerKlantData(identificatieString);
-            return _klant.KlantNummer;
+            AangemeldeKlant = _klantRepo.SelecteerKlantData(identificatieString);
+            return AangemeldeKlant.KlantNummer;
         }
 
         public string GetKlantNaam() {

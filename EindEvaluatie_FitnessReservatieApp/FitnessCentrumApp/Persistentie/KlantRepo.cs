@@ -58,7 +58,7 @@ namespace Persistentie {
                 throw new RepoException("SelecteerKlantData uit database ging mis.", e);
             }
         }
-        //TODO: Fix stringwaarde
+
         private string QuerySelector(string identificatieString) {
             try {
                 int klantNummer;
