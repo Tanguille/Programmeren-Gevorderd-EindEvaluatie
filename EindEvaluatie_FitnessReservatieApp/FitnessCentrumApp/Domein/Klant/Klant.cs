@@ -12,6 +12,15 @@ namespace Domein {
         public DateTime GeboorteDatum { get; private set; }
         public string Interesses { get; private set; }
         public EKlantType KlantType { get; private set; }
+        public Klant(int klantNummer, string emailAdres, string voorNaam, string achterNaam, string adres, DateTime geboorteDatum, string interesses, EKlantType klantType)
+            : this(emailAdres, voorNaam, achterNaam, adres, geboorteDatum, interesses, klantType) {
+            if (klantNummer > 0) {
+                KlantNummer = klantNummer;
+            }
+            else {
+                throw new KlantException("KlantNummer mag niet kleiner dan 1 zijn.");
+            }
+        }
 
         public Klant(string emailAdres, string voorNaam, string achterNaam, string adres, DateTime geboorteDatum, string interesses, EKlantType klantType) {
             EmailAdres = emailAdres;
@@ -23,25 +32,8 @@ namespace Domein {
             KlantType = klantType;
         }
 
-        public Klant(int klantNummer, string emailAdres, string voorNaam, string achterNaam, string adres, DateTime geboorteDatum, string interesses, EKlantType klantType) {
-            if (klantNummer > 0) {
-                KlantNummer = klantNummer;
-            }
-            else {
-                throw new KlantException("KlantNummer mag niet kleiner dan 1 zijn.");
-            }
-
-            EmailAdres = emailAdres;
-            VoorNaam = voorNaam;
-            AchterNaam = achterNaam;
-            Adres = adres;
-            GeboorteDatum = geboorteDatum;
-            Interesses = interesses;
-            KlantType = klantType;
-        }
-
-        //Nodig om object aan te maken in UnitTests
-        public Klant() {
+        public override string ToString() {
+            return $"{VoorNaam} {AchterNaam}";
         }
 
         public bool IsValidEmail(string email) {
@@ -51,7 +43,7 @@ namespace Domein {
                 return regex.IsMatch(email);
             }
             catch (RepoException e) {
-                throw new NullReferenceException("Email valideren ging mis.", e);
+                throw new RepoException("Email valideren ging mis.", e);
             }
         }
     }

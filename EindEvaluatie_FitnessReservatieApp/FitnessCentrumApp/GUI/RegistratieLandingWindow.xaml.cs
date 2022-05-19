@@ -1,4 +1,6 @@
 ﻿using Domein;
+using Gui;
+using System.Collections.Generic;
 using System.Windows;
 
 namespace GUI {
@@ -9,14 +11,30 @@ namespace GUI {
         private DomeinController _domeinController;
         private int _aangemeldeKlantNummer;
         public RegistratieLandingWindow(DomeinController domeinController, int aangemeldeKlantNummer) {
+            this.DataContext = this;
             InitializeComponent();
             _domeinController = domeinController;
             _aangemeldeKlantNummer = aangemeldeKlantNummer;
+
+            List<string[]> reservatieStrings = _domeinController.ReservatiesToString();
+
+            List<RegistratieLandingStrings> registratieLandingStrings = new();
+            foreach (string[] reservatieString in reservatieStrings) {
+                registratieLandingStrings.Add(new RegistratieLandingStrings() {
+                    ReservatieNummer = reservatieString[0],
+                    Datum = reservatieString[1],
+                    ToestelID = reservatieString[2],
+                    TijdSlot = reservatieString[3],
+                    AantalSlots = reservatieString[4]
+                });
+            }
+            ReservationListView.ItemsSource = registratieLandingStrings;
         }
+
         public string InfoString {
             get {
-                return string.Format("U kan per dag max 4 uur bij ons sporten. \\n"
-                    + "Maak een tweedde afspraak om meer dan 2 uur een toestel te gebruiken");
+                return $"U kan per dag max 4 uur bij ons sporten. \n"
+                    + "Maak een tweede afspraak om meer dan 2 uur een toestel te gebruiken";
             }
         }
         private void NieuweAfspraakButton_Click(object sender, RoutedEventArgs e) {
@@ -28,19 +46,11 @@ namespace GUI {
         private void LogoutButton_Click(object sender, RoutedEventArgs e) {
             MainWindow mainWindow = new(_domeinController);
 
-            //_aangemeldeKlant.ClearValue(); Afmelden van de klant
+            _aangemeldeKlantNummer = 0; //Afmelden van de klant
 
             this.Close();
             mainWindow.Show();
         }
-
-
-        //TODO: Toepassen: Veranderen naar method die gemaakte reservaties returned?
-
-        private int GeefReservaties(string toestelType) {
-            return _domeinController.SelecteerToestelData(null, toestelType);
-        }
-
     }
 }
 

@@ -4,10 +4,15 @@ namespace Domein {
     public class Reservatie {
         public int ReservatieNummer { get; } //Moet door systeem aangemaakt worden
         public Klant Klant { get; }
-        public DateTime Datum { get; private set; }
         public FitnessToestel GereserveerdToestel { get; private set; }
+        public DateTime Datum { get; private set; }
         public int BeginSlot { get; private set; }
-        public int AantalSlots { get; private set; } //max 2
+        public int AantalSlots { get; private set; } //max 2        
+
+        public Reservatie(int reservatieNummer, DateTime datum, Klant klant, FitnessToestel gereserveerdToestel, int beginSlot, int aantalSlots)
+            : this(datum, klant, gereserveerdToestel, beginSlot, aantalSlots) {
+            ReservatieNummer = reservatieNummer;
+        }
 
         public Reservatie(DateTime datum, Klant klant, FitnessToestel gereserveerdToestel, int beginSlot, int aantalSlots) {
             Klant = klant;
@@ -21,6 +26,10 @@ namespace Domein {
             else {
                 AantalSlots = aantalSlots;
             }
+        }
+
+        public override string ToString() {
+            return $"{ReservatieNummer} {Datum.Day} {GereserveerdToestel} {BeginSlot} {AantalSlots}";
         }
 
         public Reservatie MaakReservatie(DateTime dag, Klant klant, FitnessToestel fitnessToestel, int beginSlot, int aantalSlots) {

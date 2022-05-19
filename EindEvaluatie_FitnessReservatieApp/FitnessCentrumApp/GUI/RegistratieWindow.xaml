@@ -12,7 +12,7 @@
         TextOptions.TextFormattingMode="Ideal"
         TextOptions.TextRenderingMode="Auto"
         Background="{DynamicResource MaterialDesignPaper}"
-        FontFamily="{DynamicResource MaterialDesignFont}" d:DesignWidth="400" Height="500">
+        FontFamily="{DynamicResource MaterialDesignFont}" d:DesignWidth="600" Height="600">
 
     <!--Styling opties-->
     <Window.Resources>

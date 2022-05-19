@@ -14,5 +14,8 @@ namespace Domein {
             ToestelStatus = toestelStatus;
         }
 
+        public override string ToString() {
+            return $"{GetType().Name} met ID {ToestelID}.";
+        }
     }
 }

@@ -17,7 +17,7 @@ namespace GUI {
             _domeinController = domeinController;
             _aangemeldeKlantNummer = aangemeldeKlantNummer;
 
-            txtLabel_Titel.Content = "Welkom " + domeinController.GetKlantNaam() + "!";
+            txtLabel_Titel.Content = "Welkom " + _domeinController.KlantToString() + "!";
 
             RegistrationDatePicker.BlackoutDates.AddDatesInPast();
             RegistrationDatePicker.BlackoutDates.Add(new CalendarDateRange(DateTime.Today.AddDays(8), DateTime.MaxValue));
