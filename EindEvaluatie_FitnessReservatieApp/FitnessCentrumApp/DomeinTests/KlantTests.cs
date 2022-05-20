@@ -8,7 +8,6 @@ namespace Domein.Tests {
 
         [TestInitialize()]
         public void Init() {
-            _klant = new();
         }
 
 

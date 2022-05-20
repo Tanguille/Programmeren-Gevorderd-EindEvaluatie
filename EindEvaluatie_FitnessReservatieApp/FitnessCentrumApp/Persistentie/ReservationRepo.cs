@@ -20,7 +20,7 @@ namespace Persistentie {
             try {
                 KlantRepo klantRepo = new(_connectionString);
                 ToestelRepo toestelRepo = new(_connectionString);
-                List<Reservatie> reservaties = new List<Reservatie>();
+                List<Reservatie> reservaties = new();
 
                 Klant klant = klantRepo.SelecteerKlantData(klantNummer.ToString());
 

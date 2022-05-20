@@ -1,5 +1,7 @@
+using Domein.Exceptions;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace Domein {
     public class DomeinController {
@@ -28,10 +30,25 @@ namespace Domein {
         }
 
         public void MaakReservatie(DateTime dag, int toestelID, int beginSlot, int aantalSlots) {
-            FitnessToestel toestel = _toestelRepo.SelecteerToestelData(toestelID, "");
-            Reservatie reservatie = new(dag, AangemeldeKlant, toestel, beginSlot, aantalSlots);
+            //Checken aantal gebruikte tijdslots
+            int aantalTijdSlotsVandaag = new();
+            List<Reservatie> reservaties = _reservationRepo.GeefReservaties(AangemeldeKlant.KlantNummer);
+            List<Reservatie> reservatiesOpReservatieDag = reservaties.Where(r => r.Datum.Date == dag.Date).ToList();
 
-            _reservationRepo.ZetReservatieInDB(reservatie);
+            foreach (Reservatie r in reservatiesOpReservatieDag) {
+                aantalTijdSlotsVandaag += r.AantalSlots;
+            }
+
+            if ((aantalTijdSlotsVandaag + aantalSlots) < 4) {
+                //Aanmaken reservatie
+                FitnessToestel toestel = _toestelRepo.SelecteerToestelData(toestelID, "");
+                Reservatie reservatie = new(dag, AangemeldeKlant, toestel, beginSlot, aantalSlots);
+
+                _reservationRepo.ZetReservatieInDB(reservatie);
+            }
+            else {
+                throw new ReserveerException("U kan max 4 uur per dag bij ons trainen. Onze excuses voor dit ongemak.");
+            }
         }
 
         public bool IsBeheerder() {

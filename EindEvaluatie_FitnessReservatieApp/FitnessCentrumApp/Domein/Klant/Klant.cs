@@ -4,7 +4,19 @@ using System.Text.RegularExpressions;
 
 namespace Domein {
     public class Klant {
-        public int KlantNummer { get; private set; }
+        private int _klantNummer;
+        public int KlantNummer {
+            get { return _klantNummer; }
+            private set {
+                if (value > 0) {
+                    _klantNummer = value;
+                }
+                else {
+                    throw new KlantException("KlantNummer mag niet kleiner dan 1 zijn.");
+                }
+            }
+        }
+
         public string EmailAdres { get; private set; }
         public string VoorNaam { get; private set; }
         public string AchterNaam { get; private set; }
@@ -14,12 +26,7 @@ namespace Domein {
         public EKlantType KlantType { get; private set; }
         public Klant(int klantNummer, string emailAdres, string voorNaam, string achterNaam, string adres, DateTime geboorteDatum, string interesses, EKlantType klantType)
             : this(emailAdres, voorNaam, achterNaam, adres, geboorteDatum, interesses, klantType) {
-            if (klantNummer > 0) {
-                KlantNummer = klantNummer;
-            }
-            else {
-                throw new KlantException("KlantNummer mag niet kleiner dan 1 zijn.");
-            }
+            KlantNummer = klantNummer;
         }
 
         public Klant(string emailAdres, string voorNaam, string achterNaam, string adres, DateTime geboorteDatum, string interesses, EKlantType klantType) {
@@ -36,6 +43,12 @@ namespace Domein {
             return $"{VoorNaam} {AchterNaam}";
         }
 
+        /// <summary>
+        /// Email validator
+        /// </summary>
+        /// <param name="email"></param>
+        /// <returns></returns>
+        /// <exception cref="RepoException"></exception>
         public bool IsValidEmail(string email) {
             try {
                 string pattern = @"^\\S+@\\S+\\.\\S+$";
