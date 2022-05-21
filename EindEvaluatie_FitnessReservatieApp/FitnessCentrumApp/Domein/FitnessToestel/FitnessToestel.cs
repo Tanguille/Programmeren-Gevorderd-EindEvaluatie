@@ -1,5 +1,7 @@
+using System;
+
 namespace Domein {
-    public abstract class FitnessToestel {
+    public abstract class FitnessToestel : IEquatable<FitnessToestel> {
         public int ToestelID { get; } //Moet door systeem aangemaakt worden
         public EToestelStatus ToestelStatus { get; private set; }
 
@@ -15,6 +17,10 @@ namespace Domein {
 
         public override string ToString() {
             return $"{GetType().Name} met ID {ToestelID}.";
+        }
+
+        public bool Equals(FitnessToestel other) {
+            return ToString() == other.ToString();
         }
     }
 }

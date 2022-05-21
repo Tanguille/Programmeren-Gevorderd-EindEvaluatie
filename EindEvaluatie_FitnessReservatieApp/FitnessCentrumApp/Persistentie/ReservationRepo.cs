@@ -30,7 +30,7 @@ namespace Persistentie {
                 using SqlDataReader dataReader = sqlCommand.ExecuteReader();
                 if (dataReader.HasRows) {
                     while (dataReader.Read()) {
-                        int ReservatieNummer = (int)dataReader["ReservatieNummer"];
+                        int reservatieNummer = (int)dataReader["ReservatieNummer"];
 
                         int klantNummer = (int)dataReader["KlantNummer"];
                         Klant klant = klantRepo.SelecteerKlantData(klantNummer.ToString());
@@ -42,7 +42,7 @@ namespace Persistentie {
                         int beginSlot = (int)dataReader["BeginSlot"];
                         int aantalSlots = (int)dataReader["AantalSlots"];
 
-                        Reservaties.Add(new Reservatie(ReservatieNummer, datum, klant, toestel, beginSlot, aantalSlots));
+                        Reservaties.Add(new Reservatie(reservatieNummer, datum, klant, toestel, beginSlot, aantalSlots));
                     }
                     return Reservaties;
                 }

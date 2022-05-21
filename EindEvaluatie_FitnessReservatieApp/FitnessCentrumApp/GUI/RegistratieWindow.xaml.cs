@@ -25,9 +25,15 @@ namespace GUI {
 
         private void ReserveerButton_Click(object sender, RoutedEventArgs e) {
             try {
+                DateTime datum = RegistrationDatePicker.SelectedDate.Value;
                 string geselecteerdToestel = ToestelSelectieBox.Text.ToLower();
                 int beginUur = RegistrationHourPicker.SelectedTime.Value.Hour;
                 int duur;
+
+                //HACK: DebugPurposes
+                //string geselecteerdToestel = "fiets";
+                //int beginUur = 14;
+                //int duur = 1;
 
                 if (DuurSelectieBox.SelectedIndex == 0) {
                     duur = 1;
@@ -36,7 +42,7 @@ namespace GUI {
                     duur = 2;
                 }
 
-                _domeinController.MaakReservatie(RegistrationDatePicker.SelectedDate.Value, beginUur, duur, geselecteerdToestel);
+                _domeinController.MaakReservatie(datum, beginUur, duur, geselecteerdToestel);
 
                 RegistratieLandingWindow registratieLandingWindow = new(_domeinController, _aangemeldeKlantNummer);
                 this.Close();

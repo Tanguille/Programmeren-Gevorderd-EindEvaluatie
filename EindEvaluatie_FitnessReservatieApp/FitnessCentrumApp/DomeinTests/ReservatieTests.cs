@@ -15,7 +15,7 @@ namespace Domein.Tests {
             _fitnessToestel = new Fiets(1);
             _reservatie = new(DateTime.Today, _klant, _fitnessToestel, 12, 1);
         }
-
+        //HACK: Fix omgekeerde tests
         [TestMethod()]
         //Test op datum
         [DataRow(8)]
@@ -25,13 +25,11 @@ namespace Domein.Tests {
         }
 
         [TestMethod()]
-        //Testen op openingsuren
-        [DataRow(7, 2)]
-        [DataRow(21, 2)]
-        [DataRow(22, 2)]
-        [DataRow(23, 2)]
-        public void MaakFitnessToestelTest_OpeningsurenException(int beginSlot, int aantalSlots) {
-            Assert.ThrowsException<ReserveerException>(() => _reservatie.MaakReservatie(DateTime.Today, _klant, _fitnessToestel, beginSlot, aantalSlots));
+        //Testen op openingsuren, aangevuld in domeincontroller door OpeningsUrenValid
+        [DataRow(7)]
+        [DataRow(22)]
+        public void MaakFitnessToestelTest_OpeningsurenException(int beginSlot) {
+            Assert.ThrowsException<ReserveerException>(() => _reservatie.MaakReservatie(DateTime.Today, _klant, _fitnessToestel, beginSlot, 1));
         }
 
         [TestMethod()]

@@ -13,6 +13,7 @@ namespace Domein {
             get => _datum;
             private set {
                 if (value < DateTime.Today.AddDays(8) && value > DateTime.Today.AddDays(-1)) {
+                    Console.WriteLine(DateTime.Today);
                     _datum = value;
                 }
                 else {
@@ -35,12 +36,12 @@ namespace Domein {
             }
         }
 
-        //Openingsuren afdwingen
+        //Openingsuren afdwingen, aangevuld in domeincontroller door OpeningsUrenValid
         private int _beginSlot;
         public int BeginSlot {
             get => _beginSlot;
             private set {
-                if ((value + _aantalSlots) < 23 && value > 8) {
+                if ((value) < 22 && value > 8) {
                     _beginSlot = value;
                 }
                 else {
@@ -50,7 +51,7 @@ namespace Domein {
         }
 
         public Reservatie(int reservatieNummer, DateTime datum, Klant klant, FitnessToestel gereserveerdToestel, int beginSlot, int aantalSlots)
-            : this(datum, klant, gereserveerdToestel, beginSlot, aantalSlots) {
+           : this(datum, klant, gereserveerdToestel, beginSlot, aantalSlots) {
             ReservatieNummer = reservatieNummer;
         }
 

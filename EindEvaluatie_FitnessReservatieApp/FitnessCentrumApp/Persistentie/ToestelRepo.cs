@@ -73,14 +73,15 @@ namespace Persistentie {
         /// Selecteert alle toestellen met al hun data uit de database.
         /// </summary>
         /// <returns>FitnessToestel</returns>       
-        public List<FitnessToestel> GeefToestellen() {
+        public List<FitnessToestel> GeefToestellen(string _toestelType) {
             try {
                 List<FitnessToestel> toestellen = new();
 
                 using SqlConnection connection = new(_connectionString);
                 connection.Open();
 
-                SqlCommand sqlCommand = new("SELECT * FROM FitnessToestel;", connection);
+                SqlCommand sqlCommand = new("SELECT * FROM FitnessToestel WHERE ToestelType = @ToestelType", connection);
+                sqlCommand.Parameters.AddWithValue("@ToestelType", _toestelType);
 
                 using SqlDataReader dataReader = sqlCommand.ExecuteReader();
                 if (dataReader.HasRows) {
