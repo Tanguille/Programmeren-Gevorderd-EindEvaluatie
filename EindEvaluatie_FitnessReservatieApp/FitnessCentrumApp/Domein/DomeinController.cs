@@ -55,13 +55,12 @@ namespace Domein {
         public FitnessToestel ToestelSelector(DateTime dag, int beginSlot, int aantalSlots, string toestelType) {
             List<FitnessToestel> toestellen = _toestelRepo.GeefToestellen();
             List<Reservatie> reservatiesVanafVandaag = _reservationRepo.GeefReservatiesVanafVandaag();
-            //HACK: Dit fiksen
 
             foreach (FitnessToestel t in toestellen) {
                 List<Reservatie> reservatiesOpGewenstTijdslot = reservatiesVanafVandaag
+                    .Where(r => r.GereserveerdToestel == t)
                     .Where(r => r.Datum.Date == dag.Date)
-                    .Where(r => r.BeginSlot == beginSlot)
-                    .Where(r => r.GereserveerdToestel == t).ToList();
+                    .Where(r => r.BeginSlot == beginSlot).ToList();
 
                 //Ervoor zorgen dat toestel 2 slots vrij is
                 if (aantalSlots == 2) {
