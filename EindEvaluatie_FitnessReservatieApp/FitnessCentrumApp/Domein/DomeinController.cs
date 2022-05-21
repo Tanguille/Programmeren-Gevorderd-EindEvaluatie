@@ -36,35 +36,41 @@ namespace Domein {
             List<Reservatie> Reservaties = _reservationRepo.GeefReservatiesOpKlantNummer(AangemeldeKlant.KlantNummer);
             List<Reservatie> ReservatiesOpReservatieDag = Reservaties.Where(r => r.Datum.Date == dag.Date).ToList();
 
-            FitnessToestel toestel = ToestelSelector(dag, beginSlot, geselecteerdToestel);
+            FitnessToestel toestel = ToestelSelector(dag, beginSlot, aantalSlots, geselecteerdToestel);
 
             foreach (Reservatie r in ReservatiesOpReservatieDag) {
                 aantalTijdSlotsVandaag += r.AantalSlots;
             }
 
             if ((aantalTijdSlotsVandaag + aantalSlots) < 4) {
-
-
-                //Aanmaken Reservatie
-                //Reservatie Reservatie = new(dag, AangemeldeKlant, toestel, beginSlot, aantalSlots);
-
-                //_reservationRepo.ZetReservatieInDB(reservatie);
+                //Aanmaken reservatie
+                Reservatie reservatie = new(dag, AangemeldeKlant, toestel, beginSlot, aantalSlots);
+                _reservationRepo.ZetReservatieInDB(reservatie);
             }
             else {
                 throw new ReserveerException("U kan max 4 uur per dag bij ons trainen. Onze excuses voor dit ongemak.");
             }
         }
 
-        //TODO: Dit uitwerken
-        public FitnessToestel ToestelSelector(DateTime dag, int beginSlot, string toestelType) {
+        public FitnessToestel ToestelSelector(DateTime dag, int beginSlot, int aantalSlots, string toestelType) {
             List<FitnessToestel> toestellen = _toestelRepo.GeefToestellen();
             List<Reservatie> reservatiesVanafVandaag = _reservationRepo.GeefReservatiesVanafVandaag();
+            //HACK: Dit fiksen
 
             foreach (FitnessToestel t in toestellen) {
                 List<Reservatie> reservatiesOpGewenstTijdslot = reservatiesVanafVandaag
-                    .Where(r => r.Datum.Date == dag.Date && r.BeginSlot == beginSlot && r.GereserveerdToestel == t).ToList();
+                    .Where(r => r.Datum.Date == dag.Date)
+                    .Where(r => r.BeginSlot == beginSlot)
+                    .Where(r => r.GereserveerdToestel == t).ToList();
 
-                if (reservatiesOpGewenstTijdslot.ToList().Count < 0) {
+                //Ervoor zorgen dat toestel 2 slots vrij is
+                if (aantalSlots == 2) {
+                    reservatiesOpGewenstTijdslot = reservatiesOpGewenstTijdslot
+                        .Where(r => r.BeginSlot == beginSlot + 1).ToList();
+                }
+
+                //Indien toestel vrij is returnen
+                if (!reservatiesOpGewenstTijdslot.Any()) {
                     return t;
                 }
             }

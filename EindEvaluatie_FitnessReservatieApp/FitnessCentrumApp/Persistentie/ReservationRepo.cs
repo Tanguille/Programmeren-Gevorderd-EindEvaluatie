@@ -35,8 +35,8 @@ namespace Persistentie {
                         int klantNummer = (int)dataReader["KlantNummer"];
                         Klant klant = klantRepo.SelecteerKlantData(klantNummer.ToString());
 
-                        int ReservatieID = (int)dataReader["ReservatieID"];
-                        FitnessToestel toestel = toestelRepo.SelecteerToestelData(ReservatieID, "");
+                        int fitnessToestelID = (int)dataReader["FitnessToestelID"];
+                        FitnessToestel toestel = toestelRepo.SelecteerToestelData(fitnessToestelID, "");
 
                         DateTime datum = (DateTime)dataReader["Datum"];
                         int beginSlot = (int)dataReader["BeginSlot"];
@@ -107,10 +107,10 @@ namespace Persistentie {
                 using SqlConnection connection = new(_connectionString);
                 connection.Open();
 
-                SqlCommand insertCommand = new("INSERT INTO Reservatie (KlantNummer, ReservatieID, Datum, BeginSlot, AantalSlots) "
-                + "VALUES (@KlantNummer, @ReservatieID, @Datum, @BeginSlot, @AantalSlots)", connection);
+                SqlCommand insertCommand = new("INSERT INTO Reservatie (KlantNummer, FitnessToestelID, Datum, BeginSlot, AantalSlots) "
+                + "VALUES (@KlantNummer, @FitnessToestelID, @Datum, @BeginSlot, @AantalSlots)", connection);
                 insertCommand.Parameters.AddWithValue("@KlantNummer", reservatie.Klant.KlantNummer);
-                insertCommand.Parameters.AddWithValue("@ReservatieID", reservatie.GereserveerdToestel.ToestelID);
+                insertCommand.Parameters.AddWithValue("@FitnessToestelID", reservatie.GereserveerdToestel.ToestelID);
                 insertCommand.Parameters.AddWithValue("@Datum", reservatie.Datum);
                 insertCommand.Parameters.AddWithValue("@BeginSlot", reservatie.BeginSlot);
                 insertCommand.Parameters.AddWithValue("@AantalSlots", reservatie.AantalSlots);
