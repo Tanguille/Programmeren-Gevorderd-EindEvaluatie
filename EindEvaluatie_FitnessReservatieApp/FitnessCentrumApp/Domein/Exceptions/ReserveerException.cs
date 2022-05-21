@@ -8,10 +8,10 @@ namespace Domein.Exceptions {
             _message = message;
         }
 
-        public ReserveerException() : base("Er ging iets mis met de reservatie.") {
+        public ReserveerException() : base("Er ging iets mis met de FitnessToestel.") {
         }
 
-        public ReserveerException(string message, Exception innerException) : base("Er ging iets mis met de reservatie.", innerException) {
+        public ReserveerException(string message, Exception innerException) : base("Er ging iets mis met de FitnessToestel.", innerException) {
         }
     }
 }

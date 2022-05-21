@@ -12,6 +12,8 @@ namespace GUI {
         public MainWindow(DomeinController domeinController) {
             InitializeComponent();
             _domeinController = domeinController;
+
+            LoginInputBox.Focus();
         }
 
         private void Button_Click_Login(object sender, RoutedEventArgs e) {
@@ -21,7 +23,7 @@ namespace GUI {
 
                 //admin panel mogelijk maken
                 if (_domeinController.IsBeheerder()) {
-                    AdminWindow adminWindow = new AdminWindow(_domeinController);
+                    AdminWindow adminWindow = new(_domeinController);
                     this.Close();
                     adminWindow.Show();
                 }

@@ -36,7 +36,7 @@ namespace GUI {
                     duur = 2;
                 }
 
-                _domeinController.MaakReservatie(RegistrationDatePicker.SelectedDate.Value, _domeinController.SelecteerToestelData(null, geselecteerdToestel), beginUur, duur);
+                _domeinController.MaakReservatie(RegistrationDatePicker.SelectedDate.Value, beginUur, duur, geselecteerdToestel);
 
                 RegistratieLandingWindow registratieLandingWindow = new(_domeinController, _aangemeldeKlantNummer);
                 this.Close();

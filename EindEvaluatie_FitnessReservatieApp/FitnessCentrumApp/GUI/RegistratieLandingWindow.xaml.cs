@@ -16,16 +16,16 @@ namespace GUI {
             _domeinController = domeinController;
             _aangemeldeKlantNummer = aangemeldeKlantNummer;
 
-            List<string[]> reservatieStrings = _domeinController.ReservatiesToString();
+            List<string[]> FitnessToestelStrings = _domeinController.ReservatiesToString();
 
             List<RegistratieLandingStrings> registratieLandingStrings = new();
-            foreach (string[] reservatieString in reservatieStrings) {
+            foreach (string[] FitnessToestelString in FitnessToestelStrings) {
                 registratieLandingStrings.Add(new RegistratieLandingStrings() {
-                    ReservatieNummer = reservatieString[0],
-                    Datum = reservatieString[1],
-                    ToestelID = reservatieString[2],
-                    TijdSlot = reservatieString[3],
-                    AantalSlots = reservatieString[4]
+                    FitnessToestelNummer = FitnessToestelString[0],
+                    Datum = FitnessToestelString[1],
+                    ToestelID = FitnessToestelString[2],
+                    TijdSlot = FitnessToestelString[3],
+                    AantalSlots = FitnessToestelString[4]
                 });
             }
             ReservationListView.ItemsSource = registratieLandingStrings;

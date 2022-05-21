@@ -13,14 +13,57 @@ namespace Persistentie {
         }
 
         /// <summary>
-        /// Selecteert een reservatie met al zijn data uit de database voor een overzicht aan klant te geven
+        /// Selecteert alle Reservaties met al hun data uit de database.
         /// </summary>
         /// <returns>Reservatie</returns>       
-        public List<Reservatie> GeefReservaties(int klantNummer) {
+        public List<Reservatie> GeefReservatiesVanafVandaag() {
             try {
                 KlantRepo klantRepo = new(_connectionString);
                 ToestelRepo toestelRepo = new(_connectionString);
-                List<Reservatie> reservaties = new();
+                List<Reservatie> Reservaties = new();
+
+                using SqlConnection connection = new(_connectionString);
+                connection.Open();
+
+                SqlCommand sqlCommand = new("SELECT * FROM Reservatie WHERE Datum >= CAST( GETDATE() AS Date) ORDER BY Datum DESC, BeginSlot DESC", connection);
+
+                using SqlDataReader dataReader = sqlCommand.ExecuteReader();
+                if (dataReader.HasRows) {
+                    while (dataReader.Read()) {
+                        int ReservatieNummer = (int)dataReader["ReservatieNummer"];
+
+                        int klantNummer = (int)dataReader["KlantNummer"];
+                        Klant klant = klantRepo.SelecteerKlantData(klantNummer.ToString());
+
+                        int ReservatieID = (int)dataReader["ReservatieID"];
+                        FitnessToestel toestel = toestelRepo.SelecteerToestelData(ReservatieID, "");
+
+                        DateTime datum = (DateTime)dataReader["Datum"];
+                        int beginSlot = (int)dataReader["BeginSlot"];
+                        int aantalSlots = (int)dataReader["AantalSlots"];
+
+                        Reservaties.Add(new Reservatie(ReservatieNummer, datum, klant, toestel, beginSlot, aantalSlots));
+                    }
+                    return Reservaties;
+                }
+                else {
+                    throw new RepoException("Deze gegevens staan niet in de databank.");
+                }
+            }
+            catch (RepoException e) {
+                throw new RepoException("Reservaties uit databank halen ging mis", e);
+            }
+        }
+
+        /// <summary>
+        /// Selecteert alle Reservaties met al hun data uit de database voor een overzicht aan klant te geven
+        /// </summary>
+        /// <returns>Reservatie</returns>       
+        public List<Reservatie> GeefReservatiesOpKlantNummer(int klantNummer) {
+            try {
+                KlantRepo klantRepo = new(_connectionString);
+                ToestelRepo toestelRepo = new(_connectionString);
+                List<Reservatie> Reservaties = new();
 
                 Klant klant = klantRepo.SelecteerKlantData(klantNummer.ToString());
 
@@ -42,12 +85,13 @@ namespace Persistentie {
                         int beginSlot = (int)dataReader["BeginSlot"];
                         int aantalSlots = (int)dataReader["AantalSlots"];
 
-                        reservaties.Add(new Reservatie(reservatieNummer, datum, klant, toestel, beginSlot, aantalSlots));
+                        Reservaties.Add(new Reservatie(reservatieNummer, datum, klant, toestel, beginSlot, aantalSlots));
                     }
-                    return reservaties;
+                    return Reservaties;
                 }
                 else {
-                    throw new RepoException("Geen overeenkomstige data in de databank.");
+                    //Zorgt ervoor dat ik kan checken hoeveel Reservaties er reeds gemaakt zijn op bepaalde dag.
+                    return Reservaties;
                 }
             }
             catch (RepoException e) {
@@ -56,17 +100,17 @@ namespace Persistentie {
         }
 
         /// <summary>
-        /// Zet reservatie in database
+        /// Zet Reservatie in database
         /// </summary>  
         public void ZetReservatieInDB(Reservatie reservatie) {
             try {
                 using SqlConnection connection = new(_connectionString);
                 connection.Open();
 
-                SqlCommand insertCommand = new("INSERT INTO Reservatie (KlantNummer, FitnessToestelID, Datum, BeginSlot, AantalSlots) "
-                + "VALUES (@KlantNummer, @FitnessToestelID, @Datum, @BeginSlot, @AantalSlots)", connection);
+                SqlCommand insertCommand = new("INSERT INTO Reservatie (KlantNummer, ReservatieID, Datum, BeginSlot, AantalSlots) "
+                + "VALUES (@KlantNummer, @ReservatieID, @Datum, @BeginSlot, @AantalSlots)", connection);
                 insertCommand.Parameters.AddWithValue("@KlantNummer", reservatie.Klant.KlantNummer);
-                insertCommand.Parameters.AddWithValue("@FitnessToestelID", reservatie.GereserveerdToestel.ToestelID);
+                insertCommand.Parameters.AddWithValue("@ReservatieID", reservatie.GereserveerdToestel.ToestelID);
                 insertCommand.Parameters.AddWithValue("@Datum", reservatie.Datum);
                 insertCommand.Parameters.AddWithValue("@BeginSlot", reservatie.BeginSlot);
                 insertCommand.Parameters.AddWithValue("@AantalSlots", reservatie.AantalSlots);
@@ -75,7 +119,7 @@ namespace Persistentie {
                 connection.Close();
             }
             catch (RepoException e) {
-                throw new RepoException("Fout bij reservatie in Databank steken.", e);
+                throw new RepoException("Fout bij Reservatie in Databank steken.", e);
             }
         }
     }

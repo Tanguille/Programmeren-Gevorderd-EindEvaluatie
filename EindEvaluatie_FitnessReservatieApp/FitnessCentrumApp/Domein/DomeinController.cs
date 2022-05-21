@@ -8,7 +8,7 @@ namespace Domein {
         public Klant AangemeldeKlant { get; private set; }
         public FitnessToestel GeselecteerdToestel { get; private set; }
         public List<Reservatie> GemaakteReservaties { get; private set; }
-        private FitnessCentrum _fitnessCentrum;
+
         private IKlantRepo _klantRepo;
         private IReservationRepo _reservationRepo;
         private IToestelRepo _toestelRepo;
@@ -21,6 +21,7 @@ namespace Domein {
 
         public int SelecteerKlantData(string identificatieString) {
             AangemeldeKlant = _klantRepo.SelecteerKlantData(identificatieString);
+
             return AangemeldeKlant.KlantNummer;
         }
 
@@ -29,26 +30,45 @@ namespace Domein {
             return GeselecteerdToestel.ToestelID;
         }
 
-        public void MaakReservatie(DateTime dag, int toestelID, int beginSlot, int aantalSlots) {
+        public void MaakReservatie(DateTime dag, int beginSlot, int aantalSlots, string geselecteerdToestel) {
             //Checken aantal gebruikte tijdslots
             int aantalTijdSlotsVandaag = new();
-            List<Reservatie> reservaties = _reservationRepo.GeefReservaties(AangemeldeKlant.KlantNummer);
-            List<Reservatie> reservatiesOpReservatieDag = reservaties.Where(r => r.Datum.Date == dag.Date).ToList();
+            List<Reservatie> Reservaties = _reservationRepo.GeefReservatiesOpKlantNummer(AangemeldeKlant.KlantNummer);
+            List<Reservatie> ReservatiesOpReservatieDag = Reservaties.Where(r => r.Datum.Date == dag.Date).ToList();
 
-            foreach (Reservatie r in reservatiesOpReservatieDag) {
+            FitnessToestel toestel = ToestelSelector(dag, beginSlot, geselecteerdToestel);
+
+            foreach (Reservatie r in ReservatiesOpReservatieDag) {
                 aantalTijdSlotsVandaag += r.AantalSlots;
             }
 
             if ((aantalTijdSlotsVandaag + aantalSlots) < 4) {
-                //Aanmaken reservatie
-                FitnessToestel toestel = _toestelRepo.SelecteerToestelData(toestelID, "");
-                Reservatie reservatie = new(dag, AangemeldeKlant, toestel, beginSlot, aantalSlots);
 
-                _reservationRepo.ZetReservatieInDB(reservatie);
+
+                //Aanmaken Reservatie
+                //Reservatie Reservatie = new(dag, AangemeldeKlant, toestel, beginSlot, aantalSlots);
+
+                //_reservationRepo.ZetReservatieInDB(reservatie);
             }
             else {
                 throw new ReserveerException("U kan max 4 uur per dag bij ons trainen. Onze excuses voor dit ongemak.");
             }
+        }
+
+        //TODO: Dit uitwerken
+        public FitnessToestel ToestelSelector(DateTime dag, int beginSlot, string toestelType) {
+            List<FitnessToestel> toestellen = _toestelRepo.GeefToestellen();
+            List<Reservatie> reservatiesVanafVandaag = _reservationRepo.GeefReservatiesVanafVandaag();
+
+            foreach (FitnessToestel t in toestellen) {
+                List<Reservatie> reservatiesOpGewenstTijdslot = reservatiesVanafVandaag
+                    .Where(r => r.Datum.Date == dag.Date && r.BeginSlot == beginSlot && r.GereserveerdToestel == t).ToList();
+
+                if (reservatiesOpGewenstTijdslot.ToList().Count < 0) {
+                    return t;
+                }
+            }
+            throw new FitnessToestelException();
         }
 
         public bool IsBeheerder() {
@@ -61,18 +81,18 @@ namespace Domein {
         }
 
         public List<string[]> ReservatiesToString() {
-            GemaakteReservaties = _reservationRepo.GeefReservaties(AangemeldeKlant.KlantNummer);
-            List<String[]> reservaties = new();
-            foreach (Reservatie reservatie in GemaakteReservaties) {
-                string[] reservatieStrings = new string[5];
-                reservatieStrings[0] = reservatie.ReservatieNummer.ToString();
-                reservatieStrings[1] = reservatie.Datum.ToString("dd/MM/yyyy");
-                reservatieStrings[2] = reservatie.GereserveerdToestel.ToestelID.ToString();
-                reservatieStrings[3] = reservatie.BeginSlot.ToString();
-                reservatieStrings[4] = reservatie.AantalSlots.ToString();
-                reservaties.Add(reservatieStrings);
+            GemaakteReservaties = _reservationRepo.GeefReservatiesOpKlantNummer(AangemeldeKlant.KlantNummer);
+            List<String[]> Reservaties = new();
+            foreach (Reservatie Reservatie in GemaakteReservaties) {
+                string[] ReservatieStrings = new string[5];
+                ReservatieStrings[0] = Reservatie.ReservatieNummer.ToString();
+                ReservatieStrings[1] = Reservatie.Datum.ToString("dd/MM/yyyy");
+                ReservatieStrings[2] = Reservatie.GereserveerdToestel.ToestelID.ToString();
+                ReservatieStrings[3] = Reservatie.BeginSlot.ToString();
+                ReservatieStrings[4] = Reservatie.AantalSlots.ToString();
+                Reservaties.Add(ReservatieStrings);
             }
-            return reservaties;
+            return Reservaties;
         }
 
         public string[] ToestelToString() {

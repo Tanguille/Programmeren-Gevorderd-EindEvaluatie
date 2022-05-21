@@ -10,7 +10,7 @@ namespace Domein {
         //Max 7 dagen op voorhand
         private DateTime _datum;
         public DateTime Datum {
-            get { return _datum; }
+            get => _datum;
             private set {
                 if (value < DateTime.Today.AddDays(8) && value > DateTime.Today.AddDays(-1)) {
                     _datum = value;
@@ -21,10 +21,10 @@ namespace Domein {
             }
         }
 
-        //Max 2 slots per reservatie
+        //Max 2 slots per Reservatie
         private int _aantalSlots;
         public int AantalSlots {
-            get { return _aantalSlots; }
+            get => _aantalSlots;
             private set {
                 if (value > 0 && value < 3) {
                     _aantalSlots = value;
@@ -38,7 +38,7 @@ namespace Domein {
         //Openingsuren afdwingen
         private int _beginSlot;
         public int BeginSlot {
-            get { return _beginSlot; }
+            get => _beginSlot;
             private set {
                 if ((value + _aantalSlots) < 23 && value > 8) {
                     _beginSlot = value;
@@ -55,10 +55,11 @@ namespace Domein {
         }
 
         public Reservatie(DateTime datum, Klant klant, FitnessToestel gereserveerdToestel, int beginSlot, int aantalSlots) {
-            AantalSlots = aantalSlots;
             Klant = klant;
             Datum = datum;
             GereserveerdToestel = gereserveerdToestel;
+            BeginSlot = beginSlot;
+            AantalSlots = aantalSlots;
         }
 
         public override string ToString() {
@@ -66,7 +67,7 @@ namespace Domein {
         }
 
         public Reservatie MaakReservatie(DateTime dag, Klant klant, FitnessToestel fitnessToestel, int beginSlot, int aantalSlots) {
-            Reservatie reservatie = new Reservatie(dag, klant, fitnessToestel, beginSlot, aantalSlots);
+            Reservatie reservatie = new(dag, klant, fitnessToestel, beginSlot, aantalSlots);
             return reservatie;
         }
     }

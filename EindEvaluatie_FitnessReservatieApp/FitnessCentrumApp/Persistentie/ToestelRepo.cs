@@ -2,6 +2,7 @@
 using Domein.Exceptions;
 using Microsoft.Data.SqlClient;
 using System;
+using System.Collections.Generic;
 using System.Data;
 using System.IO;
 
@@ -65,6 +66,44 @@ namespace Persistentie {
             }
             catch (RepoException e) {
                 throw new RepoException("SelecteerToestelData uit database ging mis.", e);
+            }
+        }
+
+        /// <summary>
+        /// Selecteert alle toestellen met al hun data uit de database.
+        /// </summary>
+        /// <returns>FitnessToestel</returns>       
+        public List<FitnessToestel> GeefToestellen() {
+            try {
+                List<FitnessToestel> toestellen = new();
+
+                using SqlConnection connection = new(_connectionString);
+                connection.Open();
+
+                SqlCommand sqlCommand = new("SELECT * FROM FitnessToestel;", connection);
+
+                using SqlDataReader dataReader = sqlCommand.ExecuteReader();
+                if (dataReader.HasRows) {
+                    while (dataReader.Read()) {
+                        int iD = (int)dataReader["ID"];
+                        string toestelType = (string)dataReader["ToestelType"];
+                        string toestelStatus = (string)dataReader["ToestelStatus"];
+
+                        if (toestelType.ToLower() == "loopband") {
+                            toestellen.Add(new Loopband(iD, (EToestelStatus)Enum.Parse((typeof(EToestelStatus)), toestelStatus.ToString())));
+                        }
+                        else if (toestelType.ToLower() == "fiets") {
+                            toestellen.Add(new Fiets(iD, (EToestelStatus)Enum.Parse((typeof(EToestelStatus)), toestelStatus.ToString())));
+                        }
+                    }
+                    return toestellen;
+                }
+                else {
+                    throw new RepoException("Deze gegevens staan niet in de databank.");
+                }
+            }
+            catch (RepoException e) {
+                throw new RepoException("Fitness toestellen uit databank halen ging mis.", e);
             }
         }
 
