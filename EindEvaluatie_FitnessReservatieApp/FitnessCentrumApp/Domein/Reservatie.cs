@@ -12,12 +12,12 @@ namespace Domein {
         public DateTime Datum {
             get => _datum;
             private set {
-                if (value < DateTime.Today.AddDays(8) && value > DateTime.Today.AddDays(-1)) {
-                    Console.WriteLine(DateTime.Today);
+                if (value < DateTime.Today.AddDays(8) && value > DateTime.Now) {
                     _datum = value;
                 }
                 else {
-                    throw new ReserveerException("U kan bij ons jammergenoeg slechts 7 dagen op voorhand reserveren.");
+                    throw new ReserveerException(Datum.ToString() + BeginSlot.ToString() + AantalSlots.ToString()
+                        + "U kan bij ons jammergenoeg slechts 7 dagen op voorhand reserveren.");
                 }
             }
         }

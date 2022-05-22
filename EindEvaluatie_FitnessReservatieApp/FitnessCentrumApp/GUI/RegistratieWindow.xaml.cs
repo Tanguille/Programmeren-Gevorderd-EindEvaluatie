@@ -4,7 +4,7 @@ using System;
 using System.Windows;
 using System.Windows.Controls;
 
-namespace GUI {
+namespace Gui {
     /// <summary>
     /// Interaction logic for RegistratieWindow.xaml
     /// </summary>

@@ -2,7 +2,7 @@
 using Domein.Exceptions;
 using System.Windows;
 
-namespace GUI {
+namespace Gui {
     /// <summary>
     /// Interaction logic for MainWindow.xaml
     /// </summary>

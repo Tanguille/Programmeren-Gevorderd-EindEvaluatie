@@ -1,9 +1,8 @@
 ﻿using Domein;
-using Gui;
 using System.Collections.Generic;
 using System.Windows;
 
-namespace GUI {
+namespace Gui {
     /// <summary>
     /// Interaction logic for RegistratieLandingWindow.xaml
     /// </summary>
@@ -11,21 +10,21 @@ namespace GUI {
         private DomeinController _domeinController;
         private int _aangemeldeKlantNummer;
         public RegistratieLandingWindow(DomeinController domeinController, int aangemeldeKlantNummer) {
-            this.DataContext = this;
+            DataContext = this;
             InitializeComponent();
             _domeinController = domeinController;
             _aangemeldeKlantNummer = aangemeldeKlantNummer;
 
-            List<string[]> FitnessToestelStrings = _domeinController.ReservatiesToString();
+            List<string[]> reservatieStrings = _domeinController.ReservatiesToString();
 
             List<RegistratieLandingStrings> registratieLandingStrings = new();
-            foreach (string[] FitnessToestelString in FitnessToestelStrings) {
+            foreach (string[] reservatieString in reservatieStrings) {
                 registratieLandingStrings.Add(new RegistratieLandingStrings() {
-                    FitnessToestelNummer = FitnessToestelString[0],
-                    Datum = FitnessToestelString[1],
-                    ToestelID = FitnessToestelString[2],
-                    TijdSlot = FitnessToestelString[3],
-                    AantalSlots = FitnessToestelString[4]
+                    ReservatieNummer = reservatieString[0],
+                    Datum = reservatieString[1],
+                    ToestelID = reservatieString[2],
+                    TijdSlot = reservatieString[3],
+                    AantalSlots = reservatieString[4]
                 });
             }
             ReservationListView.ItemsSource = registratieLandingStrings;

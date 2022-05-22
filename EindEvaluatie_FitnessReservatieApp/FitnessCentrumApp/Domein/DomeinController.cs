@@ -5,9 +5,11 @@ using System.Linq;
 
 namespace Domein {
     public class DomeinController {
+        public FitnessCentrum FitnessCentrum { get; set; }
         public Klant AangemeldeKlant { get; private set; }
         public FitnessToestel GeselecteerdToestel { get; private set; }
         public List<Reservatie> GemaakteReservaties { get; private set; }
+        public List<FitnessToestel> Toestellen { get; private set; }
 
         private IKlantRepo _klantRepo;
         private IReservationRepo _reservationRepo;
@@ -21,30 +23,12 @@ namespace Domein {
 
         public int SelecteerKlantData(string identificatieString) {
             AangemeldeKlant = _klantRepo.SelecteerKlantData(identificatieString);
-
             return AangemeldeKlant.KlantNummer;
         }
 
         public int SelecteerToestelData(int? toestelID, string toestelType) {
             GeselecteerdToestel = _toestelRepo.SelecteerToestelData(toestelID, toestelType);
             return GeselecteerdToestel.ToestelID;
-        }
-
-        /// <summary>
-        /// Checkt of reservatie binnen openingsuren valt
-        /// </summary>
-        /// <param name="beginSlot"></param>
-        /// <param name="aantalSlots"></param>
-        /// <returns></returns>
-        /// <exception cref="ReserveerException"></exception>
-        public static bool OpeningsUrenValid(int beginSlot, int aantalSlots) {
-            if ((beginSlot + aantalSlots) < 23 && beginSlot > 8) {
-                return true;
-            }
-            else {
-                return false;
-                throw new ReserveerException("Ons fitnesscentrum is jammergenoeg slechts van 8u tot 22u open.");
-            }
         }
 
         public void MaakReservatie(DateTime dag, int beginSlot, int aantalSlots, string geselecteerdToestel) {
@@ -59,7 +43,7 @@ namespace Domein {
                 aantalTijdSlotsVandaag += r.AantalSlots;
             }
 
-            if ((aantalTijdSlotsVandaag + aantalSlots) < 4 && OpeningsUrenValid(beginSlot, aantalSlots)) {
+            if ((aantalTijdSlotsVandaag + aantalSlots) < 4 && FitnessCentrum.OpeningsUrenValid(beginSlot, aantalSlots)) {
                 //Aanmaken reservatie
                 Reservatie reservatie = new(dag, AangemeldeKlant, toestel, beginSlot, aantalSlots);
                 _reservationRepo.ZetReservatieInDB(reservatie);
@@ -101,19 +85,36 @@ namespace Domein {
             }
         }
 
+        public void VeranderToestelStatus(int iD, string ToestelStatus) {
+            _toestelRepo.VeranderToestelStatus(iD, ToestelStatus);
+        }
+
         public List<string[]> ReservatiesToString() {
             GemaakteReservaties = _reservationRepo.GeefReservatiesOpKlantNummer(AangemeldeKlant.KlantNummer);
-            List<String[]> Reservaties = new();
-            foreach (Reservatie Reservatie in GemaakteReservaties) {
-                string[] ReservatieStrings = new string[5];
-                ReservatieStrings[0] = Reservatie.ReservatieNummer.ToString();
-                ReservatieStrings[1] = Reservatie.Datum.ToString("dd/MM/yyyy");
-                ReservatieStrings[2] = Reservatie.GereserveerdToestel.ToestelID.ToString();
-                ReservatieStrings[3] = Reservatie.BeginSlot.ToString();
-                ReservatieStrings[4] = Reservatie.AantalSlots.ToString();
-                Reservaties.Add(ReservatieStrings);
+            List<String[]> reservaties = new();
+            foreach (Reservatie r in GemaakteReservaties) {
+                string[] reservatieStrings = new string[5];
+                reservatieStrings[0] = r.ReservatieNummer.ToString();
+                reservatieStrings[1] = r.Datum.ToString("dd/MM/yyyy");
+                reservatieStrings[2] = r.GereserveerdToestel.ToestelID.ToString();
+                reservatieStrings[3] = r.BeginSlot.ToString();
+                reservatieStrings[4] = r.AantalSlots.ToString();
+                reservaties.Add(reservatieStrings);
             }
-            return Reservaties;
+            return reservaties;
+        }
+
+        public List<string[]> ToestellenToString() {
+            Toestellen = _toestelRepo.GeefToestellen();
+            List<string[]> toestellen = new();
+            foreach (FitnessToestel t in Toestellen) {
+                string[] toestelString = new string[3];
+                toestelString[0] = t.ToestelID.ToString();
+                toestelString[1] = t.GetType().Name.ToString();
+                toestelString[2] = t.ToestelStatus.ToString();
+                toestellen.Add(toestelString);
+            }
+            return toestellen;
         }
 
         public string[] ToestelToString() {

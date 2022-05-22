@@ -2,7 +2,7 @@
 using Persistentie;
 using System.Windows;
 
-namespace GUI {
+namespace Gui {
     /// <summary>
     /// Interaction logic for App.xaml
     /// </summary>
@@ -17,7 +17,7 @@ namespace GUI {
             DomeinController domeinController = new DomeinController(klantRepo, reservationRepo, toestellenRepo);
 
             //Create the startup window
-            MainWindow startScreen = new GUI.MainWindow(domeinController);
+            MainWindow startScreen = new Gui.MainWindow(domeinController);
 
             //Do stuff here, e.g. to the windows
             startScreen.Title = "FitnessCentrum TangFit Login";
