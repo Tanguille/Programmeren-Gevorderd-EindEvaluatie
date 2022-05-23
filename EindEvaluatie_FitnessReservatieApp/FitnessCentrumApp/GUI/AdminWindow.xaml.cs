@@ -29,23 +29,23 @@ namespace Gui {
             ToestellenListView.ItemsSource = adminPanelStrings;
         }
 
-        private void InOnderhoudButton_Click(object sender, RoutedEventArgs e) {
-            //TODO:
-            //_domeinController.VeranderToestelStatus(iD, "onderhoud");
+        private void InOnderhoudButton_Click(object sender, RoutedEventArgs e) {            
+            _domeinController.VeranderToestelStatus(int.Parse(OnderhoudSelectieInputBox.Text), "onderhoud");
             RefreshListView();
         }
 
         private void UitOnderhoudButton_Click_1(object sender, RoutedEventArgs e) {
-            //_domeinController.VeranderToestelStatus(iD, "beschikbaar");
+            _domeinController.VeranderToestelStatus(int.Parse(OnderhoudSelectieInputBox.Text), "beschikbaar");
             RefreshListView();
         }
 
         private void ToevoegButton_Click(object sender, RoutedEventArgs e) {
+            //TODO:
             RefreshListView();
         }
 
         private void VerwijderButton_Click(object sender, RoutedEventArgs e) {
-            //_domeinController.VeranderToestelStatus(iD, "verwijderd");
+            _domeinController.VeranderToestelStatus(int.Parse(ToevoegSelectieInputBox.Text), "verwijderd");
             RefreshListView();
         }
     }
