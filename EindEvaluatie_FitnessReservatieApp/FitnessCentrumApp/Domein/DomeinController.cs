@@ -13,7 +13,6 @@ namespace Domein {
         private IKlantRepo _klantRepo;
         private IReservationRepo _reservationRepo;
         private IToestelRepo _toestelRepo;
-        private FitnessCentrum _fitnessCentrum = new();
 
         public DomeinController(IKlantRepo klantRepo, IReservationRepo reservationRepo, IToestelRepo toestellenRepo) {
             _klantRepo = klantRepo;
@@ -32,7 +31,7 @@ namespace Domein {
         }
 
         public void MaakReservatie(DateTime dag, int beginSlot, int aantalSlots, string geselecteerdToestel) {
-            //Checken aantal gebruikte tijdslots
+            //Checken aantal gebruikte tijdslots            
             int aantalTijdSlotsVandaag = new();
             List<Reservatie> reservaties = _reservationRepo.GeefReservatiesOpKlantNummer(AangemeldeKlant.KlantNummer);
             if (reservaties.Count < 1) {
@@ -45,19 +44,26 @@ namespace Domein {
                     aantalTijdSlotsVandaag += r.AantalSlots;
                 }
             }
-            if ((aantalTijdSlotsVandaag + aantalSlots) < 4
-                && _fitnessCentrum.OpeningsUrenValid(beginSlot, aantalSlots)
-                && _fitnessCentrum.ReservatieDagValid(dag, beginSlot)) {
+            if (TijdSlotsOver(aantalTijdSlotsVandaag, aantalSlots) && FitnessCentrum.OpeningsUrenValid(beginSlot, aantalSlots) && FitnessCentrum.ReservatieDagValid(dag, beginSlot)) {
                 FitnessToestel toestel = ToestelSelector(dag, beginSlot, aantalSlots, geselecteerdToestel);
 
                 //Aanmaken reservatie            
                 _reservationRepo.MaakReservatie(dag, AangemeldeKlant, toestel, beginSlot, aantalSlots);
             }
-            else if ((aantalTijdSlotsVandaag + aantalSlots) > 4) {
+            else if (!TijdSlotsOver(aantalTijdSlotsVandaag, aantalSlots)) {
                 throw new ReserveerException("U kan max 4 uur per dag bij ons trainen. Onze excuses voor dit ongemak.");
             }
             else {
                 throw new ReserveerException("U heeft mogelijks een waarde fout ingevoerd. Probeer opnieuw");
+            }
+
+            static bool TijdSlotsOver(int aantalTijdSlotsVandaag, int aantalSlots) {
+                if ((aantalTijdSlotsVandaag + aantalSlots) <= 4) {
+                    return true;
+                }
+                else {
+                    return false;
+                }
             }
         }
 
@@ -93,8 +99,30 @@ namespace Domein {
             }
         }
 
+        /// <summary>
+        /// Checkt of er reservatie op toestel is voor te checken voor verwijdering/onderhoud
+        /// </summary>
+        /// <param name="fitnessToestelID"></param>
+        /// <returns>true als toestel gereserveerd is</returns>
+        public bool IsToestelGereserveerd(int fitnessToestelID) {
+            List<Reservatie> reservatiesVanafVandaag = _reservationRepo.GeefReservatiesVanafVandaag();
+
+            List<Reservatie> reservatiesToestelID = reservatiesVanafVandaag.Where(r => r.GereserveerdToestel.ToestelID == fitnessToestelID).ToList();
+
+            if (reservatiesToestelID.Any()) {
+                return true;
+            }
+            else {
+                return false;
+            }
+        }
+
         public void VeranderToestelStatus(int iD, string ToestelStatus) {
             _toestelRepo.VeranderToestelStatus(iD, ToestelStatus);
+        }
+
+        public void ToestelToevoegenDatabank(string toestelType) {
+            _toestelRepo.ToestelToevoegenDatabank(toestelType);
         }
 
         public List<string[]> ReservatiesToString() {

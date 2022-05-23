@@ -113,7 +113,7 @@
                                                     <!--Selectie toestel-->
                                                     <Grid Margin="50 30">
                                                         <TextBlock VerticalAlignment="Top" FontWeight="Bold">Selecteer het toe te voegen toestel.</TextBlock>
-                                                        <ComboBox Name="ToestelSelectieBox" Margin="0 20 0 0" SelectedIndex="0">
+                                                        <ComboBox Name="ToestelSelectieComboBox" Margin="0 20 0 0" SelectedIndex="0">
                                                             <ComboBoxItem>Fiets</ComboBoxItem>
                                                             <ComboBoxItem>Loopband</ComboBoxItem>
                                                         </ComboBox>

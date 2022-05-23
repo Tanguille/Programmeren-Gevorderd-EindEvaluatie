@@ -30,11 +30,6 @@ namespace Gui {
                 int beginUur = RegistrationHourPicker.SelectedTime.Value.Hour;
                 int duur;
 
-                //HACK: DebugPurposes
-                //string geselecteerdToestel = "fiets";
-                //int beginUur = 14;
-                //int duur = 1;
-
                 if (DuurSelectieBox.SelectedIndex == 0) {
                     duur = 1;
                 }

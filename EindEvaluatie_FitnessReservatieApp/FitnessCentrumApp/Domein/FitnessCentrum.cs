@@ -2,7 +2,7 @@ using Domein.Exceptions;
 using System;
 
 namespace Domein {
-    public class FitnessCentrum {
+    public static class FitnessCentrum {
         /// <summary>
         /// Checkt of reservatie binnen openingsuren valt vooraleer ze goedgekeurd wordt
         /// </summary>
@@ -10,7 +10,7 @@ namespace Domein {
         /// <param name="aantalSlots"></param>
         /// <returns></returns>
         /// <exception cref="ReserveerException"></exception>
-        public bool OpeningsUrenValid(int beginSlot, int aantalSlots) {
+        public static bool OpeningsUrenValid(int beginSlot, int aantalSlots) {
             if ((beginSlot + aantalSlots) < 23 && beginSlot > 8) {
                 return true;
             }
@@ -26,7 +26,7 @@ namespace Domein {
         /// <param name="reservatieDag"></param>
         /// <returns></returns>
         /// <exception cref="ReserveerException"></exception>
-        public bool ReservatieDagValid(DateTime reservatieDag, int beginSlot) {
+        public static bool ReservatieDagValid(DateTime reservatieDag, int beginSlot) {
             if (reservatieDag < DateTime.Today.AddDays(8) && reservatieDag > DateTime.Today) {
                 return true;
             }

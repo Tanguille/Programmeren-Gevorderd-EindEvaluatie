@@ -178,18 +178,7 @@ namespace Persistentie {
                 for (int i = 0; i < rows.Length; i++) {
                     values = rows[i].Split(',');
 
-                    using SqlConnection connection = new(_connectionString);
-                    connection.Open();
-
-                    string insertSql = $"INSERT INTO FitnessToestel (ToestelType) "
-                        + $"VALUES (@ToestelType);";
-
-                    SqlCommand insertCommand = new(insertSql, connection);
-                    insertCommand.Parameters.Add("@ToestelType", SqlDbType.VarChar);
-                    insertCommand.Parameters["@ToestelType"].Value = values[1].ToString();
-
-                    insertCommand.ExecuteNonQuery();
-                    connection.Close();
+                    ToestelToevoegenDatabank(values[1]);
                 }
             }
             catch (Exception e) {
@@ -197,6 +186,21 @@ namespace Persistentie {
             }
         }
 
+        //Steekt toestel in databank op basis van toesteltype
+        public void ToestelToevoegenDatabank(string toestelType) {
+            using SqlConnection connection = new(_connectionString);
+            connection.Open();
+
+            string insertSql = $"INSERT INTO FitnessToestel (ToestelType, ToestelStatus) "
+                + $"VALUES (@ToestelType, 'beschikbaar');";
+
+            SqlCommand insertCommand = new(insertSql, connection);
+            insertCommand.Parameters.Add("@ToestelType", SqlDbType.VarChar);
+            insertCommand.Parameters["@ToestelType"].Value = toestelType;
+
+            insertCommand.ExecuteNonQuery();
+            connection.Close();
+        }
     }
 }
 

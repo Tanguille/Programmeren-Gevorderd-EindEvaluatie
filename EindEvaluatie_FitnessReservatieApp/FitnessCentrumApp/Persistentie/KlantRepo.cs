@@ -55,7 +55,7 @@ namespace Persistentie {
                 }
             }
             catch (RepoException e) {
-                throw new RepoException("SelecteerKlantData uit database ging mis.", e);
+                throw new RepoException("Deze gebruiker bestaat niet, probeer opnieuw.", e);
             }
         }
 
@@ -65,7 +65,7 @@ namespace Persistentie {
                 if (int.TryParse(identificatieString, out klantNummer)) {
                     return "SELECT KlantNummer, EmailAdres, VoorNaam, Achternaam, Adres, GeboorteDatum, Interesses, KlantType FROM Klant WHERE KlantNummer = @value;";
                 }
-                else if (!_geselecteerdeKlant.IsValidEmail(identificatieString)) {
+                else if (!Klant.IsValidEmail(identificatieString)) {
                     throw new RepoException("Email ongeldig.");
                 }
                 else {
@@ -74,9 +74,6 @@ namespace Persistentie {
             }
             catch (RepoException e) {
                 throw new RepoException("QuerySelector ging mis.", e);
-            }
-            catch (NullReferenceException e) {
-                throw new NullReferenceException("Uw login waarde werd niet herkend. Probeer opnieuw", e);
             }
         }
 

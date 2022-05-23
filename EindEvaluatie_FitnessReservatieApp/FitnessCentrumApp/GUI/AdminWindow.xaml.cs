@@ -1,4 +1,5 @@
 ﻿using Domein;
+using Microsoft.CSharp.RuntimeBinder;
 using System.Collections.Generic;
 using System.Windows;
 
@@ -40,7 +41,7 @@ namespace Gui {
         }
 
         private void ToevoegButton_Click(object sender, RoutedEventArgs e) {
-            //TODO: ToestelToevoegen
+            _domeinController.ToestelToevoegenDatabank(ToestelSelectieComboBox.Text.ToString().ToLower());
             RefreshListView();
         }
 
@@ -54,8 +55,35 @@ namespace Gui {
         /// </summary>
         /// <returns></returns>
         private int GetIDListView() {
-            dynamic selectedItem = ToestellenListView.SelectedItem;
-            return int.Parse(selectedItem.ID);
+            try {
+                dynamic selectedItem = ToestellenListView.SelectedItem;
+                int iD = int.Parse(selectedItem.ID);
+
+                if (_domeinController.IsToestelGereserveerd(iD)) {
+                    MessageBoxResult result = MessageBox.Show("Bent u zeker dat u door wilt gaan? Er zijn één of meer reservaties op dit toestel.",
+                    "Opgelet!", MessageBoxButton.OKCancel, MessageBoxImage.Warning);
+                    if (result == MessageBoxResult.OK) {
+                        return iD;
+                    }
+                    else {
+                        return 0;
+                    }
+                }
+                else {
+                    MessageBoxResult result = MessageBox.Show("Bent u zeker dat u door wilt gaan?",
+                    "Confirmation", MessageBoxButton.OKCancel, MessageBoxImage.Question);
+                    if (result == MessageBoxResult.OK) {
+                        return iD;
+                    }
+                    else {
+                        return 0;
+                    }
+                }
+            }
+            catch (RuntimeBinderException) {
+                MessageBox.Show("U heeft geen toestel geselecteerd");
+                return 0;
+            }
         }
     }
 }

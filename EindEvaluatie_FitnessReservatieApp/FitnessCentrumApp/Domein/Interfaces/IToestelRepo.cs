@@ -7,5 +7,6 @@ namespace Domein {
         public List<FitnessToestel> GeefToestellen();
         public List<FitnessToestel> GeefToestellen(string _toestelType);
         public void VeranderToestelStatus(int iD, string toestelStatus);
+        public void ToestelToevoegenDatabank(string toestelType);
     }
 }
