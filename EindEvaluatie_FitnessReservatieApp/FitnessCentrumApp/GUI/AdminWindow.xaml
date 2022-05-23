@@ -80,30 +80,9 @@
                                         <!--Onderhoud-->
                                         <TabItem Header="Onderhoud">
                                             <Grid>
-                                                <StackPanel>
-                                                    <Grid Margin="0 30">
-                                                        <Grid.ColumnDefinitions>
-                                                            <ColumnDefinition Width="30"/>
-                                                            <ColumnDefinition Width="30"/>
-                                                            <ColumnDefinition Width="*"/>
-                                                            <ColumnDefinition Width="30"/>
-                                                        </Grid.ColumnDefinitions>
-
-                                                        <!--Input box-->
-                                                        <materialDesign:PackIcon Grid.Column="1"  Kind="About" Style="{StaticResource InputIcon}"/>
-                                                        <TextBox Name="OnderhoudSelectieInputBox" Grid.Column="2" Padding="1 0"                              
-                                                            materialDesign:HintAssist.Hint="Toestel ID"
-                                                            materialDesign:HintAssist.Foreground="{StaticResource InputBoxHintAssistForegorundBrush}"
-                                                            materialDesign:TextFieldAssist.UnderlineBrush="{StaticResource InputBoxHintAssistForegorundBrush}"
-                                                            materialDesign:HintAssist.FloatingScale="0.6"
-                                                            Text=""
-                                                            Style="{StaticResource MaterialDesignFloatingHintTextBox}"
-                                                            FontSize="20" Margin="10 0 -10 0"
-                                                        />
-                                                    </Grid>
-
+                                                <StackPanel>                                                
                                                     <!--Zet in onderhoud button-->
-                                                    <Grid Margin="50 10" Grid.RowSpan="2" Width="200" MinWidth="100">
+                                                    <Grid Margin="50" Grid.RowSpan="2" Width="200" MinWidth="100">                                                       
                                                         <Button Name="InOnderhoudButton" IsDefault="True"
                                                             FontSize="20"
                                                             Style="{StaticResource MaterialDesignRaisedDarkButton}"
@@ -114,7 +93,7 @@
                                                     </Grid>
 
                                                     <!--Zet uit onderhoud button-->
-                                                    <Grid Margin="50 10" Grid.RowSpan="2" Width="200" MinWidth="100">
+                                                    <Grid Margin="50 20" Grid.RowSpan="2" Width="200" MinWidth="100">
                                                         <Button Name="UitOnderhoudButton"
                                                             FontSize="20"
                                                             Style="{StaticResource MaterialDesignRaisedDarkButton}"
@@ -157,29 +136,9 @@
                                         <!--Verwijderen-->
                                         <TabItem Header="Verwijderen">
                                             <Grid>
-                                                <StackPanel>
-                                                    <Grid Margin="0 30">
-                                                        <Grid.ColumnDefinitions>
-                                                            <ColumnDefinition Width="30"/>
-                                                            <ColumnDefinition Width="30"/>
-                                                            <ColumnDefinition Width="*"/>
-                                                            <ColumnDefinition Width="30"/>
-                                                        </Grid.ColumnDefinitions>
-
-                                                        <!--Input box-->
-                                                        <materialDesign:PackIcon Grid.Column="1"  Kind="About" Style="{StaticResource InputIcon}"/>
-                                                        <TextBox Name="ToevoegSelectieInputBox" Grid.Column="2" Padding="1 0"                              
-                                                            materialDesign:HintAssist.Hint="Toestel ID"
-                                                            materialDesign:HintAssist.Foreground="{StaticResource InputBoxHintAssistForegorundBrush}"
-                                                            materialDesign:TextFieldAssist.UnderlineBrush="{StaticResource InputBoxHintAssistForegorundBrush}"
-                                                            materialDesign:HintAssist.FloatingScale="0.6"
-                                                            Text=""
-                                                            Style="{StaticResource MaterialDesignFloatingHintTextBox}"
-                                                            FontSize="20" Margin="10 0 -10 0"
-                                                        />
-                                                    </Grid>
+                                                <StackPanel>                                                  
                                                     <!--Verwijder button-->
-                                                    <Grid Margin="50 10 50 50" Grid.RowSpan="2" Width="200" MinWidth="100">
+                                                    <Grid Margin="50" Grid.RowSpan="2" Width="200" MinWidth="100">
                                                         <Button Name="VerwijderButton" IsDefault="True"
                                                             FontSize="20"
                                                             Style="{StaticResource MaterialDesignRaisedDarkButton}"

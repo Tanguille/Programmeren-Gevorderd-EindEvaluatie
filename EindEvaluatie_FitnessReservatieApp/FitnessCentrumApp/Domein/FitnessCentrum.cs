@@ -1,4 +1,5 @@
 using Domein.Exceptions;
+using System;
 
 namespace Domein {
     public class FitnessCentrum {
@@ -16,6 +17,25 @@ namespace Domein {
             else {
                 return false;
                 throw new ReserveerException("Ons fitnesscentrum is jammergenoeg slechts van 8u tot 22u open.");
+            }
+        }
+
+        /// <summary>
+        /// Checkt of reservatie niet in verleden of meer dan 7 dagen in de toekomst gemaakt wordt.
+        /// </summary>
+        /// <param name="reservatieDag"></param>
+        /// <returns></returns>
+        /// <exception cref="ReserveerException"></exception>
+        public bool ReservatieDagValid(DateTime reservatieDag, int beginSlot) {
+            if (reservatieDag < DateTime.Today.AddDays(8) && reservatieDag > DateTime.Today) {
+                return true;
+            }
+            else if (reservatieDag >= DateTime.Today && beginSlot > DateTime.Now.Hour) {
+                return true;
+            }
+            else {
+                return false;
+                throw new ReserveerException("U kan bij ons jammergenoeg slechts 7 dagen op voorhand reserveren.");
             }
         }
     }

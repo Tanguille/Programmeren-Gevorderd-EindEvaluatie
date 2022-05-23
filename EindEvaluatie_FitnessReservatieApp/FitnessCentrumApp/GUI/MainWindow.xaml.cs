@@ -36,6 +36,9 @@ namespace Gui {
             catch (LoginException loginE) {
                 MessageBox.Show(loginE.Message);
             }
+            catch (RepoException repoE) {
+                MessageBox.Show(repoE.Message);
+            }
         }
     }
 }

@@ -5,7 +5,6 @@ using System.Linq;
 
 namespace Domein {
     public class DomeinController {
-        public FitnessCentrum FitnessCentrum { get; set; }
         public Klant AangemeldeKlant { get; private set; }
         public FitnessToestel GeselecteerdToestel { get; private set; }
         public List<Reservatie> GemaakteReservaties { get; private set; }
@@ -14,6 +13,7 @@ namespace Domein {
         private IKlantRepo _klantRepo;
         private IReservationRepo _reservationRepo;
         private IToestelRepo _toestelRepo;
+        private FitnessCentrum _fitnessCentrum = new();
 
         public DomeinController(IKlantRepo klantRepo, IReservationRepo reservationRepo, IToestelRepo toestellenRepo) {
             _klantRepo = klantRepo;
@@ -34,22 +34,30 @@ namespace Domein {
         public void MaakReservatie(DateTime dag, int beginSlot, int aantalSlots, string geselecteerdToestel) {
             //Checken aantal gebruikte tijdslots
             int aantalTijdSlotsVandaag = new();
-            List<Reservatie> Reservaties = _reservationRepo.GeefReservatiesOpKlantNummer(AangemeldeKlant.KlantNummer);
-            List<Reservatie> ReservatiesOpReservatieDag = Reservaties.Where(r => r.Datum.Date == dag.Date).ToList();
-
-            FitnessToestel toestel = ToestelSelector(dag, beginSlot, aantalSlots, geselecteerdToestel);
-
-            foreach (Reservatie r in ReservatiesOpReservatieDag) {
-                aantalTijdSlotsVandaag += r.AantalSlots;
-            }
-
-            if ((aantalTijdSlotsVandaag + aantalSlots) < 4 && FitnessCentrum.OpeningsUrenValid(beginSlot, aantalSlots)) {
-                //Aanmaken reservatie
-                Reservatie reservatie = new(dag, AangemeldeKlant, toestel, beginSlot, aantalSlots);
-                _reservationRepo.ZetReservatieInDB(reservatie);
+            List<Reservatie> reservaties = _reservationRepo.GeefReservatiesOpKlantNummer(AangemeldeKlant.KlantNummer);
+            if (reservaties.Count < 1) {
+                aantalTijdSlotsVandaag = 0;
             }
             else {
+                List<Reservatie> reservatiesOpReservatieDag = reservaties.Where(r => r.Datum.Date == dag.Date).ToList();
+
+                foreach (Reservatie r in reservatiesOpReservatieDag) {
+                    aantalTijdSlotsVandaag += r.AantalSlots;
+                }
+            }
+            if ((aantalTijdSlotsVandaag + aantalSlots) < 4
+                && _fitnessCentrum.OpeningsUrenValid(beginSlot, aantalSlots)
+                && _fitnessCentrum.ReservatieDagValid(dag, beginSlot)) {
+                FitnessToestel toestel = ToestelSelector(dag, beginSlot, aantalSlots, geselecteerdToestel);
+
+                //Aanmaken reservatie            
+                _reservationRepo.MaakReservatie(dag, AangemeldeKlant, toestel, beginSlot, aantalSlots);
+            }
+            else if ((aantalTijdSlotsVandaag + aantalSlots) > 4) {
                 throw new ReserveerException("U kan max 4 uur per dag bij ons trainen. Onze excuses voor dit ongemak.");
+            }
+            else {
+                throw new ReserveerException("U heeft mogelijks een waarde fout ingevoerd. Probeer opnieuw");
             }
         }
 

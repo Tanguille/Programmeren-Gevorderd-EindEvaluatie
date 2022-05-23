@@ -6,21 +6,7 @@ namespace Domein {
         public int ReservatieNummer { get; } //Moet door systeem aangemaakt worden
         public Klant Klant { get; }
         public FitnessToestel GereserveerdToestel { get; private set; }
-
-        //Max 7 dagen op voorhand
-        private DateTime _datum;
-        public DateTime Datum {
-            get => _datum;
-            private set {
-                if (value < DateTime.Today.AddDays(8) && value > DateTime.Now) {
-                    _datum = value;
-                }
-                else {
-                    throw new ReserveerException(Datum.ToString() + BeginSlot.ToString() + AantalSlots.ToString()
-                        + "U kan bij ons jammergenoeg slechts 7 dagen op voorhand reserveren.");
-                }
-            }
-        }
+        public DateTime Datum { get; private set; }
 
         //Max 2 slots per Reservatie
         private int _aantalSlots;
@@ -65,11 +51,6 @@ namespace Domein {
 
         public override string ToString() {
             return $"{ReservatieNummer} {Datum.Day} {GereserveerdToestel} {BeginSlot} {AantalSlots}";
-        }
-
-        public Reservatie MaakReservatie(DateTime dag, Klant klant, FitnessToestel fitnessToestel, int beginSlot, int aantalSlots) {
-            Reservatie reservatie = new(dag, klant, fitnessToestel, beginSlot, aantalSlots);
-            return reservatie;
         }
     }
 }

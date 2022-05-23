@@ -20,7 +20,7 @@ namespace Persistentie {
             try {
                 KlantRepo klantRepo = new(_connectionString);
                 ToestelRepo toestelRepo = new(_connectionString);
-                List<Reservatie> Reservaties = new();
+                List<Reservatie> reservaties = new();
 
                 using SqlConnection connection = new(_connectionString);
                 connection.Open();
@@ -42,12 +42,12 @@ namespace Persistentie {
                         int beginSlot = (int)dataReader["BeginSlot"];
                         int aantalSlots = (int)dataReader["AantalSlots"];
 
-                        Reservaties.Add(new Reservatie(reservatieNummer, datum, klant, toestel, beginSlot, aantalSlots));
+                        reservaties.Add(new Reservatie(reservatieNummer, datum, klant, toestel, beginSlot, aantalSlots));
                     }
-                    return Reservaties;
+                    return reservaties;
                 }
                 else {
-                    throw new RepoException("Deze gegevens staan niet in de databank.");
+                    return reservaties;
                 }
             }
             catch (RepoException e) {
@@ -102,8 +102,10 @@ namespace Persistentie {
         /// <summary>
         /// Zet Reservatie in database
         /// </summary>  
-        public void ZetReservatieInDB(Reservatie reservatie) {
+        public void MaakReservatie(DateTime dag, Klant klant, FitnessToestel fitnessToestel, int beginSlot, int aantalSlots) {
             try {
+                Reservatie reservatie = new(dag, klant, fitnessToestel, beginSlot, aantalSlots);
+
                 using SqlConnection connection = new(_connectionString);
                 connection.Open();
 

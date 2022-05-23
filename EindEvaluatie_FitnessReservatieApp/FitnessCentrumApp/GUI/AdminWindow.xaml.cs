@@ -29,24 +29,33 @@ namespace Gui {
             ToestellenListView.ItemsSource = adminPanelStrings;
         }
 
-        private void InOnderhoudButton_Click(object sender, RoutedEventArgs e) {            
-            _domeinController.VeranderToestelStatus(int.Parse(OnderhoudSelectieInputBox.Text), "onderhoud");
+        private void InOnderhoudButton_Click(object sender, RoutedEventArgs e) {
+            _domeinController.VeranderToestelStatus(GetIDListView(), "inOnderhoud");
             RefreshListView();
         }
 
         private void UitOnderhoudButton_Click_1(object sender, RoutedEventArgs e) {
-            _domeinController.VeranderToestelStatus(int.Parse(OnderhoudSelectieInputBox.Text), "beschikbaar");
+            _domeinController.VeranderToestelStatus(GetIDListView(), "beschikbaar");
             RefreshListView();
         }
 
         private void ToevoegButton_Click(object sender, RoutedEventArgs e) {
-            //TODO:
+            //TODO: ToestelToevoegen
             RefreshListView();
         }
 
         private void VerwijderButton_Click(object sender, RoutedEventArgs e) {
-            _domeinController.VeranderToestelStatus(int.Parse(ToevoegSelectieInputBox.Text), "verwijderd");
+            _domeinController.VeranderToestelStatus(GetIDListView(), "verwijderd");
             RefreshListView();
+        }
+
+        /// <summary>
+        /// Zorgt ervoor dat ik waarde van ID kolom uit Listview kan halen
+        /// </summary>
+        /// <returns></returns>
+        private int GetIDListView() {
+            dynamic selectedItem = ToestellenListView.SelectedItem;
+            return int.Parse(selectedItem.ID);
         }
     }
 }

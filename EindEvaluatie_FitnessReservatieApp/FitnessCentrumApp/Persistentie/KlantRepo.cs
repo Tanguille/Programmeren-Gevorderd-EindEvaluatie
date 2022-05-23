@@ -75,6 +75,9 @@ namespace Persistentie {
             catch (RepoException e) {
                 throw new RepoException("QuerySelector ging mis.", e);
             }
+            catch (NullReferenceException e) {
+                throw new NullReferenceException("Uw login waarde werd niet herkend. Probeer opnieuw", e);
+            }
         }
 
         /// <summary>
