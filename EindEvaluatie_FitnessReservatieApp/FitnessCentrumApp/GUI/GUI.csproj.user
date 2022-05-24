@@ -10,7 +10,7 @@
     <Compile Update="AdminWindow.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Update="RegistratieWindow.xaml.cs">
+    <Compile Update="ReservatieWindow.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
   </ItemGroup>
@@ -21,7 +21,7 @@
     <Page Update="MainWindow.xaml">
       <SubType>Designer</SubType>
     </Page>
-    <Page Update="RegistratieWindow.xaml">
+    <Page Update="ReservatieWindow.xaml">
       <SubType>Designer</SubType>
     </Page>
   </ItemGroup>

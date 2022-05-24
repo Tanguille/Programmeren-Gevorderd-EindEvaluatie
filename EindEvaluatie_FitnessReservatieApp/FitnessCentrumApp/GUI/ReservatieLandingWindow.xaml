@@ -52,7 +52,7 @@
             <materialDesign:Card Grid.Row="0" Grid.RowSpan="2" 
                                 HorizontalAlignment="Center"
                                 VerticalAlignment="Top"
-                                 Width="600"
+                                 Width="800"
                                  Height="500"
                                 Padding="10" Margin="0 20 0 0">
 
@@ -76,10 +76,11 @@
                             <ListView.View>                                
                                 <GridView>
                                     <GridViewColumn Header="#" Width="72" DisplayMemberBinding="{Binding ReservatieNummer}"/>
-                                    <GridViewColumn Header="Datum" Width="110" DisplayMemberBinding="{Binding Datum}"/>
-                                    <GridViewColumn Header="Toestel" Width="110"  DisplayMemberBinding="{Binding ToestelID}"/>
-                                    <GridViewColumn Header="Begin uur" Width="120"  DisplayMemberBinding="{Binding TijdSlot}"/>
-                                    <GridViewColumn Header="Duur" Width="100"  DisplayMemberBinding="{Binding AantalSlots}"/>
+                                    <GridViewColumn Header="Datum" Width="105" DisplayMemberBinding="{Binding Datum}"/>
+                                    <GridViewColumn Header="Toestel #" Width="120"  DisplayMemberBinding="{Binding ToestelID, StringFormat='          #{0}'}"/>
+                                    <GridViewColumn Header="Toestel Type" Width="140"  DisplayMemberBinding="{Binding ToestelType, StringFormat='           {0}'}"/>
+                                    <GridViewColumn Header="Begin uur" Width="120"  DisplayMemberBinding="{Binding TijdSlot, StringFormat='          {0}u'}"/>
+                                    <GridViewColumn Header="Duur" Width="100"  DisplayMemberBinding="{Binding AantalSlots, StringFormat='     {0} uur'}"/>
                                 </GridView>
                             </ListView.View>
                         </ListView>

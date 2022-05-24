@@ -15,16 +15,19 @@ namespace Gui {
             _domeinController = domeinController;
             _aangemeldeKlantNummer = aangemeldeKlantNummer;
 
+            Title = "Reservatie overzicht";
+
             List<string[]> reservatieStrings = _domeinController.ReservatiesToString();
 
-            List<RegistratieLandingStrings> registratieLandingStrings = new();
+            List<ReservatieLandingStrings> registratieLandingStrings = new();
             foreach (string[] reservatieString in reservatieStrings) {
-                registratieLandingStrings.Add(new RegistratieLandingStrings() {
-                    ReservatieNummer = reservatieString[0],
+                registratieLandingStrings.Add(new ReservatieLandingStrings() {
+                    ReservatieNummer = "   " + reservatieString[0],
                     Datum = reservatieString[1],
                     ToestelID = reservatieString[2],
-                    TijdSlot = reservatieString[3],
-                    AantalSlots = reservatieString[4]
+                    ToestelType = reservatieString[3],
+                    TijdSlot = reservatieString[4],
+                    AantalSlots = reservatieString[5]
                 });
             }
             ReservationListView.ItemsSource = registratieLandingStrings;

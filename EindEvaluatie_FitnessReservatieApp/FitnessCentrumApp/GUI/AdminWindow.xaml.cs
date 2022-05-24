@@ -13,6 +13,7 @@ namespace Gui {
             InitializeComponent();
             _domeinController = domeinController;
 
+            Title = "Beheerder paneel";
             RefreshListView();
         }
 

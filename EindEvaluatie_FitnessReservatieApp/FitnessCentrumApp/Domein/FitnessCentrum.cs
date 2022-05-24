@@ -11,7 +11,7 @@ namespace Domein {
         /// <returns></returns>
         /// <exception cref="ReserveerException"></exception>
         public static bool OpeningsUrenValid(int beginSlot, int aantalSlots) {
-            if ((beginSlot + aantalSlots) < 23 && beginSlot > 8) {
+            if ((beginSlot + aantalSlots) < 23 && beginSlot > 7) {
                 return true;
             }
             else {
@@ -30,7 +30,7 @@ namespace Domein {
             if (reservatieDag < DateTime.Today.AddDays(8) && reservatieDag > DateTime.Today) {
                 return true;
             }
-            else if (reservatieDag >= DateTime.Today && beginSlot > DateTime.Now.Hour) {
+            else if (reservatieDag >= DateTime.Today && beginSlot >= DateTime.Now.Hour) {
                 return true;
             }
             else {

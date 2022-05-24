@@ -57,21 +57,35 @@
                         </Grid>
 
                         <!--Daypicker-->
-                        <Grid Margin="50 20 50 0">                            
+                        <Grid Margin="50 20 50 0">
                             <TextBlock VerticalAlignment="Top" FontWeight="Bold">Selecteer uw gewenste dag.</TextBlock>
-                            <DatePicker x:Name="RegistrationDatePicker" SelectedDate="{x:Static sys:DateTime.Today}" Margin="0 20 0 0"/>
+                            <DatePicker x:Name="RegistrationDatePicker" SelectedDate="{x:Static sys:DateTime.Today}" Margin="0 20 0 0" SelectedDateChanged="RegistrationDatePicker_SelectedDateChanged"/>
                         </Grid>
 
                         <!--Hour picker-->
-                        <Grid Margin="50 20">
-                            <TextBlock VerticalAlignment="Top" FontWeight="Bold">Selecteer uw gewenste start uur.</TextBlock>
-                            <materialDesign:TimePicker x:Name="RegistrationHourPicker" Is24Hours="True" SelectedTime="{x:Static sys:DateTime.Now}" Margin="0 20 0 0"/>
+                        <Grid Margin="40 20">
+                            <TextBlock Margin="10 0" VerticalAlignment="Top" FontWeight="Bold">Selecteer uw gewenste start uur.</TextBlock>
+                            <Grid Margin="0 0 10 0">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="15"/>
+                                </Grid.ColumnDefinitions>
+
+                                <materialDesign:PackIcon VerticalAlignment="Bottom" Width="15" Grid.Column="2" Kind="Clock" Style="{StaticResource InputIcon}"/>
+                                <ComboBox x:Name="RegistrationHourComboBox" SelectedIndex="0" Margin="10 20 10 0"/>
+                            </Grid>
                         </Grid>
 
                         <!--Selectie duur-->
                         <Grid Margin="50 0">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="15"/>
+                            </Grid.ColumnDefinitions>
+
                             <TextBlock VerticalAlignment="Top" FontWeight="Bold">Selecteer uw gewenste duur.</TextBlock>
-                            <ComboBox Name="DuurSelectieBox" Margin="0 20 0 0" SelectedIndex="0">
+                            <materialDesign:PackIcon VerticalAlignment="Bottom" Width="15" Grid.Column="2"  Kind="Timelapse" Style="{StaticResource InputIcon}"/>
+                            <ComboBox Name="DuurSelectieBox" Margin="0 20 10 0" SelectedIndex="0">
                                 <ComboBoxItem>1 uur</ComboBoxItem>
                                 <ComboBoxItem>2 uur</ComboBoxItem>
                             </ComboBox>
@@ -79,8 +93,14 @@
 
                         <!--Selectie toestel-->
                         <Grid Margin="50 20">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="15"/>
+                            </Grid.ColumnDefinitions>
+
                             <TextBlock VerticalAlignment="Top" FontWeight="Bold">Selecteer uw gewenst toestel.</TextBlock>
-                            <ComboBox Name="ToestelSelectieBox" Margin="0 20 0 0" SelectedIndex="0">
+                            <materialDesign:PackIcon VerticalAlignment="Bottom" Width="15" Grid.Column="2"  Kind="FitnessCenter" Style="{StaticResource InputIcon}"/>
+                            <ComboBox Name="ToestelSelectieBox" Margin="0 20 10 0" SelectedIndex="0">
                                 <ComboBoxItem>Fiets</ComboBoxItem>
                                 <ComboBoxItem>Loopband</ComboBoxItem>
                             </ComboBox>

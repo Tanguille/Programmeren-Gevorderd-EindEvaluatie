@@ -27,7 +27,7 @@ namespace Domein {
         public int BeginSlot {
             get => _beginSlot;
             private set {
-                if ((value) < 22 && value > 8) {
+                if (value < 23 && value > 7) {
                     _beginSlot = value;
                 }
                 else {
