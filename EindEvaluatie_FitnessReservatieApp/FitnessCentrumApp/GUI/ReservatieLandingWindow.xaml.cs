@@ -7,7 +7,7 @@ namespace Gui {
     /// Interaction logic for RegistratieLandingWindow.xaml
     /// </summary>
     public partial class RegistratieLandingWindow : Window {
-        private DomeinController _domeinController;
+        private readonly DomeinController _domeinController;
         private int _aangemeldeKlantNummer;
         public RegistratieLandingWindow(DomeinController domeinController, int aangemeldeKlantNummer) {
             DataContext = this;
@@ -19,9 +19,9 @@ namespace Gui {
 
             List<string[]> reservatieStrings = _domeinController.ReservatiesToString();
 
-            List<ReservatieLandingStrings> registratieLandingStrings = new();
+            List<ReservatieLandingStrings> reservatieLandingStrings = new();
             foreach (string[] reservatieString in reservatieStrings) {
-                registratieLandingStrings.Add(new ReservatieLandingStrings() {
+                reservatieLandingStrings.Add(new ReservatieLandingStrings() {
                     ReservatieNummer = "   " + reservatieString[0],
                     Datum = reservatieString[1],
                     ToestelID = reservatieString[2],
@@ -30,18 +30,18 @@ namespace Gui {
                     AantalSlots = reservatieString[5]
                 });
             }
-            ReservationListView.ItemsSource = registratieLandingStrings;
+            ReservationListView.ItemsSource = reservatieLandingStrings;
         }
 
-        public string InfoString {
+        public static string InfoString {
             get {
                 return $"U kan per dag max 4 uur bij ons sporten. \n"
-                    + "Maak een tweede afspraak om meer dan 2 uur een toestel te gebruiken";
+                    + "Maak een tweede reservatie om meer dan 2 uur een toestel te gebruiken";
             }
         }
         private void NieuweAfspraakButton_Click(object sender, RoutedEventArgs e) {
             RegistratieWindow registratieWindow = new(_domeinController, _aangemeldeKlantNummer);
-            this.Close();
+            Close();
             registratieWindow.Show();
         }
 
@@ -50,7 +50,7 @@ namespace Gui {
 
             _aangemeldeKlantNummer = 0; //Afmelden van de klant
 
-            this.Close();
+            Close();
             mainWindow.Show();
         }
     }

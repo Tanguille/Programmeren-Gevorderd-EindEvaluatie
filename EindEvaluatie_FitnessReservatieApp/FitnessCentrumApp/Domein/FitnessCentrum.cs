@@ -30,7 +30,7 @@ namespace Domein {
             if (reservatieDag < DateTime.Today.AddDays(8) && reservatieDag > DateTime.Today) {
                 return true;
             }
-            else if (reservatieDag >= DateTime.Today && beginSlot >= DateTime.Now.Hour) {
+            else if (reservatieDag == DateTime.Today && beginSlot >= DateTime.Now.Hour) {
                 return true;
             }
             else {

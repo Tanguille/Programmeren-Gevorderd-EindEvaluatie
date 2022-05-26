@@ -5,14 +5,14 @@ using System.Linq;
 
 namespace Domein {
     public class DomeinController {
-        public Klant AangemeldeKlant { get; private set; }
+        public Klant AangemeldeKlant { get; set; }
         public FitnessToestel GeselecteerdToestel { get; private set; }
         public List<Reservatie> GemaakteReservaties { get; private set; }
         public List<FitnessToestel> Toestellen { get; private set; }
 
-        private IKlantRepo _klantRepo;
-        private IReservationRepo _reservationRepo;
-        private IToestelRepo _toestelRepo;
+        private readonly IKlantRepo _klantRepo;
+        private readonly IReservationRepo _reservationRepo;
+        private readonly IToestelRepo _toestelRepo;
 
         public DomeinController(IKlantRepo klantRepo, IReservationRepo reservationRepo, IToestelRepo toestellenRepo) {
             _klantRepo = klantRepo;
@@ -49,7 +49,8 @@ namespace Domein {
                 }
             }
 
-            if (TijdSlotsOver(aantalTijdSlotsVandaag, aantalSlots) && FitnessCentrum.OpeningsUrenValid(beginSlot, aantalSlots) && FitnessCentrum.ReservatieDagValid(dag, beginSlot)) {
+            if (TijdSlotsOver(aantalTijdSlotsVandaag, aantalSlots) && FitnessCentrum.OpeningsUrenValid(beginSlot, aantalSlots)
+                && FitnessCentrum.ReservatieDagValid(dag, beginSlot)) {
                 FitnessToestel toestel = ToestelSelector(dag, beginSlot, aantalSlots, geselecteerdToestel);
 
                 //Aanmaken reservatie            

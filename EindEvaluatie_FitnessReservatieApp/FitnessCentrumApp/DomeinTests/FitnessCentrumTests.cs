@@ -37,7 +37,7 @@ namespace Domein.Tests {
         [TestMethod()]
         [DataRow(8)]
         public void ReservatieDagValidTest_TeLaatGereserveerd_ReturnFalse(int dagIndex) {
-            Assert.AreEqual(false, FitnessCentrum.ReservatieDagValid(DateTime.Now.AddDays(dagIndex), 12));
+            Assert.IsFalse(FitnessCentrum.ReservatieDagValid(DateTime.Today.AddDays(dagIndex), 12));
         }
 
         [TestMethod()]

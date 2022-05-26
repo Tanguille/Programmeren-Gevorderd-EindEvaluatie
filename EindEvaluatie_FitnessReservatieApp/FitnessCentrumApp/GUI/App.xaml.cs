@@ -10,7 +10,7 @@ namespace Gui {
         public void Application_Startup(object sender, StartupEventArgs e) {
             //Repos
             IKlantRepo klantRepo = new KlantRepo(DBinfo.DBconnectionString);
-            IReservationRepo reservationRepo = new ReservationRepo(DBinfo.DBconnectionString);
+            IReservationRepo reservationRepo = new ReservatieRepo(DBinfo.DBconnectionString);
             IToestelRepo toestellenRepo = new ToestelRepo(DBinfo.DBconnectionString);
 
             //Instantieren domeincontrollers

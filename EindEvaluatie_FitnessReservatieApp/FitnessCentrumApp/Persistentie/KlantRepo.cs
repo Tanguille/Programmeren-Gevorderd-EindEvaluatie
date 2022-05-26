@@ -46,7 +46,8 @@ namespace Persistentie {
 
                         string klantType = (string)dataReader["KlantType"];
 
-                        _geselecteerdeKlant = new Klant(klantNummer, emailAdres, voorNaam, achterNaam, adres, geboorteDatum, interesses, (EKlantType)Enum.Parse(typeof(EKlantType), klantType.ToString().ToUpper()));
+                        _geselecteerdeKlant = new Klant(klantNummer, emailAdres, voorNaam, achterNaam, adres, geboorteDatum, interesses,
+                            (EKlantType)Enum.Parse(typeof(EKlantType), klantType.ToString().ToUpper()));
                     }
                     return _geselecteerdeKlant;
                 }

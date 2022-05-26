@@ -5,10 +5,10 @@ using System;
 using System.Collections.Generic;
 
 namespace Persistentie {
-    public class ReservationRepo : IReservationRepo {
+    public class ReservatieRepo : IReservationRepo {
         private static string _connectionString;
 
-        public ReservationRepo(string connectionstring) {
+        public ReservatieRepo(string connectionstring) {
             _connectionString = connectionstring;
         }
 

@@ -8,7 +8,7 @@ namespace Gui {
     /// Interaction logic for AdminWindow.xaml
     /// </summary>
     public partial class AdminWindow : Window {
-        private DomeinController _domeinController;
+        private readonly DomeinController _domeinController;
         public AdminWindow(DomeinController domeinController) {
             InitializeComponent();
             _domeinController = domeinController;
@@ -32,8 +32,11 @@ namespace Gui {
         }
 
         private void InOnderhoudButton_Click(object sender, RoutedEventArgs e) {
-            _domeinController.VeranderToestelStatus(GetIDListView(), "inOnderhoud");
-            RefreshListView();
+            if (MessageBoxHandler() == 1) {
+                _domeinController.VeranderToestelStatus(GetIDListView(), "inOnderhoud");
+                RefreshListView();
+            }
+
         }
 
         private void UitOnderhoudButton_Click_1(object sender, RoutedEventArgs e) {
@@ -47,8 +50,10 @@ namespace Gui {
         }
 
         private void VerwijderButton_Click(object sender, RoutedEventArgs e) {
-            _domeinController.VeranderToestelStatus(GetIDListView(), "verwijderd");
-            RefreshListView();
+            if (MessageBoxHandler() == 1) {
+                _domeinController.VeranderToestelStatus(GetIDListView(), "verwijderd");
+                RefreshListView();
+            }
         }
 
         /// <summary>
@@ -58,32 +63,29 @@ namespace Gui {
         private int GetIDListView() {
             try {
                 dynamic selectedItem = ToestellenListView.SelectedItem;
-                int iD = int.Parse(selectedItem.ID);
-
-                if (_domeinController.IsToestelGereserveerd(iD)) {
-                    MessageBoxResult result = MessageBox.Show("Bent u zeker dat u door wilt gaan? Er zijn één of meer reservaties op dit toestel.",
-                    "Opgelet!", MessageBoxButton.OKCancel, MessageBoxImage.Warning);
-                    if (result == MessageBoxResult.OK) {
-                        return iD;
-                    }
-                    else {
-                        return 0;
-                    }
-                }
-                else {
-                    MessageBoxResult result = MessageBox.Show("Bent u zeker dat u door wilt gaan?",
-                    "Confirmation", MessageBoxButton.OKCancel, MessageBoxImage.Question);
-                    if (result == MessageBoxResult.OK) {
-                        return iD;
-                    }
-                    else {
-                        return 0;
-                    }
-                }
+                return int.Parse(selectedItem.ID);
             }
             catch (RuntimeBinderException) {
                 MessageBox.Show("U heeft geen toestel geselecteerd");
                 return 0;
+            }
+        }
+
+        private int MessageBoxHandler() {
+            int iD = GetIDListView();
+            if (_domeinController.IsToestelGereserveerd(iD)) {
+                MessageBox.Show("Er zijn één of meer reservaties op dit toestel!", "Opgelet!");
+                return 0;
+            }
+            else {
+                MessageBoxResult result = MessageBox.Show("Bent u zeker dat u door wilt gaan?",
+                "Confirmation", MessageBoxButton.YesNo, MessageBoxImage.Question);
+                if (result == MessageBoxResult.Yes) {
+                    return 1;
+                }
+                else {
+                    return 0;
+                }
             }
         }
     }

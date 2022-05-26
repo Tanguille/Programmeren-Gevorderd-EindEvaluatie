@@ -89,5 +89,11 @@ namespace Gui {
         private void RegistrationDatePicker_SelectedDateChanged(object sender, SelectionChangedEventArgs e) {
             RefreshCombobox();
         }
+
+        private void ReservatieOverzichtButton_Click(object sender, RoutedEventArgs e) {
+            RegistratieLandingWindow registratieLandingWindow = new(_domeinController, _aangemeldeKlantNummer);
+            Close();
+            registratieLandingWindow.Show();
+        }
     }
 }

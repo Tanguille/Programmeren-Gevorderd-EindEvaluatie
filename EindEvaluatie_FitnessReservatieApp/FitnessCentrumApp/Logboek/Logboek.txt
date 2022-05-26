@@ -1,9 +1,23 @@
-04/04: Opdracht lezen en eerste versie DCD maken in VP.
-05/04: 2de versie DCD maken en code genereren. Unit tests opzetten.
-20/04: DCD updaten
+04/04: Opdracht lezen en eerste versie DCD maken in VP. => 2 uur
+05/04: 2de versie DCD maken en code genereren. Unit tests opzetten. => 1 uur
+20/04: DCD updaten => 2 uur
 25/04: Uitleg vragen in de les over DCD.
-26/04: DCD finaliseren en opnieuw code genereren, repo's toevoegen aan persistentie en bijhorende .txt files met data invoegen.
-30/04: Method KlantIdentificeren uitwerken en unit tests maken
-01/05: Begonnen aan Cui, terwijl ik domeincontroller en andere methods uitwerk.
-04/05: In de les database gemaakt.
-05/05: Methods gemaakt om data in database te steken en bepaalde info uit database te halen
+26/04: DCD finaliseren en opnieuw code genereren, repo's toevoegen aan persistentie en bijhorende .txt files met data invoegen. => 3 uur
+30/04: Method KlantIdentificeren uitwerken en unit tests maken. => 2 uur
+01/05: Begonnen aan Cui, terwijl ik domeincontroller en andere methods uitwerk. => 2 uur
+04/05: In de les database gemaakt. => 2 uur
+05/05: Methods gemaakt om data in database te steken en bepaalde info uit database te halen = > 4 uur
+
+Vanaf hier enkel uren omdat beschrijving overbodig is
+15/05: 1 uur
+16/05: 1 uur
+17/05: 4 uur
+18/05: 2 uur
+19/05: 1 uur
+20/05: 6 uur
+21/05: 5 uur
+22/05: 6 uur
+23/05: 3 uur
+24/05: 6 uur
+25/05: 4 uur
+
