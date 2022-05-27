@@ -1,5 +1,5 @@
 ﻿namespace Persistentie {
     public static class DBinfo {
-        public const string DBconnectionString = @"Data Source=.\SQLEXPRESSDESK;Initial Catalog=FitnessCentrumDB;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False";
+        public const string DBconnectionString = @"Data Source=TANGUILLELAPTOP\SQLEXPRESS;Initial Catalog=FitnessCentrumApp;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=True;ApplicationIntent=ReadWrite;MultiSubnetFailover=False";
     }
 }
