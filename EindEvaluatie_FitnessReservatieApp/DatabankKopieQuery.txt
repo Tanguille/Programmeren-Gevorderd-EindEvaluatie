@@ -1,0 +1,646 @@
+create table [Klant] (
+[KlantNummer] [int] identity,
+[EmailAdres] [varchar] (50),
+[VoorNaam] [varchar] (50),
+[AchterNaam] [varchar] (50),
+[Adres] [varchar] (50),
+[GeboorteDatum] [datetime],
+[Interesses] [varchar] (50) NULL,
+[KlantType] [varchar] (50));
+
+
+
+set identity_insert [Klant] on;
+
+
+insert [Klant] ([KlantNummer],[EmailAdres],[VoorNaam],[AchterNaam],[Adres],[GeboorteDatum],[Interesses],[KlantType])
+select 1,'beheerder@tangfit.be','Tanguille','Grootaert','Merelbeke','1999-09-01 00:00:00.000','pcs','GOLD' UNION ALL
+select 2,'Goedele.Jackson@telenet.com','Goedele','Jackson','Eeklo','1970-09-04 00:00:00.000','running','BRONZE' UNION ALL
+select 3,'Jesse.Parkinson@telenet.com','Jesse','Parkinson','Melle','1984-07-25 00:00:00.000','cycling','SILVER' UNION ALL
+select 4,'Brian.Thorn@hotmail.com','Brian','Thorn','Zele','1962-01-02 00:00:00.000',NULL,'BRONZE' UNION ALL
+select 5,'Goedele.Wild@gmail.com','Goedele','Wild','Drongen','1973-03-04 00:00:00.000','fun','GOLD' UNION ALL
+select 6,'John.Wachters@google.com','John','Wachters','Waarschoot','1998-02-03 00:00:00.000',NULL,'SILVER' UNION ALL
+select 7,'Jesse.Desmet@orange.BE','Jesse','Desmet','Zomergem','1980-03-16 00:00:00.000',NULL,'BRONZE' UNION ALL
+select 8,'Marge.Willems@google.com','Marge','Willems','Eeklo','1994-02-23 00:00:00.000',NULL,'SILVER' UNION ALL
+select 9,'Carl.Goeminne@hotmail.com','Carl','Goeminne','Ursel','1990-11-13 00:00:00.000','fun','SILVER' UNION ALL
+select 10,'Cyren.Goeminne@orange.BE','Cyren','Goeminne','Waarschoot','1990-02-05 00:00:00.000',NULL,'BRONZE' UNION ALL
+select 11,'Tom.Willems@google.com','Tom','Willems','Wetteren','1970-04-18 00:00:00.000',NULL,'BRONZE' UNION ALL
+select 12,'Katrien.Cruise@google.com','Katrien','Cruise','Deinze','1960-02-05 00:00:00.000','rowing','SILVER' UNION ALL
+select 13,'Piet.Adams@orange.BE','Piet','Adams','Melle','1975-02-07 00:00:00.000','rowing','SILVER' UNION ALL
+select 14,'Pol.Adams@hotmail.com','Pol','Adams','Zele','1980-02-03 00:00:00.000',NULL,'GOLD' UNION ALL
+select 15,'Ilana.Jansens@gmail.com','Ilana','Jansens','Gent','1995-04-08 00:00:00.000','rowing','GOLD' UNION ALL
+select 16,'Olive.Wachters@hotmail.com','Olive','Wachters','Wondelgem','2003-07-05 00:00:00.000',NULL,'SILVER' UNION ALL
+select 17,'Bill.VanMoer@google.com','Bill','Van Moer','Gent','1963-08-11 00:00:00.000',NULL,'SILVER' UNION ALL
+select 18,'Oliver.Kramer@google.com','Oliver','Kramer','Zomergem','1968-03-14 00:00:00.000',NULL,'BRONZE' UNION ALL
+select 19,'Tine.Wachters@gmail.com','Tine','Wachters','Ursel','1962-04-22 00:00:00.000',NULL,'GOLD' UNION ALL
+select 20,'Inge.Jackson@telenet.com','Inge','Jackson','Wondelgem','1973-08-01 00:00:00.000',NULL,'SILVER' UNION ALL
+select 21,'Goedele.Rogiers@telenet.com','Goedele','Rogiers','Ledeberg','1966-08-10 00:00:00.000','running','BRONZE' UNION ALL
+select 22,'Ellen.Buyle@gmail.com','Ellen','Buyle','Waarschoot','2002-10-08 00:00:00.000',NULL,'SILVER' UNION ALL
+select 23,'Tine.Buyle@orange.BE','Tine','Buyle','Deinze','1978-10-11 00:00:00.000',NULL,'GOLD' UNION ALL
+select 24,'Bill.Thorn@hotmail.com','Bill','Thorn','Zomergem','1987-03-15 00:00:00.000',NULL,'GOLD' UNION ALL
+select 25,'Mark.VanDorpe@telenet.com','Mark','Van Dorpe','Gentbrugge','1965-07-20 00:00:00.000','cycling','BRONZE' UNION ALL
+select 26,'Oliver.Vangent@telenet.com','Oliver','Vangent','Waarschoot','1964-03-19 00:00:00.000',NULL,'BRONZE' UNION ALL
+select 27,'Karl.Goeminne@gmail.com','Karl','Goeminne','Zulte','1984-12-20 00:00:00.000','rowing','GOLD' UNION ALL
+select 28,'Mark.Jansens@hotmail.com','Mark','Jansens','Zele','1997-02-05 00:00:00.000',NULL,'GOLD' UNION ALL
+select 29,'Carl.Wild@telenet.com','Carl','Wild','Gentbrugge','1994-08-10 00:00:00.000',NULL,'BRONZE' UNION ALL
+select 30,'Tine.Vandeneinde@telenet.com','Tine','Vandeneinde','Zomergem','1966-05-24 00:00:00.000',NULL,'GOLD' UNION ALL
+select 31,'Cyren.Jansens@gmail.com','Cyren','Jansens','Melle','1979-10-19 00:00:00.000',NULL,'BRONZE' UNION ALL
+select 32,'Nancy.Stone@orange.BE','Nancy','Stone','Drongen','2004-06-14 00:00:00.000',NULL,'GOLD' UNION ALL
+select 33,'Suzan.Tyson@google.com','Suzan','Tyson','Mariakerke','1997-03-06 00:00:00.000',NULL,'BRONZE' UNION ALL
+select 34,'Ellen.Delpuerte@google.com','Ellen','Delpuerte','Deinze','1961-11-02 00:00:00.000','rowing','GOLD' UNION ALL
+select 35,'Frans.Olson@orange.BE','Frans','Olson','Melle','1962-02-18 00:00:00.000','rowing','GOLD' UNION ALL
+select 36,'Jack.Ingvartson@gmail.com','Jack','Ingvartson','Zele','1990-02-03 00:00:00.000','fun','SILVER' UNION ALL
+select 37,'Alice.Pike@google.com','Alice','Pike','Adegem','1976-10-18 00:00:00.000',NULL,'BRONZE' UNION ALL
+select 38,'Debora.Vranckx@orange.BE','Debora','Vranckx','Petegem','1991-04-27 00:00:00.000',NULL,'BRONZE' UNION ALL
+select 39,'Franz.Willems@telenet.com','Franz','Willems','Mariakerke','1977-09-21 00:00:00.000',NULL,'BRONZE' UNION ALL
+select 40,'Tine.Parkinson@hotmail.com','Tine','Parkinson','Zomergem','1997-07-15 00:00:00.000',NULL,'GOLD' UNION ALL
+select 41,'John.Tyson@telenet.com','John','Tyson','Zomergem','1978-12-05 00:00:00.000',NULL,'GOLD' UNION ALL
+select 42,'Brian.Vanderplas@telenet.com','Brian','Van der plas','Zele','1962-05-12 00:00:00.000',NULL,'SILVER' UNION ALL
+select 43,'John.Ingvartson@google.com','John','Ingvartson','Ursel','1993-03-27 00:00:00.000',NULL,'BRONZE' UNION ALL
+select 44,'Alice.Wachters@gmail.com','Alice','Wachters','Maldegem','1969-11-08 00:00:00.000',NULL,'GOLD' UNION ALL
+select 45,'Oliver.Smet@google.com','Oliver','Smet','Gentbrugge','1977-05-06 00:00:00.000',NULL,'BRONZE' UNION ALL
+select 46,'Franz.Pike@orange.BE','Franz','Pike','Eeklo','1984-02-15 00:00:00.000',NULL,'BRONZE' UNION ALL
+select 47,'Alice.Vranckx@orange.BE','Alice','Vranckx','Adegem','2003-05-22 00:00:00.000',NULL,'BRONZE' UNION ALL
+select 48,'Heinz.Bollen@orange.BE','Heinz','Bollen','Waregem','1973-09-11 00:00:00.000','cycling','BRONZE' UNION ALL
+select 49,'Frans.Wachters@telenet.com','Frans','Wachters','Eeklo','1990-07-25 00:00:00.000',NULL,'SILVER' UNION ALL
+select 50,'Piet.Cruise@google.com','Piet','Cruise','Waregem','1969-09-12 00:00:00.000',NULL,'GOLD' UNION ALL
+select 51,'Veerle.Tuinman@telenet.com','Veerle','Tuinman','Drongen','1963-05-25 00:00:00.000',NULL,'GOLD' UNION ALL
+select 52,'Olive.VanAcker@telenet.com','Olive','Van Acker','Wondelgem','1966-02-18 00:00:00.000',NULL,'BRONZE' UNION ALL
+select 53,'Goedele.Pike@google.com','Goedele','Pike','Zomergem','1960-11-15 00:00:00.000',NULL,'SILVER' UNION ALL
+select 54,'Nancy.Stone@google.com','Nancy','Stone','Zulte','1977-05-22 00:00:00.000',NULL,'GOLD' UNION ALL
+select 55,'Bree.Delfino@google.com','Bree','Delfino','Ursel','1973-12-03 00:00:00.000',NULL,'SILVER' UNION ALL
+select 56,'Roman.Vangent@orange.BE','Roman','Vangent','Zulte','1963-09-09 00:00:00.000','fun','BRONZE' UNION ALL
+select 57,'Oliver.Vandermolen@orange.BE','Oliver','Van der molen','Wetteren','1984-09-20 00:00:00.000',NULL,'BRONZE' UNION ALL
+select 58,'Tom.Jansens@gmail.com','Tom','Jansens','Melle','1975-10-16 00:00:00.000',NULL,'BRONZE' UNION ALL
+select 59,'Katrien.Cruise@orange.BE','Katrien','Cruise','Maldegem','1968-11-10 00:00:00.000','fun','BRONZE' UNION ALL
+select 60,'Cyren.Thorn@hotmail.com','Cyren','Thorn','Zele','1962-01-04 00:00:00.000',NULL,'GOLD' UNION ALL
+select 61,'Sven.Cruise@telenet.com','Sven','Cruise','Mariakerke','1996-09-15 00:00:00.000',NULL,'BRONZE' UNION ALL
+select 62,'Bree.Olson@google.com','Bree','Olson','Mariakerke','2007-10-17 00:00:00.000',NULL,'GOLD' UNION ALL
+select 63,'Orson.Decroo@hotmail.com','Orson','Decroo','Eeklo','1979-06-21 00:00:00.000','running','SILVER' UNION ALL
+select 64,'Franz.Delpuerte@google.com','Franz','Delpuerte','Zele','1980-05-08 00:00:00.000','running','BRONZE' UNION ALL
+select 65,'Inge.Adams@orange.BE','Inge','Adams','Drongen','1985-10-10 00:00:00.000',NULL,'BRONZE' UNION ALL
+select 66,'Maria.Rogiers@hotmail.com','Maria','Rogiers','Zulte','1988-05-11 00:00:00.000',NULL,'SILVER' UNION ALL
+select 67,'Ellen.Thorn@google.com','Ellen','Thorn','Wetteren','2000-12-04 00:00:00.000','cycling','GOLD' UNION ALL
+select 68,'Jeff.Pike@telenet.com','Jeff','Pike','Mariakerke','1985-02-27 00:00:00.000',NULL,'SILVER' UNION ALL
+select 69,'Orson.Desmet@gmail.com','Orson','Desmet','Gent','1976-11-12 00:00:00.000',NULL,'BRONZE' UNION ALL
+select 70,'Veerle.Pike@orange.BE','Veerle','Pike','Gentbrugge','2006-01-24 00:00:00.000',NULL,'GOLD' UNION ALL
+select 71,'Inga.Willems@orange.BE','Inga','Willems','Zomergem','1978-12-16 00:00:00.000',NULL,'BRONZE' UNION ALL
+select 72,'Roman.Loomans@orange.BE','Roman','Loomans','Waarschoot','1989-09-26 00:00:00.000',NULL,'SILVER' UNION ALL
+select 73,'Pete.Crawler@telenet.com','Pete','Crawler','Zulte','2000-10-02 00:00:00.000',NULL,'BRONZE' UNION ALL
+select 74,'Maria.Peeters@google.com','Maria','Peeters','Mariakerke','1993-09-15 00:00:00.000',NULL,'SILVER' UNION ALL
+select 75,'Oliver.Willems@hotmail.com','Oliver','Willems','Adegem','1981-05-06 00:00:00.000',NULL,'BRONZE' UNION ALL
+select 76,'John.Rogiers@hotmail.com','John','Rogiers','Zulte','1994-05-18 00:00:00.000',NULL,'GOLD' UNION ALL
+select 77,'Pol.Verstappen@gmail.com','Pol','Verstappen','Drongen','1976-02-18 00:00:00.000','cycling','SILVER' UNION ALL
+select 78,'Brian.Desmet@hotmail.com','Brian','Desmet','Zulte','2006-06-20 00:00:00.000','cycling','GOLD' UNION ALL
+select 79,'Inga.Cruise@orange.BE','Inga','Cruise','Waregem','1996-01-25 00:00:00.000',NULL,'SILVER' UNION ALL
+select 80,'Jeff.Vanderplas@orange.BE','Jeff','Van der plas','Drongen','1962-09-03 00:00:00.000',NULL,'SILVER' UNION ALL
+select 81,'Piet.Rogiers@gmail.com','Piet','Rogiers','Waregem','1995-09-06 00:00:00.000',NULL,'SILVER' UNION ALL
+select 82,'Inge.Vanderplas@gmail.com','Inge','Van der plas','Gentbrugge','1995-03-26 00:00:00.000','cycling','SILVER' UNION ALL
+select 83,'Orson.Wild@orange.BE','Orson','Wild','Adegem','1993-11-25 00:00:00.000',NULL,'GOLD' UNION ALL
+select 84,'Marge.Willems@telenet.com','Marge','Willems','Gent','1974-03-20 00:00:00.000',NULL,'GOLD' UNION ALL
+select 85,'Ellen.Peeters@gmail.com','Ellen','Peeters','Ledeberg','1966-04-06 00:00:00.000',NULL,'BRONZE' UNION ALL
+select 86,'Karen.Vandeneinde@google.com','Karen','Vandeneinde','Melle','1965-04-18 00:00:00.000',NULL,'SILVER' UNION ALL
+select 87,'Maria.VanDorpe@telenet.com','Maria','Van Dorpe','Zomergem','2001-12-08 00:00:00.000',NULL,'BRONZE' UNION ALL
+select 88,'Nancy.Peeters@google.com','Nancy','Peeters','Zomergem','2007-11-01 00:00:00.000','rowing','GOLD' UNION ALL
+select 89,'Selma.Vandermolen@gmail.com','Selma','Van der molen','Ledeberg','1974-06-16 00:00:00.000','running','GOLD' UNION ALL
+select 90,'Jeff.Smet@gmail.com','Jeff','Smet','Zomergem','1976-07-01 00:00:00.000',NULL,'GOLD' UNION ALL
+select 91,'Heinz.Vranckx@orange.BE','Heinz','Vranckx','Gentbrugge','1973-11-20 00:00:00.000','fun','SILVER' UNION ALL
+select 92,'Cyren.Johanson@google.com','Cyren','Johanson','Ledeberg','1979-09-15 00:00:00.000',NULL,'SILVER' UNION ALL
+select 93,'Valerie.Smet@gmail.com','Valerie','Smet','Ursel','1985-05-16 00:00:00.000',NULL,'SILVER' UNION ALL
+select 94,'Frans.Goeminne@gmail.com','Frans','Goeminne','Waarschoot','1969-12-22 00:00:00.000',NULL,'GOLD' UNION ALL
+select 95,'Bree.VanMoer@orange.BE','Bree','Van Moer','Petegem','1988-02-09 00:00:00.000',NULL,'SILVER' UNION ALL
+select 96,'Veerle.Peeters@orange.BE','Veerle','Peeters','Eeklo','1998-12-14 00:00:00.000',NULL,'SILVER' UNION ALL
+select 97,'Olive.Peters@telenet.com','Olive','Peters','Mariakerke','1964-10-27 00:00:00.000',NULL,'GOLD' UNION ALL
+select 98,'Inga.Kramer@google.com','Inga','Kramer','Waregem','1981-05-06 00:00:00.000','running','GOLD' UNION ALL
+select 99,'George.Bollen@gmail.com','George','Bollen','Zele','2005-06-18 00:00:00.000',NULL,'SILVER' UNION ALL
+select 100,'Katrien.Simpson@hotmail.com','Katrien','Simpson','Adegem','1985-07-10 00:00:00.000',NULL,'BRONZE' UNION ALL
+select 101,'Karen.Verschooten@google.com','Karen','Verschooten','Petegem','2000-06-12 00:00:00.000',NULL,'SILVER' UNION ALL
+select 102,'Cyren.Simpson@hotmail.com','Cyren','Simpson','Drongen','1988-02-26 00:00:00.000',NULL,'SILVER' UNION ALL
+select 103,'Olive.Johanson@orange.BE','Olive','Johanson','Zele','1980-03-04 00:00:00.000',NULL,'GOLD' UNION ALL
+select 104,'Roman.Adams@google.com','Roman','Adams','Ledeberg','1981-05-21 00:00:00.000',NULL,'SILVER' UNION ALL
+select 105,'John.Thorn@google.com','John','Thorn','Waregem','1991-07-07 00:00:00.000',NULL,'GOLD' UNION ALL
+select 106,'George.Delpuerte@gmail.com','George','Delpuerte','Wetteren','1985-03-03 00:00:00.000',NULL,'BRONZE' UNION ALL
+select 107,'Selma.Verschooten@gmail.com','Selma','Verschooten','Zomergem','1990-11-22 00:00:00.000',NULL,'GOLD' UNION ALL
+select 108,'Pol.DeVught@hotmail.com','Pol','De Vught','Zulte','1964-02-05 00:00:00.000',NULL,'SILVER' UNION ALL
+select 109,'Maria.Bollen@gmail.com','Maria','Bollen','Drongen','1986-08-21 00:00:00.000','cycling','BRONZE' UNION ALL
+select 110,'Tom.Tyson@hotmail.com','Tom','Tyson','Wetteren','1967-12-22 00:00:00.000','rowing','SILVER' UNION ALL
+select 111,'Debora.Peeters@telenet.com','Debora','Peeters','Zomergem','1964-09-27 00:00:00.000','cycling','BRONZE' UNION ALL
+select 112,'Maria.VanDorpe@orange.BE','Maria','Van Dorpe','Maldegem','1998-10-02 00:00:00.000',NULL,'SILVER' UNION ALL
+select 113,'Tine.Decroo@orange.BE','Tine','Decroo','Ursel','1993-06-06 00:00:00.000','rowing','SILVER' UNION ALL
+select 114,'Ellen.Goeminne@gmail.com','Ellen','Goeminne','Wondelgem','1962-11-27 00:00:00.000',NULL,'SILVER' UNION ALL
+select 115,'Orson.Delpuerte@orange.BE','Orson','Delpuerte','Gentbrugge','1985-03-06 00:00:00.000',NULL,'BRONZE' UNION ALL
+select 116,'Bart.Tuinman@hotmail.com','Bart','Tuinman','Zele','1983-12-24 00:00:00.000',NULL,'BRONZE' UNION ALL
+select 117,'Mark.Peters@google.com','Mark','Peters','Adegem','2002-02-19 00:00:00.000',NULL,'BRONZE' UNION ALL
+select 118,'Oliver.Decroo@orange.BE','Oliver','Decroo','Adegem','1999-05-17 00:00:00.000',NULL,'BRONZE' UNION ALL
+select 119,'Bill.Goeminne@gmail.com','Bill','Goeminne','Ledeberg','1968-08-07 00:00:00.000',NULL,'SILVER' UNION ALL
+select 120,'Veerle.Simpson@telenet.com','Veerle','Simpson','Ursel','1990-11-24 00:00:00.000',NULL,'SILVER' UNION ALL
+select 121,'Inge.Vandeneinde@orange.BE','Inge','Vandeneinde','Melle','2007-04-14 00:00:00.000',NULL,'SILVER' UNION ALL
+select 122,'Valerie.Bollen@orange.BE','Valerie','Bollen','Zulte','1984-05-25 00:00:00.000',NULL,'GOLD' UNION ALL
+select 123,'Jack.Vanderplas@hotmail.com','Jack','Van der plas','Adegem','1971-04-06 00:00:00.000',NULL,'GOLD' UNION ALL
+select 124,'Tom.Delfino@google.com','Tom','Delfino','Ledeberg','1973-08-05 00:00:00.000','rowing','BRONZE' UNION ALL
+select 125,'Bart.VanAcker@google.com','Bart','Van Acker','Zulte','1996-02-26 00:00:00.000',NULL,'SILVER' UNION ALL
+select 126,'Goedele.Parkinson@hotmail.com','Goedele','Parkinson','Melle','1975-02-20 00:00:00.000','fun','SILVER' UNION ALL
+select 127,'Bart.Delores@hotmail.com','Bart','Delores','Maldegem','1963-09-18 00:00:00.000',NULL,'GOLD' UNION ALL
+select 128,'Nancy.Cruise@gmail.com','Nancy','Cruise','Wetteren','1999-03-08 00:00:00.000',NULL,'BRONZE' UNION ALL
+select 129,'Inge.Wachters@hotmail.com','Inge','Wachters','Mariakerke','1971-03-17 00:00:00.000','running','SILVER' UNION ALL
+select 130,'Oliver.Delores@telenet.com','Oliver','Delores','Melle','1988-09-25 00:00:00.000',NULL,'SILVER' UNION ALL
+select 131,'Bill.Jackson@google.com','Bill','Jackson','Ursel','1985-12-19 00:00:00.000','rowing','SILVER' UNION ALL
+select 132,'Suzan.Merckx@orange.BE','Suzan','Merckx','Gentbrugge','1967-03-13 00:00:00.000','rowing','BRONZE' UNION ALL
+select 133,'Bill.VanDyck@hotmail.com','Bill','Van Dyck','Gent','2004-05-12 00:00:00.000',NULL,'BRONZE' UNION ALL
+select 134,'Jesse.Verschooten@orange.BE','Jesse','Verschooten','Drongen','1969-01-15 00:00:00.000',NULL,'BRONZE' UNION ALL
+select 135,'Alice.VanMoer@hotmail.com','Alice','Van Moer','Mariakerke','1985-04-25 00:00:00.000',NULL,'SILVER' UNION ALL
+select 136,'Inge.VanDyck@hotmail.com','Inge','Van Dyck','Ursel','1972-10-08 00:00:00.000',NULL,'GOLD' UNION ALL
+select 137,'Maria.Simpson@google.com','Maria','Simpson','Zele','1965-12-21 00:00:00.000',NULL,'GOLD' UNION ALL
+select 138,'Jeff.Desmet@hotmail.com','Jeff','Desmet','Drongen','1964-02-01 00:00:00.000',NULL,'BRONZE' UNION ALL
+select 139,'Selma.Adams@telenet.com','Selma','Adams','Zulte','1965-06-15 00:00:00.000',NULL,'BRONZE' UNION ALL
+select 140,'Ilana.Loomans@google.com','Ilana','Loomans','Ledeberg','1980-03-21 00:00:00.000','fun','BRONZE' UNION ALL
+select 141,'Mark.Wild@hotmail.com','Mark','Wild','Waregem','1990-07-03 00:00:00.000',NULL,'BRONZE' UNION ALL
+select 142,'Bart.Peters@hotmail.com','Bart','Peters','Maldegem','1965-07-21 00:00:00.000',NULL,'BRONZE' UNION ALL
+select 143,'Alice.Parkinson@telenet.com','Alice','Parkinson','Wondelgem','2007-01-11 00:00:00.000',NULL,'SILVER' UNION ALL
+select 144,'Orson.Vandermolen@google.com','Orson','Van der molen','Gentbrugge','1975-11-27 00:00:00.000',NULL,'GOLD' UNION ALL
+select 145,'Orson.Peeters@google.com','Orson','Peeters','Ledeberg','1961-06-10 00:00:00.000',NULL,'SILVER' UNION ALL
+select 146,'Goedele.Kramer@google.com','Goedele','Kramer','Ledeberg','1999-05-27 00:00:00.000',NULL,'BRONZE' UNION ALL
+select 147,'George.Kuit@telenet.com','George','Kuit','Mariakerke','1980-02-02 00:00:00.000',NULL,'SILVER' UNION ALL
+select 148,'Sven.Crawler@telenet.com','Sven','Crawler','Ledeberg','1978-04-03 00:00:00.000',NULL,'GOLD' UNION ALL
+select 149,'Mark.Johanson@telenet.com','Mark','Johanson','Eeklo','1968-05-01 00:00:00.000',NULL,'SILVER' UNION ALL
+select 150,'Valerie.Wild@google.com','Valerie','Wild','Petegem','1992-03-09 00:00:00.000',NULL,'SILVER' UNION ALL
+select 151,'Karl.Vandermolen@orange.BE','Karl','Van der molen','Mariakerke','1989-04-08 00:00:00.000','running','GOLD' UNION ALL
+select 152,'Bree.VanDyck@orange.BE','Bree','Van Dyck','Wondelgem','2006-05-23 00:00:00.000',NULL,'BRONZE' UNION ALL
+select 153,'Veerle.Stone@hotmail.com','Veerle','Stone','Wondelgem','2005-08-22 00:00:00.000',NULL,'SILVER' UNION ALL
+select 154,'Carl.VanDyck@hotmail.com','Carl','Van Dyck','Wetteren','1997-02-12 00:00:00.000',NULL,'SILVER' UNION ALL
+select 155,'Brian.Bollen@google.com','Brian','Bollen','Drongen','2002-06-19 00:00:00.000',NULL,'BRONZE' UNION ALL
+select 156,'Frans.VanMoer@google.com','Frans','Van Moer','Ursel','2000-01-11 00:00:00.000',NULL,'SILVER' UNION ALL
+select 157,'George.Tyson@hotmail.com','George','Tyson','Wetteren','1996-04-05 00:00:00.000',NULL,'GOLD' UNION ALL
+select 158,'Jeff.Peeters@orange.BE','Jeff','Peeters','Waregem','1963-07-23 00:00:00.000',NULL,'SILVER' UNION ALL
+select 159,'Franz.Vranckx@orange.BE','Franz','Vranckx','Waregem','1997-10-13 00:00:00.000','running','GOLD' UNION ALL
+select 160,'Karl.Peeters@orange.BE','Karl','Peeters','Ursel','1986-03-17 00:00:00.000','fun','GOLD' UNION ALL
+select 161,'John.Vanderplas@telenet.com','John','Van der plas','Zomergem','1993-10-05 00:00:00.000',NULL,'BRONZE' UNION ALL
+select 162,'Brian.Willems@hotmail.com','Brian','Willems','Wetteren','1978-07-02 00:00:00.000',NULL,'GOLD' UNION ALL
+select 163,'Cyren.Smet@hotmail.com','Cyren','Smet','Wetteren','1982-01-02 00:00:00.000',NULL,'SILVER' UNION ALL
+select 164,'Jack.Pike@gmail.com','Jack','Pike','Drongen','2004-11-15 00:00:00.000',NULL,'GOLD' UNION ALL
+select 165,'Bill.Coens@gmail.com','Bill','Coens','Zele','1989-10-26 00:00:00.000',NULL,'BRONZE' UNION ALL
+select 166,'Karen.Delpuerte@orange.BE','Karen','Delpuerte','Ursel','1975-08-26 00:00:00.000',NULL,'SILVER' UNION ALL
+select 167,'Sven.Willems@gmail.com','Sven','Willems','Gentbrugge','2000-03-06 00:00:00.000',NULL,'BRONZE' UNION ALL
+select 168,'Jack.Bollen@hotmail.com','Jack','Bollen','Melle','1996-05-13 00:00:00.000',NULL,'SILVER' UNION ALL
+select 169,'Sven.Rogiers@google.com','Sven','Rogiers','Petegem','1976-02-13 00:00:00.000',NULL,'GOLD' UNION ALL
+select 170,'Jack.Ingvartson@google.com','Jack','Ingvartson','Ledeberg','2004-05-19 00:00:00.000',NULL,'BRONZE' UNION ALL
+select 171,'Karen.Verschooten@orange.BE','Karen','Verschooten','Zele','2001-07-06 00:00:00.000',NULL,'SILVER' UNION ALL
+select 172,'Roman.Rogiers@google.com','Roman','Rogiers','Ledeberg','2004-11-13 00:00:00.000',NULL,'GOLD' UNION ALL
+select 173,'Nancy.Rogiers@google.com','Nancy','Rogiers','Eeklo','1970-02-18 00:00:00.000',NULL,'GOLD' UNION ALL
+select 174,'Suzan.Thorn@telenet.com','Suzan','Thorn','Deinze','1960-09-22 00:00:00.000',NULL,'GOLD' UNION ALL
+select 175,'Brian.Wild@google.com','Brian','Wild','Gentbrugge','1986-09-13 00:00:00.000',NULL,'SILVER' UNION ALL
+select 176,'Bill.Loomans@telenet.com','Bill','Loomans','Wetteren','1965-12-21 00:00:00.000',NULL,'GOLD' UNION ALL
+select 177,'Suzan.Ingvartson@telenet.com','Suzan','Ingvartson','Petegem','1980-03-06 00:00:00.000',NULL,'GOLD' UNION ALL
+select 178,'Ilana.Jackson@telenet.com','Ilana','Jackson','Wondelgem','2000-03-10 00:00:00.000',NULL,'BRONZE' UNION ALL
+select 179,'Heinz.Olson@gmail.com','Heinz','Olson','Melle','1996-01-08 00:00:00.000','cycling','GOLD' UNION ALL
+select 180,'Jack.DeVught@telenet.com','Jack','De Vught','Wondelgem','1974-05-07 00:00:00.000',NULL,'BRONZE' UNION ALL
+select 181,'Tine.Olson@orange.BE','Tine','Olson','Adegem','1996-09-13 00:00:00.000',NULL,'GOLD' UNION ALL
+select 182,'Orson.Vranckx@hotmail.com','Orson','Vranckx','Zomergem','2003-11-07 00:00:00.000',NULL,'SILVER' UNION ALL
+select 183,'Alice.Johanson@orange.BE','Alice','Johanson','Melle','1966-06-18 00:00:00.000',NULL,'SILVER' UNION ALL
+select 184,'Tom.Wild@google.com','Tom','Wild','Ledeberg','1965-07-19 00:00:00.000','fun','SILVER' UNION ALL
+select 185,'Inga.Wachters@gmail.com','Inga','Wachters','Zele','1988-05-18 00:00:00.000','running','GOLD' UNION ALL
+select 186,'Bart.Vandermolen@gmail.com','Bart','Van der molen','Zomergem','1967-01-07 00:00:00.000',NULL,'GOLD' UNION ALL
+select 187,'Tine.Delpuerte@telenet.com','Tine','Delpuerte','Zele','1976-03-12 00:00:00.000',NULL,'BRONZE' UNION ALL
+select 188,'Oliver.Willems@gmail.com','Oliver','Willems','Deinze','1977-08-14 00:00:00.000',NULL,'GOLD' UNION ALL
+select 189,'Jack.Parkinson@google.com','Jack','Parkinson','Melle','1997-09-13 00:00:00.000',NULL,'GOLD' UNION ALL
+select 190,'Orson.Smet@hotmail.com','Orson','Smet','Drongen','1992-11-06 00:00:00.000','rowing','BRONZE' UNION ALL
+select 191,'Cindy.VanDyck@telenet.com','Cindy','Van Dyck','Adegem','1992-03-15 00:00:00.000','cycling','GOLD' UNION ALL
+select 192,'Orson.Vandeneinde@hotmail.com','Orson','Vandeneinde','Maldegem','1985-08-27 00:00:00.000',NULL,'GOLD' UNION ALL
+select 193,'Nancy.Vandermolen@telenet.com','Nancy','Van der molen','Ledeberg','1995-05-21 00:00:00.000',NULL,'GOLD' UNION ALL
+select 194,'Jesse.Delores@gmail.com','Jesse','Delores','Eeklo','1980-05-14 00:00:00.000',NULL,'BRONZE' UNION ALL
+select 195,'Jack.Tyson@google.com','Jack','Tyson','Ledeberg','1965-08-08 00:00:00.000',NULL,'BRONZE' UNION ALL
+select 196,'Tom.Buyle@google.com','Tom','Buyle','Deinze','1993-03-16 00:00:00.000',NULL,'SILVER' UNION ALL
+select 197,'Ilana.Vandermolen@gmail.com','Ilana','Van der molen','Wetteren','1993-12-07 00:00:00.000',NULL,'GOLD' UNION ALL
+select 198,'Karl.Jansens@google.com','Karl','Jansens','Drongen','1974-01-21 00:00:00.000','cycling','BRONZE' UNION ALL
+select 199,'Jack.Delfino@google.com','Jack','Delfino','Maldegem','1994-12-22 00:00:00.000',NULL,'BRONZE' UNION ALL
+select 200,'Jesse.VanDyck@google.com','Jesse','Van Dyck','Ledeberg','2004-05-23 00:00:00.000',NULL,'SILVER' UNION ALL
+select 201,'Selma.Goeminne@google.com','Selma','Goeminne','Maldegem','1966-06-05 00:00:00.000',NULL,'GOLD' UNION ALL
+select 202,'Alice.Kramer@telenet.com','Alice','Kramer','Eeklo','2004-02-01 00:00:00.000',NULL,'SILVER' UNION ALL
+select 203,'Goedele.Vangent@gmail.com','Goedele','Vangent','Drongen','1998-04-19 00:00:00.000','running','BRONZE' UNION ALL
+select 204,'Ilana.Vangent@google.com','Ilana','Vangent','Petegem','2000-10-02 00:00:00.000','running','SILVER' UNION ALL
+select 205,'Roman.Vranckx@google.com','Roman','Vranckx','Waarschoot','1998-11-10 00:00:00.000',NULL,'BRONZE' UNION ALL
+select 206,'Karl.Pike@hotmail.com','Karl','Pike','Wondelgem','1980-02-06 00:00:00.000',NULL,'SILVER' UNION ALL
+select 207,'Franz.Pike@hotmail.com','Franz','Pike','Ursel','1968-01-25 00:00:00.000','cycling','BRONZE' UNION ALL
+select 208,'Roman.Buyle@google.com','Roman','Buyle','Ledeberg','1994-02-04 00:00:00.000','cycling','BRONZE' UNION ALL
+select 209,'Nancy.Willems@hotmail.com','Nancy','Willems','Zele','1986-12-26 00:00:00.000',NULL,'BRONZE' UNION ALL
+select 210,'Jeff.Stone@hotmail.com','Jeff','Stone','Deinze','1965-12-03 00:00:00.000',NULL,'SILVER' UNION ALL
+select 211,'Pete.Jansens@orange.BE','Pete','Jansens','Drongen','1991-08-08 00:00:00.000',NULL,'GOLD' UNION ALL
+select 212,'Ilana.Buyle@telenet.com','Ilana','Buyle','Wetteren','1962-01-01 00:00:00.000',NULL,'BRONZE' UNION ALL
+select 213,'Karl.Vranckx@orange.BE','Karl','Vranckx','Ursel','1970-01-04 00:00:00.000',NULL,'BRONZE' UNION ALL
+select 214,'Maria.Loomans@google.com','Maria','Loomans','Zele','1984-01-20 00:00:00.000',NULL,'BRONZE' UNION ALL
+select 215,'Carl.Cruise@gmail.com','Carl','Cruise','Waregem','1996-10-02 00:00:00.000',NULL,'BRONZE' UNION ALL
+select 216,'Bill.Jackson@orange.BE','Bill','Jackson','Mariakerke','1970-11-24 00:00:00.000',NULL,'BRONZE' UNION ALL
+select 217,'Inga.Adams@telenet.com','Inga','Adams','Drongen','1995-08-23 00:00:00.000',NULL,'GOLD' UNION ALL
+select 218,'Franz.Peeters@hotmail.com','Franz','Peeters','Melle','1988-01-25 00:00:00.000',NULL,'BRONZE' UNION ALL
+select 219,'Nancy.Desmet@gmail.com','Nancy','Desmet','Zulte','1977-03-26 00:00:00.000',NULL,'BRONZE' UNION ALL
+select 220,'Carl.Rogiers@orange.BE','Carl','Rogiers','Zulte','1970-04-12 00:00:00.000',NULL,'BRONZE' UNION ALL
+select 221,'Piet.Delpuerte@orange.BE','Piet','Delpuerte','Melle','2007-11-03 00:00:00.000',NULL,'BRONZE' UNION ALL
+select 222,'Carl.Tuinman@telenet.com','Carl','Tuinman','Gentbrugge','2005-04-02 00:00:00.000','fun','BRONZE' UNION ALL
+select 223,'Tom.Loomans@orange.BE','Tom','Loomans','Ledeberg','1981-11-03 00:00:00.000','running','GOLD' UNION ALL
+select 224,'Inge.Vangent@gmail.com','Inge','Vangent','Petegem','1986-06-21 00:00:00.000','cycling','BRONZE' UNION ALL
+select 225,'Mark.Kuit@gmail.com','Mark','Kuit','Zele','1976-10-24 00:00:00.000',NULL,'BRONZE' UNION ALL
+select 226,'Bart.Buyle@google.com','Bart','Buyle','Zele','1962-10-26 00:00:00.000',NULL,'GOLD' UNION ALL
+select 227,'Katrien.Wild@telenet.com','Katrien','Wild','Wetteren','1975-06-11 00:00:00.000','cycling','BRONZE' UNION ALL
+select 228,'Veerle.Smet@hotmail.com','Veerle','Smet','Wondelgem','2004-02-27 00:00:00.000',NULL,'BRONZE' UNION ALL
+select 229,'Cindy.Adams@telenet.com','Cindy','Adams','Ledeberg','1991-11-24 00:00:00.000',NULL,'GOLD' UNION ALL
+select 230,'Debora.Jansens@hotmail.com','Debora','Jansens','Waregem','1998-07-14 00:00:00.000',NULL,'GOLD' UNION ALL
+select 231,'Veerle.Parkinson@orange.BE','Veerle','Parkinson','Ledeberg','2006-09-26 00:00:00.000',NULL,'BRONZE' UNION ALL
+select 232,'Karl.Vandeneinde@orange.BE','Karl','Vandeneinde','Gent','1984-10-07 00:00:00.000','fun','BRONZE' UNION ALL
+select 233,'Debora.Vangent@orange.BE','Debora','Vangent','Adegem','1979-01-08 00:00:00.000',NULL,'GOLD' UNION ALL
+select 234,'Suzan.Stone@google.com','Suzan','Stone','Zele','1970-05-16 00:00:00.000','rowing','BRONZE' UNION ALL
+select 235,'Marge.Vandermolen@telenet.com','Marge','Van der molen','Wondelgem','1996-06-16 00:00:00.000',NULL,'BRONZE' UNION ALL
+select 236,'Karl.DeVught@google.com','Karl','De Vught','Mariakerke','1975-01-06 00:00:00.000',NULL,'SILVER' UNION ALL
+select 237,'Tine.VanMoer@hotmail.com','Tine','Van Moer','Melle','2000-08-26 00:00:00.000',NULL,'GOLD' UNION ALL
+select 238,'Brian.VanDyck@telenet.com','Brian','Van Dyck','Melle','2004-08-09 00:00:00.000',NULL,'SILVER' UNION ALL
+select 239,'Pete.Jackson@google.com','Pete','Jackson','Gent','1999-10-04 00:00:00.000',NULL,'GOLD' UNION ALL
+select 240,'Ellen.Stone@hotmail.com','Ellen','Stone','Gent','2000-10-17 00:00:00.000',NULL,'BRONZE' UNION ALL
+select 241,'Pol.Delpuerte@gmail.com','Pol','Delpuerte','Gent','1987-12-25 00:00:00.000',NULL,'BRONZE' UNION ALL
+select 242,'Heinz.Delpuerte@google.com','Heinz','Delpuerte','Maldegem','1970-09-17 00:00:00.000',NULL,'BRONZE' UNION ALL
+select 243,'Tom.Parkinson@telenet.com','Tom','Parkinson','Mariakerke','1964-04-21 00:00:00.000','running','BRONZE' UNION ALL
+select 244,'Marge.VanDyck@google.com','Marge','Van Dyck','Melle','2007-12-17 00:00:00.000','rowing','BRONZE' UNION ALL
+select 245,'Ilana.Vandeneinde@hotmail.com','Ilana','Vandeneinde','Petegem','1997-04-05 00:00:00.000','cycling','GOLD' UNION ALL
+select 246,'Jack.Vranckx@hotmail.com','Jack','Vranckx','Waarschoot','2003-12-17 00:00:00.000','running','SILVER' UNION ALL
+select 247,'Carl.Verschooten@orange.BE','Carl','Verschooten','Waarschoot','2006-09-12 00:00:00.000',NULL,'SILVER' UNION ALL
+select 248,'Olive.Loomans@hotmail.com','Olive','Loomans','Deinze','2005-06-07 00:00:00.000','cycling','BRONZE' UNION ALL
+select 249,'Ilana.Simpson@google.com','Ilana','Simpson','Zomergem','1986-01-25 00:00:00.000',NULL,'GOLD' UNION ALL
+select 250,'Valerie.Jansens@google.com','Valerie','Jansens','Ursel','1970-01-06 00:00:00.000',NULL,'SILVER' UNION ALL
+select 251,'Bree.Jansens@google.com','Bree','Jansens','Maldegem','2004-09-13 00:00:00.000',NULL,'BRONZE' UNION ALL
+select 252,'Tine.Goeminne@hotmail.com','Tine','Goeminne','Gentbrugge','1998-08-17 00:00:00.000','fun','BRONZE' UNION ALL
+select 253,'Frans.Kramer@gmail.com','Frans','Kramer','Zele','1965-07-24 00:00:00.000','cycling','SILVER' UNION ALL
+select 254,'Katrien.Thorn@gmail.com','Katrien','Thorn','Wetteren','2005-04-01 00:00:00.000',NULL,'SILVER' UNION ALL
+select 255,'Cindy.Tyson@hotmail.com','Cindy','Tyson','Melle','1988-09-03 00:00:00.000',NULL,'BRONZE' UNION ALL
+select 256,'Suzan.VanDorpe@hotmail.com','Suzan','Van Dorpe','Deinze','1995-03-13 00:00:00.000',NULL,'BRONZE' UNION ALL
+select 257,'Orson.Smet@google.com','Orson','Smet','Gentbrugge','2002-09-16 00:00:00.000',NULL,'BRONZE' UNION ALL
+select 258,'Karl.VanDyck@hotmail.com','Karl','Van Dyck','Ledeberg','2007-12-01 00:00:00.000',NULL,'GOLD' UNION ALL
+select 259,'Jesse.Tyson@orange.BE','Jesse','Tyson','Adegem','1977-12-24 00:00:00.000','fun','BRONZE' UNION ALL
+select 260,'Jack.Goeminne@gmail.com','Jack','Goeminne','Deinze','1978-03-02 00:00:00.000',NULL,'SILVER' UNION ALL
+select 261,'Olive.Willems@orange.BE','Olive','Willems','Wondelgem','2007-04-15 00:00:00.000',NULL,'GOLD' UNION ALL
+select 262,'Veerle.Ingvartson@telenet.com','Veerle','Ingvartson','Deinze','1960-04-07 00:00:00.000',NULL,'GOLD' UNION ALL
+select 263,'Karl.Tyson@telenet.com','Karl','Tyson','Melle','1961-08-02 00:00:00.000',NULL,'BRONZE' UNION ALL
+select 264,'Cindy.Kramer@google.com','Cindy','Kramer','Ursel','2005-05-16 00:00:00.000',NULL,'BRONZE' UNION ALL
+select 265,'Bree.VanAcker@gmail.com','Bree','Van Acker','Wondelgem','2004-06-02 00:00:00.000',NULL,'BRONZE' UNION ALL
+select 266,'Karen.Peeters@orange.BE','Karen','Peeters','Zulte','1961-07-04 00:00:00.000',NULL,'GOLD' UNION ALL
+select 267,'Pete.Vandermolen@hotmail.com','Pete','Van der molen','Maldegem','1981-10-06 00:00:00.000',NULL,'SILVER' UNION ALL
+select 268,'Debora.Verstappen@hotmail.com','Debora','Verstappen','Deinze','1992-09-24 00:00:00.000',NULL,'GOLD' UNION ALL
+select 269,'John.Verschooten@gmail.com','John','Verschooten','Wetteren','1990-09-01 00:00:00.000',NULL,'BRONZE' UNION ALL
+select 270,'Orson.Jansens@gmail.com','Orson','Jansens','Mariakerke','1973-02-27 00:00:00.000',NULL,'GOLD' UNION ALL
+select 271,'Valerie.Desmet@hotmail.com','Valerie','Desmet','Mariakerke','1973-04-27 00:00:00.000',NULL,'BRONZE' UNION ALL
+select 272,'Alice.Crawler@google.com','Alice','Crawler','Deinze','1972-01-15 00:00:00.000',NULL,'SILVER' UNION ALL
+select 273,'Cindy.Johanson@orange.BE','Cindy','Johanson','Maldegem','1975-05-03 00:00:00.000','cycling','GOLD' UNION ALL
+select 274,'Cindy.VanDyck@hotmail.com','Cindy','Van Dyck','Deinze','1997-03-02 00:00:00.000',NULL,'BRONZE' UNION ALL
+select 275,'Karen.Stone@orange.BE','Karen','Stone','Wetteren','1980-07-27 00:00:00.000',NULL,'SILVER' UNION ALL
+select 276,'Olive.Verstappen@gmail.com','Olive','Verstappen','Gent','2003-01-22 00:00:00.000',NULL,'SILVER' UNION ALL
+select 277,'Suzan.Rogiers@google.com','Suzan','Rogiers','Eeklo','1968-06-25 00:00:00.000',NULL,'GOLD' UNION ALL
+select 278,'Mike.Vangent@gmail.com','Mike','Vangent','Gent','1969-12-26 00:00:00.000',NULL,'BRONZE' UNION ALL
+select 279,'Pol.VanAcker@telenet.com','Pol','Van Acker','Wetteren','1977-12-25 00:00:00.000',NULL,'BRONZE' UNION ALL
+select 280,'Mike.Verschooten@gmail.com','Mike','Verschooten','Ursel','1972-11-02 00:00:00.000','rowing','SILVER' UNION ALL
+select 281,'Debora.Jackson@hotmail.com','Debora','Jackson','Mariakerke','1970-04-25 00:00:00.000','fun','BRONZE' UNION ALL
+select 282,'Maria.VanDyck@telenet.com','Maria','Van Dyck','Ursel','1986-06-18 00:00:00.000','cycling','GOLD' UNION ALL
+select 283,'Alice.Johanson@google.com','Alice','Johanson','Zulte','1988-05-08 00:00:00.000','rowing','BRONZE' UNION ALL
+select 284,'Goedele.Jansens@hotmail.com','Goedele','Jansens','Adegem','1967-05-22 00:00:00.000',NULL,'SILVER' UNION ALL
+select 285,'Sven.Delfino@google.com','Sven','Delfino','Melle','1980-01-10 00:00:00.000',NULL,'BRONZE' UNION ALL
+select 286,'Bart.Goeminne@telenet.com','Bart','Goeminne','Deinze','1977-05-09 00:00:00.000',NULL,'GOLD' UNION ALL
+select 287,'Bree.Delpuerte@orange.BE','Bree','Delpuerte','Zele','2000-03-20 00:00:00.000','rowing','BRONZE' UNION ALL
+select 288,'Goedele.Parkinson@google.com','Goedele','Parkinson','Petegem','1999-06-17 00:00:00.000',NULL,'BRONZE' UNION ALL
+select 289,'Sven.Delores@google.com','Sven','Delores','Waregem','1977-02-09 00:00:00.000',NULL,'BRONZE' UNION ALL
+select 290,'Alice.Wachters@google.com','Alice','Wachters','Zulte','1980-01-12 00:00:00.000',NULL,'SILVER' UNION ALL
+select 291,'Selma.Tyson@google.com','Selma','Tyson','Wondelgem','1994-11-10 00:00:00.000',NULL,'SILVER' UNION ALL
+select 292,'Inga.Buyle@orange.BE','Inga','Buyle','Petegem','1995-03-04 00:00:00.000',NULL,'BRONZE' UNION ALL
+select 293,'Frans.VanAcker@hotmail.com','Frans','Van Acker','Melle','1996-08-01 00:00:00.000',NULL,'GOLD' UNION ALL
+select 294,'Tom.Kramer@google.com','Tom','Kramer','Gent','1976-06-07 00:00:00.000',NULL,'SILVER' UNION ALL
+select 295,'Alice.Jackson@telenet.com','Alice','Jackson','Wetteren','1980-09-15 00:00:00.000',NULL,'SILVER' UNION ALL
+select 296,'Carl.Tyson@google.com','Carl','Tyson','Zomergem','2007-04-05 00:00:00.000',NULL,'BRONZE' UNION ALL
+select 297,'Katrien.Vangent@gmail.com','Katrien','Vangent','Wondelgem','1984-11-13 00:00:00.000',NULL,'SILVER' UNION ALL
+select 298,'Carl.Willems@telenet.com','Carl','Willems','Wondelgem','1986-05-27 00:00:00.000',NULL,'BRONZE' UNION ALL
+select 299,'Karl.Delfino@google.com','Karl','Delfino','Waregem','1968-05-14 00:00:00.000',NULL,'GOLD' UNION ALL
+select 300,'Frans.Rogiers@hotmail.com','Frans','Rogiers','Zomergem','1998-12-17 00:00:00.000',NULL,'BRONZE' UNION ALL
+select 301,'Olive.Thorn@hotmail.com','Olive','Thorn','Gentbrugge','2005-11-05 00:00:00.000',NULL,'BRONZE' UNION ALL
+select 302,'Bart.Decroo@gmail.com','Bart','Decroo','Waregem','1961-09-04 00:00:00.000',NULL,'BRONZE' UNION ALL
+select 303,'Debora.Vangent@google.com','Debora','Vangent','Mariakerke','2004-12-14 00:00:00.000',NULL,'GOLD' UNION ALL
+select 304,'Pol.Tuinman@google.com','Pol','Tuinman','Zulte','1970-02-27 00:00:00.000',NULL,'BRONZE' UNION ALL
+select 305,'Bill.Stone@google.com','Bill','Stone','Ledeberg','1994-10-26 00:00:00.000',NULL,'GOLD' UNION ALL
+select 306,'Jeff.Olson@hotmail.com','Jeff','Olson','Waregem','1996-09-14 00:00:00.000',NULL,'GOLD' UNION ALL
+select 307,'Orson.Delpuerte@telenet.com','Orson','Delpuerte','Mariakerke','1968-12-06 00:00:00.000',NULL,'SILVER' UNION ALL
+select 308,'Debora.Thorn@orange.BE','Debora','Thorn','Wetteren','1989-02-06 00:00:00.000',NULL,'GOLD' UNION ALL
+select 309,'Maria.Johanson@hotmail.com','Maria','Johanson','Wondelgem','1989-04-19 00:00:00.000',NULL,'SILVER' UNION ALL
+select 310,'Selma.VanDyck@hotmail.com','Selma','Van Dyck','Zulte','1980-02-24 00:00:00.000',NULL,'GOLD' UNION ALL
+select 311,'Bill.Johanson@hotmail.com','Bill','Johanson','Zulte','2000-03-03 00:00:00.000','fun','GOLD' UNION ALL
+select 312,'George.Crawler@gmail.com','George','Crawler','Eeklo','1965-01-22 00:00:00.000','running','SILVER' UNION ALL
+select 313,'Jack.Delfino@gmail.com','Jack','Delfino','Melle','1976-04-01 00:00:00.000','fun','BRONZE' UNION ALL
+select 314,'Nancy.Verschooten@telenet.com','Nancy','Verschooten','Zele','2007-08-15 00:00:00.000',NULL,'SILVER' UNION ALL
+select 315,'Inga.Tuinman@gmail.com','Inga','Tuinman','Zulte','1986-12-20 00:00:00.000','running','BRONZE' UNION ALL
+select 316,'Cyren.Rogiers@gmail.com','Cyren','Rogiers','Ursel','1977-12-24 00:00:00.000',NULL,'GOLD' UNION ALL
+select 317,'Heinz.Desmet@hotmail.com','Heinz','Desmet','Eeklo','1997-04-23 00:00:00.000',NULL,'SILVER' UNION ALL
+select 318,'Jack.Olson@hotmail.com','Jack','Olson','Maldegem','1967-11-06 00:00:00.000','running','SILVER' UNION ALL
+select 319,'Goedele.Loomans@telenet.com','Goedele','Loomans','Gentbrugge','1962-10-09 00:00:00.000',NULL,'BRONZE' UNION ALL
+select 320,'Pete.Smet@google.com','Pete','Smet','Waregem','1984-11-23 00:00:00.000','cycling','BRONZE' UNION ALL
+select 321,'Carl.Verschooten@gmail.com','Carl','Verschooten','Zomergem','1982-03-24 00:00:00.000',NULL,'GOLD' UNION ALL
+select 322,'Olive.Crawler@hotmail.com','Olive','Crawler','Zulte','1981-11-13 00:00:00.000',NULL,'SILVER' UNION ALL
+select 323,'Karl.VanDorpe@hotmail.com','Karl','Van Dorpe','Adegem','1966-05-17 00:00:00.000',NULL,'BRONZE' UNION ALL
+select 324,'Olive.VanAcker@google.com','Olive','Van Acker','Wondelgem','1974-11-02 00:00:00.000',NULL,'GOLD' UNION ALL
+select 325,'Goedele.Delfino@gmail.com','Goedele','Delfino','Adegem','1968-01-24 00:00:00.000',NULL,'BRONZE' UNION ALL
+select 326,'Selma.Ingvartson@telenet.com','Selma','Ingvartson','Wetteren','1977-03-20 00:00:00.000',NULL,'GOLD' UNION ALL
+select 327,'Jack.Merckx@orange.BE','Jack','Merckx','Wetteren','1972-09-17 00:00:00.000','rowing','GOLD' UNION ALL
+select 328,'Bree.Olson@telenet.com','Bree','Olson','Zele','1991-11-11 00:00:00.000',NULL,'SILVER' UNION ALL
+select 329,'Katrien.Vanderplas@hotmail.com','Katrien','Van der plas','Waarschoot','1969-01-01 00:00:00.000','fun','GOLD' UNION ALL
+select 330,'Sven.Willems@telenet.com','Sven','Willems','Mariakerke','1963-07-18 00:00:00.000',NULL,'SILVER' UNION ALL
+select 331,'Marge.Delfino@hotmail.com','Marge','Delfino','Waarschoot','1989-11-27 00:00:00.000',NULL,'BRONZE' UNION ALL
+select 332,'Bree.Cruise@telenet.com','Bree','Cruise','Deinze','1970-12-17 00:00:00.000',NULL,'SILVER' UNION ALL
+select 333,'Valerie.Merckx@telenet.com','Valerie','Merckx','Eeklo','1995-03-03 00:00:00.000','fun','GOLD' UNION ALL
+select 334,'Goedele.Merckx@gmail.com','Goedele','Merckx','Waregem','1967-12-23 00:00:00.000','cycling','SILVER' UNION ALL
+select 335,'Pete.Wild@telenet.com','Pete','Wild','Zulte','2006-10-06 00:00:00.000',NULL,'SILVER' UNION ALL
+select 336,'Selma.Simpson@orange.BE','Selma','Simpson','Adegem','1960-11-03 00:00:00.000',NULL,'SILVER' UNION ALL
+select 337,'Ellen.Decroo@telenet.com','Ellen','Decroo','Wondelgem','2007-01-14 00:00:00.000',NULL,'BRONZE' UNION ALL
+select 338,'Nancy.Delores@google.com','Nancy','Delores','Wetteren','1965-01-06 00:00:00.000',NULL,'BRONZE' UNION ALL
+select 339,'Inge.Parkinson@orange.BE','Inge','Parkinson','Ursel','1985-09-23 00:00:00.000',NULL,'BRONZE' UNION ALL
+select 340,'Bart.Simpson@google.com','Bart','Simpson','Adegem','1995-07-18 00:00:00.000',NULL,'BRONZE' UNION ALL
+select 341,'Marge.Vangent@orange.BE','Marge','Vangent','Ledeberg','1990-11-05 00:00:00.000',NULL,'SILVER' UNION ALL
+select 342,'Nancy.VanDorpe@telenet.com','Nancy','Van Dorpe','Zomergem','1972-10-03 00:00:00.000',NULL,'SILVER' UNION ALL
+select 343,'Orson.Adams@google.com','Orson','Adams','Gent','1992-11-22 00:00:00.000',NULL,'GOLD' UNION ALL
+select 344,'Bart.Ingvartson@google.com','Bart','Ingvartson','Mariakerke','1989-01-04 00:00:00.000',NULL,'SILVER' UNION ALL
+select 345,'Orson.Desmet@hotmail.com','Orson','Desmet','Zomergem','1970-11-04 00:00:00.000',NULL,'GOLD' UNION ALL
+select 346,'Karen.Delores@hotmail.com','Karen','Delores','Wetteren','1975-04-03 00:00:00.000',NULL,'BRONZE' UNION ALL
+select 347,'Inga.Decroo@google.com','Inga','Decroo','Zele','2000-12-19 00:00:00.000',NULL,'SILVER' UNION ALL
+select 348,'Brian.Olson@orange.BE','Brian','Olson','Ledeberg','1997-09-10 00:00:00.000',NULL,'BRONZE' UNION ALL
+select 349,'Debora.Wachters@google.com','Debora','Wachters','Deinze','2003-12-08 00:00:00.000',NULL,'BRONZE' UNION ALL
+select 350,'Maria.Parkinson@orange.BE','Maria','Parkinson','Adegem','1983-06-09 00:00:00.000','rowing','GOLD' UNION ALL
+select 351,'Bree.Merckx@telenet.com','Bree','Merckx','Eeklo','1988-05-17 00:00:00.000',NULL,'BRONZE' UNION ALL
+select 352,'Oliver.Goeminne@orange.BE','Oliver','Goeminne','Zomergem','1962-10-06 00:00:00.000',NULL,'SILVER' UNION ALL
+select 353,'Olive.Delores@google.com','Olive','Delores','Waregem','1988-02-03 00:00:00.000',NULL,'BRONZE' UNION ALL
+select 354,'Oliver.Vandermolen@gmail.com','Oliver','Van der molen','Zulte','1982-10-27 00:00:00.000',NULL,'SILVER' UNION ALL
+select 355,'Mike.Wild@hotmail.com','Mike','Wild','Drongen','1974-12-16 00:00:00.000',NULL,'BRONZE' UNION ALL
+select 356,'Oliver.Simpson@google.com','Oliver','Simpson','Deinze','2005-01-21 00:00:00.000','running','BRONZE' UNION ALL
+select 357,'Piet.Buyle@hotmail.com','Piet','Buyle','Zulte','1973-08-26 00:00:00.000',NULL,'GOLD' UNION ALL
+select 358,'Mike.Verstappen@google.com','Mike','Verstappen','Waarschoot','1984-06-26 00:00:00.000',NULL,'BRONZE' UNION ALL
+select 359,'Maria.Vanderplas@google.com','Maria','Van der plas','Deinze','1975-05-09 00:00:00.000',NULL,'GOLD' UNION ALL
+select 360,'Ilana.Vangent@hotmail.com','Ilana','Vangent','Zele','1993-08-20 00:00:00.000',NULL,'SILVER' UNION ALL
+select 361,'Tine.Merckx@gmail.com','Tine','Merckx','Maldegem','1962-03-12 00:00:00.000','fun','BRONZE' UNION ALL
+select 362,'Oliver.Thorn@gmail.com','Oliver','Thorn','Waregem','1968-01-20 00:00:00.000','running','BRONZE' UNION ALL
+select 363,'Roman.Tyson@orange.BE','Roman','Tyson','Wetteren','1992-04-27 00:00:00.000',NULL,'GOLD' UNION ALL
+select 364,'Tine.Peeters@orange.BE','Tine','Peeters','Petegem','1970-11-15 00:00:00.000','cycling','SILVER' UNION ALL
+select 365,'Bill.Jansens@orange.BE','Bill','Jansens','Wetteren','1987-07-20 00:00:00.000',NULL,'BRONZE' UNION ALL
+select 366,'Karen.Vangent@telenet.com','Karen','Vangent','Zomergem','1988-11-14 00:00:00.000',NULL,'SILVER' UNION ALL
+select 367,'Debora.Jackson@google.com','Debora','Jackson','Zele','1978-09-05 00:00:00.000',NULL,'SILVER' UNION ALL
+select 368,'Sven.VanMoer@google.com','Sven','Van Moer','Zomergem','1991-08-18 00:00:00.000',NULL,'BRONZE' UNION ALL
+select 369,'Roman.VanDyck@gmail.com','Roman','Van Dyck','Petegem','2004-03-11 00:00:00.000',NULL,'BRONZE' UNION ALL
+select 370,'Marge.Jackson@telenet.com','Marge','Jackson','Deinze','1964-03-11 00:00:00.000',NULL,'SILVER' UNION ALL
+select 371,'Piet.Adams@gmail.com','Piet','Adams','Gent','1974-08-06 00:00:00.000',NULL,'BRONZE' UNION ALL
+select 372,'Franz.VanAcker@orange.BE','Franz','Van Acker','Melle','1968-11-24 00:00:00.000','running','GOLD' UNION ALL
+select 373,'Brian.VanDyck@hotmail.com','Brian','Van Dyck','Mariakerke','1967-09-18 00:00:00.000',NULL,'GOLD' UNION ALL
+select 374,'Cindy.Delfino@google.com','Cindy','Delfino','Maldegem','1984-12-25 00:00:00.000',NULL,'SILVER' UNION ALL
+select 375,'George.Wild@google.com','George','Wild','Waregem','1960-12-04 00:00:00.000',NULL,'BRONZE' UNION ALL
+select 376,'Ellen.DeVught@gmail.com','Ellen','De Vught','Deinze','1974-11-03 00:00:00.000','fun','GOLD' UNION ALL
+select 377,'Heinz.VanDorpe@gmail.com','Heinz','Van Dorpe','Gentbrugge','1989-02-04 00:00:00.000',NULL,'GOLD' UNION ALL
+select 378,'Selma.Kramer@orange.BE','Selma','Kramer','Waregem','1992-04-17 00:00:00.000',NULL,'GOLD' UNION ALL
+select 379,'Orson.Willems@hotmail.com','Orson','Willems','Ursel','2004-05-14 00:00:00.000',NULL,'SILVER' UNION ALL
+select 380,'Pol.Vanderplas@telenet.com','Pol','Van der plas','Wondelgem','1979-03-24 00:00:00.000',NULL,'SILVER' UNION ALL
+select 381,'Debora.Kramer@hotmail.com','Debora','Kramer','Petegem','2002-01-25 00:00:00.000',NULL,'BRONZE' UNION ALL
+select 382,'Alice.Johanson@telenet.com','Alice','Johanson','Zulte','1990-07-12 00:00:00.000',NULL,'SILVER' UNION ALL
+select 383,'Karl.Ingvartson@google.com','Karl','Ingvartson','Waarschoot','1968-01-12 00:00:00.000',NULL,'SILVER' UNION ALL
+select 384,'Suzan.Smet@telenet.com','Suzan','Smet','Ursel','1984-08-06 00:00:00.000',NULL,'BRONZE' UNION ALL
+select 385,'Bill.Kramer@orange.BE','Bill','Kramer','Eeklo','1963-10-04 00:00:00.000',NULL,'BRONZE' UNION ALL
+select 386,'Karen.Bollen@gmail.com','Karen','Bollen','Adegem','1974-06-20 00:00:00.000',NULL,'SILVER' UNION ALL
+select 387,'Veerle.Adams@telenet.com','Veerle','Adams','Ursel','1974-12-05 00:00:00.000',NULL,'SILVER' UNION ALL
+select 388,'Katrien.Vandeneinde@gmail.com','Katrien','Vandeneinde','Ledeberg','1997-11-25 00:00:00.000',NULL,'SILVER' UNION ALL
+select 389,'Katrien.Vandeneinde@orange.BE','Katrien','Vandeneinde','Ledeberg','1989-10-14 00:00:00.000','fun','GOLD' UNION ALL
+select 390,'Bill.Tuinman@gmail.com','Bill','Tuinman','Melle','1968-09-19 00:00:00.000',NULL,'GOLD' UNION ALL
+select 391,'Oliver.DeVught@hotmail.com','Oliver','De Vught','Petegem','1987-04-27 00:00:00.000',NULL,'SILVER' UNION ALL
+select 392,'Karen.Verstappen@telenet.com','Karen','Verstappen','Petegem','1968-02-22 00:00:00.000',NULL,'SILVER' UNION ALL
+select 393,'Alice.Vandeneinde@orange.BE','Alice','Vandeneinde','Zele','2006-06-01 00:00:00.000',NULL,'SILVER' UNION ALL
+select 394,'Pol.Delfino@telenet.com','Pol','Delfino','Ursel','1968-02-03 00:00:00.000',NULL,'BRONZE' UNION ALL
+select 395,'Debora.Vranckx@telenet.com','Debora','Vranckx','Zomergem','2001-06-13 00:00:00.000',NULL,'GOLD' UNION ALL
+select 396,'Suzan.Desmet@hotmail.com','Suzan','Desmet','Gent','1996-12-23 00:00:00.000',NULL,'SILVER' UNION ALL
+select 397,'Frans.Coens@hotmail.com','Frans','Coens','Wetteren','2006-07-12 00:00:00.000',NULL,'GOLD' UNION ALL
+select 398,'Inge.Olson@orange.BE','Inge','Olson','Petegem','2007-11-27 00:00:00.000',NULL,'BRONZE' UNION ALL
+select 399,'George.Johanson@orange.BE','George','Johanson','Melle','1986-07-09 00:00:00.000',NULL,'SILVER' UNION ALL
+select 400,'Sven.Peeters@hotmail.com','Sven','Peeters','Deinze','1983-02-19 00:00:00.000',NULL,'GOLD' UNION ALL
+select 401,'Oliver.Peters@google.com','Oliver','Peters','Mariakerke','1963-08-24 00:00:00.000',NULL,'BRONZE' UNION ALL
+select 402,'Selma.Smet@hotmail.com','Selma','Smet','Drongen','1971-12-27 00:00:00.000',NULL,'BRONZE' UNION ALL
+select 403,'Roman.Wachters@hotmail.com','Roman','Wachters','Maldegem','1981-06-21 00:00:00.000',NULL,'BRONZE' UNION ALL
+select 404,'Karen.Tuinman@orange.BE','Karen','Tuinman','Melle','2001-07-26 00:00:00.000',NULL,'SILVER' UNION ALL
+select 405,'Veerle.Adams@orange.BE','Veerle','Adams','Wetteren','2000-05-09 00:00:00.000',NULL,'BRONZE' UNION ALL
+select 406,'Olive.Cruise@gmail.com','Olive','Cruise','Wondelgem','1972-03-12 00:00:00.000',NULL,'GOLD' UNION ALL
+select 407,'Tine.VanDyck@orange.BE','Tine','Van Dyck','Zomergem','1992-02-14 00:00:00.000','cycling','SILVER' UNION ALL
+select 408,'Tine.Delores@google.com','Tine','Delores','Gent','1968-01-02 00:00:00.000',NULL,'BRONZE' UNION ALL
+select 409,'Cyren.Delfino@telenet.com','Cyren','Delfino','Wetteren','1964-05-20 00:00:00.000',NULL,'SILVER' UNION ALL
+select 410,'Cyren.Kramer@orange.BE','Cyren','Kramer','Wetteren','1988-08-27 00:00:00.000',NULL,'GOLD' UNION ALL
+select 411,'Selma.Decroo@telenet.com','Selma','Decroo','Adegem','1996-08-19 00:00:00.000',NULL,'BRONZE' UNION ALL
+select 412,'Sven.Pike@hotmail.com','Sven','Pike','Wondelgem','1995-12-21 00:00:00.000',NULL,'BRONZE' UNION ALL
+select 413,'Karen.Vangent@google.com','Karen','Vangent','Mariakerke','1969-03-23 00:00:00.000',NULL,'SILVER' UNION ALL
+select 414,'Tine.Decroo@hotmail.com','Tine','Decroo','Zele','1970-10-07 00:00:00.000','fun','GOLD' UNION ALL
+select 415,'Nancy.Parkinson@google.com','Nancy','Parkinson','Ledeberg','2001-03-18 00:00:00.000',NULL,'SILVER' UNION ALL
+select 416,'Inge.Kuit@orange.BE','Inge','Kuit','Mariakerke','1979-01-10 00:00:00.000',NULL,'GOLD' UNION ALL
+select 417,'Karl.VanAcker@gmail.com','Karl','Van Acker','Ledeberg','1968-11-24 00:00:00.000',NULL,'GOLD' UNION ALL
+select 418,'Jeff.Tuinman@gmail.com','Jeff','Tuinman','Melle','1984-01-04 00:00:00.000',NULL,'SILVER' UNION ALL
+select 419,'Sven.Parkinson@gmail.com','Sven','Parkinson','Maldegem','1986-11-01 00:00:00.000',NULL,'BRONZE' UNION ALL
+select 420,'Nancy.Verstappen@orange.BE','Nancy','Verstappen','Adegem','1994-04-20 00:00:00.000',NULL,'GOLD' UNION ALL
+select 421,'Mark.Tyson@gmail.com','Mark','Tyson','Zulte','1995-12-12 00:00:00.000',NULL,'BRONZE' UNION ALL
+select 422,'Ellen.Ingvartson@telenet.com','Ellen','Ingvartson','Zomergem','1980-11-24 00:00:00.000',NULL,'GOLD' UNION ALL
+select 423,'Orson.Wachters@gmail.com','Orson','Wachters','Wondelgem','1987-12-08 00:00:00.000',NULL,'BRONZE' UNION ALL
+select 424,'Selma.Decroo@gmail.com','Selma','Decroo','Zomergem','2007-07-27 00:00:00.000',NULL,'GOLD' UNION ALL
+select 425,'Jack.Buyle@telenet.com','Jack','Buyle','Wetteren','2002-07-17 00:00:00.000',NULL,'SILVER' UNION ALL
+select 426,'Valerie.Jackson@gmail.com','Valerie','Jackson','Zulte','1988-12-24 00:00:00.000',NULL,'GOLD' UNION ALL
+select 427,'Bill.Cruise@hotmail.com','Bill','Cruise','Deinze','1999-09-19 00:00:00.000',NULL,'SILVER' UNION ALL
+select 428,'Marge.Goeminne@telenet.com','Marge','Goeminne','Zele','2006-07-09 00:00:00.000',NULL,'GOLD' UNION ALL
+select 429,'Sven.Pike@telenet.com','Sven','Pike','Waarschoot','1989-03-17 00:00:00.000',NULL,'SILVER' UNION ALL
+select 430,'Katrien.Decroo@orange.BE','Katrien','Decroo','Petegem','2000-08-22 00:00:00.000',NULL,'BRONZE' UNION ALL
+select 431,'Cyren.Crawler@orange.BE','Cyren','Crawler','Maldegem','1995-07-16 00:00:00.000',NULL,'GOLD' UNION ALL
+select 432,'Goedele.Loomans@hotmail.com','Goedele','Loomans','Mariakerke','1991-09-10 00:00:00.000',NULL,'BRONZE' UNION ALL
+select 433,'Selma.Olson@orange.BE','Selma','Olson','Petegem','1970-04-06 00:00:00.000',NULL,'GOLD' UNION ALL
+select 434,'Tom.Tyson@orange.BE','Tom','Tyson','Mariakerke','2007-11-11 00:00:00.000','rowing','SILVER' UNION ALL
+select 435,'Suzan.Merckx@google.com','Suzan','Merckx','Ursel','2001-04-06 00:00:00.000',NULL,'GOLD' UNION ALL
+select 436,'Suzan.Wild@hotmail.com','Suzan','Wild','Gentbrugge','1980-04-08 00:00:00.000','cycling','BRONZE' UNION ALL
+select 437,'Piet.Vandermolen@google.com','Piet','Van der molen','Gent','1966-05-15 00:00:00.000',NULL,'BRONZE' UNION ALL
+select 438,'Valerie.Pike@telenet.com','Valerie','Pike','Deinze','1975-01-13 00:00:00.000',NULL,'BRONZE' UNION ALL
+select 439,'Bree.Loomans@hotmail.com','Bree','Loomans','Gent','1973-11-13 00:00:00.000',NULL,'BRONZE' UNION ALL
+select 440,'Goedele.Decroo@hotmail.com','Goedele','Decroo','Wetteren','1993-08-04 00:00:00.000',NULL,'GOLD' UNION ALL
+select 441,'Jeff.Tuinman@google.com','Jeff','Tuinman','Zele','1976-01-20 00:00:00.000',NULL,'GOLD' UNION ALL
+select 442,'Tine.Parkinson@orange.BE','Tine','Parkinson','Ursel','1968-02-25 00:00:00.000',NULL,'GOLD' UNION ALL
+select 443,'Bart.Verschooten@gmail.com','Bart','Verschooten','Wetteren','1987-01-10 00:00:00.000',NULL,'GOLD' UNION ALL
+select 444,'John.Smet@orange.BE','John','Smet','Gent','1966-08-07 00:00:00.000',NULL,'GOLD' UNION ALL
+select 445,'Mike.Delpuerte@hotmail.com','Mike','Delpuerte','Wetteren','1979-01-22 00:00:00.000','running','BRONZE' UNION ALL
+select 446,'Cindy.Thorn@gmail.com','Cindy','Thorn','Ursel','1998-05-11 00:00:00.000',NULL,'BRONZE' UNION ALL
+select 447,'Orson.VanDyck@telenet.com','Orson','Van Dyck','Ledeberg','1963-09-02 00:00:00.000','rowing','GOLD' UNION ALL
+select 448,'Inga.Vranckx@gmail.com','Inga','Vranckx','Waregem','1986-08-13 00:00:00.000','cycling','BRONZE' UNION ALL
+select 449,'Bree.Wachters@orange.BE','Bree','Wachters','Wetteren','1974-01-20 00:00:00.000','rowing','SILVER' UNION ALL
+select 450,'Heinz.Tuinman@hotmail.com','Heinz','Tuinman','Waregem','1986-12-10 00:00:00.000',NULL,'SILVER' UNION ALL
+select 451,'Karl.Loomans@gmail.com','Karl','Loomans','Zele','1968-04-23 00:00:00.000',NULL,'BRONZE' UNION ALL
+select 452,'Roman.Willems@gmail.com','Roman','Willems','Zomergem','1963-08-16 00:00:00.000',NULL,'BRONZE' UNION ALL
+select 453,'Karen.Pike@gmail.com','Karen','Pike','Zele','2006-08-26 00:00:00.000',NULL,'BRONZE' UNION ALL
+select 454,'Jack.Jansens@telenet.com','Jack','Jansens','Adegem','1960-04-07 00:00:00.000',NULL,'SILVER' UNION ALL
+select 455,'Tine.Vangent@orange.BE','Tine','Vangent','Deinze','1982-05-07 00:00:00.000',NULL,'BRONZE' UNION ALL
+select 456,'Tine.VanDyck@telenet.com','Tine','Van Dyck','Eeklo','1967-02-05 00:00:00.000',NULL,'GOLD' UNION ALL
+select 457,'Jesse.Parkinson@gmail.com','Jesse','Parkinson','Ledeberg','1967-11-02 00:00:00.000',NULL,'GOLD' UNION ALL
+select 458,'John.Peters@gmail.com','John','Peters','Petegem','1995-01-04 00:00:00.000',NULL,'SILVER' UNION ALL
+select 459,'Orson.Merckx@gmail.com','Orson','Merckx','Wondelgem','2007-10-15 00:00:00.000',NULL,'SILVER' UNION ALL
+select 460,'Carl.Desmet@hotmail.com','Carl','Desmet','Wondelgem','1973-01-11 00:00:00.000',NULL,'SILVER' UNION ALL
+select 461,'John.Tuinman@hotmail.com','John','Tuinman','Gent','1968-07-11 00:00:00.000',NULL,'GOLD' UNION ALL
+select 462,'Sven.Olson@orange.BE','Sven','Olson','Melle','1962-10-19 00:00:00.000',NULL,'SILVER' UNION ALL
+select 463,'Maria.Vandermolen@telenet.com','Maria','Van der molen','Ursel','1964-07-21 00:00:00.000',NULL,'BRONZE' UNION ALL
+select 464,'John.Tuinman@telenet.com','John','Tuinman','Deinze','1977-02-27 00:00:00.000',NULL,'SILVER' UNION ALL
+select 465,'Suzan.Buyle@orange.BE','Suzan','Buyle','Petegem','1965-03-18 00:00:00.000',NULL,'GOLD' UNION ALL
+select 466,'Heinz.Wild@orange.BE','Heinz','Wild','Gentbrugge','1999-11-07 00:00:00.000',NULL,'GOLD' UNION ALL
+select 467,'Debora.Kuit@orange.BE','Debora','Kuit','Waarschoot','1974-12-14 00:00:00.000',NULL,'GOLD' UNION ALL
+select 468,'Tine.Peters@telenet.com','Tine','Peters','Melle','1985-05-20 00:00:00.000','cycling','GOLD' UNION ALL
+select 469,'Katrien.Wachters@hotmail.com','Katrien','Wachters','Petegem','1964-07-13 00:00:00.000',NULL,'BRONZE' UNION ALL
+select 470,'Cindy.Kramer@orange.BE','Cindy','Kramer','Gent','1991-08-16 00:00:00.000',NULL,'SILVER' UNION ALL
+select 471,'Pete.Jackson@gmail.com','Pete','Jackson','Maldegem','1979-03-20 00:00:00.000','cycling','GOLD' UNION ALL
+select 472,'Brian.Delpuerte@google.com','Brian','Delpuerte','Zulte','1977-10-12 00:00:00.000','fun','GOLD' UNION ALL
+select 473,'Pete.Vranckx@orange.BE','Pete','Vranckx','Waregem','1979-11-19 00:00:00.000',NULL,'SILVER' UNION ALL
+select 474,'Piet.Ingvartson@google.com','Piet','Ingvartson','Eeklo','1960-09-09 00:00:00.000',NULL,'GOLD' UNION ALL
+select 475,'Inga.Cruise@hotmail.com','Inga','Cruise','Ursel','1992-12-22 00:00:00.000',NULL,'GOLD' UNION ALL
+select 476,'Pol.Smet@telenet.com','Pol','Smet','Waregem','1970-08-26 00:00:00.000',NULL,'SILVER' UNION ALL
+select 477,'George.Tuinman@hotmail.com','George','Tuinman','Melle','1986-06-08 00:00:00.000','rowing','SILVER' UNION ALL
+select 478,'Bart.Stone@orange.BE','Bart','Stone','Wondelgem','1969-09-27 00:00:00.000','fun','GOLD' UNION ALL
+select 479,'Debora.Merckx@google.com','Debora','Merckx','Melle','1970-08-26 00:00:00.000',NULL,'SILVER' UNION ALL
+select 480,'Oliver.Vranckx@gmail.com','Oliver','Vranckx','Adegem','1967-10-18 00:00:00.000',NULL,'GOLD' UNION ALL
+select 481,'Piet.Wild@orange.BE','Piet','Wild','Ursel','1984-07-14 00:00:00.000',NULL,'SILVER' UNION ALL
+select 482,'Inga.Wachters@telenet.com','Inga','Wachters','Wondelgem','1988-02-03 00:00:00.000',NULL,'GOLD' UNION ALL
+select 483,'Roman.Johanson@gmail.com','Roman','Johanson','Zele','1989-10-16 00:00:00.000',NULL,'SILVER' UNION ALL
+select 484,'Inga.Rogiers@gmail.com','Inga','Rogiers','Zele','1999-06-13 00:00:00.000',NULL,'GOLD' UNION ALL
+select 485,'Inge.Olson@hotmail.com','Inge','Olson','Eeklo','1999-01-02 00:00:00.000','fun','SILVER' UNION ALL
+select 486,'Bill.Loomans@google.com','Bill','Loomans','Ursel','1975-01-14 00:00:00.000',NULL,'SILVER' UNION ALL
+select 487,'Pete.Desmet@google.com','Pete','Desmet','Drongen','1976-07-14 00:00:00.000','cycling','SILVER' UNION ALL
+select 488,'Oliver.Goeminne@hotmail.com','Oliver','Goeminne','Maldegem','1983-03-19 00:00:00.000','cycling','GOLD' UNION ALL
+select 489,'Olive.Kramer@gmail.com','Olive','Kramer','Waregem','1978-07-11 00:00:00.000',NULL,'SILVER' UNION ALL
+select 490,'Brian.Vandeneinde@telenet.com','Brian','Vandeneinde','Eeklo','1988-03-05 00:00:00.000',NULL,'GOLD' UNION ALL
+select 491,'Mike.Pike@orange.BE','Mike','Pike','Drongen','1994-10-17 00:00:00.000',NULL,'GOLD' UNION ALL
+select 492,'Carl.Verstappen@gmail.com','Carl','Verstappen','Melle','1973-08-06 00:00:00.000',NULL,'SILVER' UNION ALL
+select 493,'Tine.Rogiers@gmail.com','Tine','Rogiers','Waarschoot','1969-12-25 00:00:00.000','running','BRONZE' UNION ALL
+select 494,'Ellen.Johanson@gmail.com','Ellen','Johanson','Eeklo','1990-11-16 00:00:00.000',NULL,'BRONZE' UNION ALL
+select 495,'Nancy.Crawler@gmail.com','Nancy','Crawler','Melle','1977-07-15 00:00:00.000','running','BRONZE' UNION ALL
+select 496,'Oliver.VanAcker@google.com','Oliver','Van Acker','Zele','1981-02-14 00:00:00.000',NULL,'SILVER' UNION ALL
+select 497,'Tine.Simpson@orange.BE','Tine','Simpson','Waregem','1986-04-14 00:00:00.000',NULL,'GOLD' UNION ALL
+select 498,'Brian.Vandermolen@orange.BE','Brian','Van der molen','Melle','1981-07-13 00:00:00.000',NULL,'SILVER' UNION ALL
+select 499,'Pete.DeVught@orange.BE','Pete','De Vught','Adegem','1991-10-05 00:00:00.000',NULL,'GOLD' UNION ALL
+select 500,'Selma.VanDorpe@google.com','Selma','Van Dorpe','Zulte','1971-10-11 00:00:00.000','rowing','GOLD' UNION ALL
+select 501,'Alice.Willems@orange.BE','Alice','Willems','Eeklo','1992-01-24 00:00:00.000',NULL,'SILVER' UNION ALL
+select 502,'Veerle.Olson@hotmail.com','Veerle','Olson','Ledeberg','2005-10-10 00:00:00.000',NULL,'GOLD' UNION ALL
+select 503,'Jeff.Delpuerte@google.com','Jeff','Delpuerte','Gentbrugge','1987-02-10 00:00:00.000',NULL,'BRONZE' UNION ALL
+select 504,'Pol.Vandermolen@hotmail.com','Pol','Van der molen','Drongen','1963-07-08 00:00:00.000',NULL,'BRONZE' UNION ALL
+select 505,'Tom.Tyson@gmail.com','Tom','Tyson','Ursel','1998-04-08 00:00:00.000',NULL,'SILVER' UNION ALL
+select 506,'Karen.Cruise@orange.BE','Karen','Cruise','Deinze','1996-07-02 00:00:00.000',NULL,'BRONZE' UNION ALL
+select 507,'Mark.Delfino@hotmail.com','Mark','Delfino','Waregem','1999-05-10 00:00:00.000',NULL,'BRONZE' UNION ALL
+select 508,'Marge.VanDyck@hotmail.com','Marge','Van Dyck','Drongen','1977-12-11 00:00:00.000',NULL,'BRONZE' UNION ALL
+select 509,'Katrien.Peters@google.com','Katrien','Peters','Waregem','1977-02-14 00:00:00.000',NULL,'SILVER' UNION ALL
+select 510,'Alice.Kramer@orange.BE','Alice','Kramer','Zomergem','1962-08-11 00:00:00.000',NULL,'GOLD' UNION ALL
+select 511,'Tine.Smet@gmail.com','Tine','Smet','Waarschoot','2002-08-19 00:00:00.000',NULL,'SILVER' UNION ALL
+select 512,'Bill.Kramer@gmail.com','Bill','Kramer','Maldegem','1969-10-17 00:00:00.000','fun','GOLD' UNION ALL
+select 513,'Cindy.Bollen@hotmail.com','Cindy','Bollen','Maldegem','1967-09-13 00:00:00.000',NULL,'GOLD' UNION ALL
+select 514,'Marge.Olson@hotmail.com','Marge','Olson','Adegem','1978-04-13 00:00:00.000',NULL,'GOLD' UNION ALL
+select 515,'Sven.Merckx@google.com','Sven','Merckx','Maldegem','1970-12-18 00:00:00.000',NULL,'GOLD' UNION ALL
+select 516,'Roman.Delores@telenet.com','Roman','Delores','Zulte','1981-10-08 00:00:00.000',NULL,'GOLD' UNION ALL
+select 517,'Goedele.Olson@gmail.com','Goedele','Olson','Deinze','1980-11-21 00:00:00.000',NULL,'BRONZE' UNION ALL
+select 518,'Alice.Delpuerte@google.com','Alice','Delpuerte','Gent','2001-05-19 00:00:00.000',NULL,'GOLD' UNION ALL
+select 519,'Cyren.Kramer@hotmail.com','Cyren','Kramer','Mariakerke','1994-03-02 00:00:00.000',NULL,'GOLD' UNION ALL
+select 520,'Inga.DeVught@hotmail.com','Inga','De Vught','Melle','1967-09-09 00:00:00.000',NULL,'GOLD' UNION ALL
+select 521,'Ellen.Peeters@google.com','Ellen','Peeters','Wetteren','1987-02-22 00:00:00.000',NULL,'BRONZE' UNION ALL
+select 522,'Cindy.Coens@gmail.com','Cindy','Coens','Ursel','1981-07-16 00:00:00.000',NULL,'SILVER' UNION ALL
+select 523,'Tine.Thorn@telenet.com','Tine','Thorn','Waarschoot','1969-07-07 00:00:00.000',NULL,'SILVER' UNION ALL
+select 524,'Franz.Merckx@telenet.com','Franz','Merckx','Ursel','1994-12-03 00:00:00.000',NULL,'GOLD' UNION ALL
+select 525,'Tom.DeVught@gmail.com','Tom','De Vught','Adegem','1995-06-04 00:00:00.000',NULL,'SILVER' UNION ALL
+select 526,'Tom.Thorn@orange.BE','Tom','Thorn','Drongen','1967-10-26 00:00:00.000',NULL,'GOLD' UNION ALL
+select 527,'Marge.Olson@gmail.com','Marge','Olson','Ledeberg','1962-12-13 00:00:00.000',NULL,'BRONZE' UNION ALL
+select 528,'Pol.Vandeneinde@telenet.com','Pol','Vandeneinde','Wetteren','1974-09-06 00:00:00.000',NULL,'SILVER' UNION ALL
+select 529,'Jeff.Loomans@gmail.com','Jeff','Loomans','Maldegem','2000-09-04 00:00:00.000',NULL,'GOLD' UNION ALL
+select 530,'Frans.Cruise@hotmail.com','Frans','Cruise','Drongen','1983-10-01 00:00:00.000',NULL,'SILVER' UNION ALL
+select 531,'Tine.Delfino@hotmail.com','Tine','Delfino','Adegem','1960-09-21 00:00:00.000',NULL,'GOLD' UNION ALL
+select 532,'Piet.Coens@hotmail.com','Piet','Coens','Wetteren','1992-09-01 00:00:00.000',NULL,'SILVER' UNION ALL
+select 533,'Ilana.Vanderplas@google.com','Ilana','Van der plas','Mariakerke','1982-03-03 00:00:00.000',NULL,'GOLD' UNION ALL
+select 534,'Veerle.Stone@orange.BE','Veerle','Stone','Mariakerke','1987-02-13 00:00:00.000',NULL,'SILVER' UNION ALL
+select 535,'Oliver.Kuit@google.com','Oliver','Kuit','Petegem','2001-12-24 00:00:00.000',NULL,'BRONZE' UNION ALL
+select 536,'Tom.Merckx@google.com','Tom','Merckx','Maldegem','1977-04-14 00:00:00.000',NULL,'SILVER' UNION ALL
+select 537,'Sven.Tuinman@orange.BE','Sven','Tuinman','Melle','1979-07-22 00:00:00.000',NULL,'GOLD' UNION ALL
+select 538,'Nancy.Jackson@hotmail.com','Nancy','Jackson','Zomergem','1964-12-13 00:00:00.000',NULL,'GOLD' UNION ALL
+select 539,'Mike.Jackson@telenet.com','Mike','Jackson','Petegem','1964-12-10 00:00:00.000',NULL,'BRONZE' UNION ALL
+select 540,'Karen.Verstappen@hotmail.com','Karen','Verstappen','Melle','1961-12-26 00:00:00.000',NULL,'GOLD' UNION ALL
+select 541,'Veerle.Wachters@google.com','Veerle','Wachters','Ledeberg','2005-01-09 00:00:00.000',NULL,'GOLD' UNION ALL
+select 542,'Alice.Decroo@hotmail.com','Alice','Decroo','Zulte','2003-09-26 00:00:00.000',NULL,'SILVER' UNION ALL
+select 543,'Carl.Willems@hotmail.com','Carl','Willems','Drongen','1979-04-27 00:00:00.000',NULL,'GOLD' UNION ALL
+select 544,'Ilana.Crawler@telenet.com','Ilana','Crawler','Waarschoot','1970-01-16 00:00:00.000','cycling','BRONZE' UNION ALL
+select 545,'Piet.Thorn@telenet.com','Piet','Thorn','Adegem','1971-10-15 00:00:00.000',NULL,'BRONZE' UNION ALL
+select 546,'Sven.Cruise@orange.BE','Sven','Cruise','Petegem','1986-11-13 00:00:00.000',NULL,'BRONZE' UNION ALL
+select 547,'Bree.Rogiers@telenet.com','Bree','Rogiers','Waarschoot','1963-04-15 00:00:00.000','rowing','BRONZE' UNION ALL
+select 548,'Alice.Desmet@gmail.com','Alice','Desmet','Gentbrugge','1992-01-18 00:00:00.000','cycling','GOLD' UNION ALL
+select 549,'Olive.Bollen@orange.BE','Olive','Bollen','Zomergem','1998-04-01 00:00:00.000',NULL,'BRONZE' UNION ALL
+select 550,'Karen.Ingvartson@hotmail.com','Karen','Ingvartson','Eeklo','1991-08-21 00:00:00.000',NULL,'SILVER' UNION ALL
+select 551,'Inge.Ingvartson@google.com','Inge','Ingvartson','Melle','1993-05-14 00:00:00.000',NULL,'GOLD' UNION ALL
+select 552,'Nancy.Parkinson@hotmail.com','Nancy','Parkinson','Eeklo','1990-08-03 00:00:00.000','cycling','GOLD' UNION ALL
+select 553,'Pete.Verstappen@telenet.com','Pete','Verstappen','Zele','1965-12-15 00:00:00.000',NULL,'SILVER' UNION ALL
+select 554,'Cyren.Delores@hotmail.com','Cyren','Delores','Adegem','2000-08-11 00:00:00.000',NULL,'GOLD' UNION ALL
+select 555,'Brian.Crawler@orange.BE','Brian','Crawler','Ledeberg','1987-09-10 00:00:00.000',NULL,'GOLD' UNION ALL
+select 556,'Goedele.Verstappen@google.com','Goedele','Verstappen','Waregem','1968-12-05 00:00:00.000',NULL,'GOLD' UNION ALL
+select 557,'Sven.Peeters@gmail.com','Sven','Peeters','Gent','1976-05-15 00:00:00.000','rowing','SILVER' UNION ALL
+select 558,'Veerle.Kuit@google.com','Veerle','Kuit','Gentbrugge','1970-05-13 00:00:00.000',NULL,'GOLD' UNION ALL
+select 559,'Orson.Thorn@orange.BE','Orson','Thorn','Wondelgem','1983-04-08 00:00:00.000',NULL,'GOLD' UNION ALL
+select 560,'Bart.Simpson@gmail.com','Bart','Simpson','Drongen','1983-06-14 00:00:00.000','running','SILVER' UNION ALL
+select 561,'Maria.Ingvartson@gmail.com','Maria','Ingvartson','Zele','1974-06-08 00:00:00.000',NULL,'BRONZE' UNION ALL
+select 562,'Tine.Desmet@gmail.com','Tine','Desmet','Melle','1965-09-15 00:00:00.000',NULL,'BRONZE' UNION ALL
+select 563,'Ilana.Wachters@telenet.com','Ilana','Wachters','Mariakerke','1965-10-06 00:00:00.000','rowing','BRONZE' UNION ALL
+select 564,'Carl.Delfino@google.com','Carl','Delfino','Melle','1997-08-08 00:00:00.000',NULL,'GOLD' UNION ALL
+select 565,'Carl.Decroo@google.com','Carl','Decroo','Deinze','1972-06-27 00:00:00.000',NULL,'SILVER' UNION ALL
+select 566,'Tom.Delores@hotmail.com','Tom','Delores','Maldegem','1968-07-18 00:00:00.000',NULL,'BRONZE' UNION ALL
+select 567,'Katrien.Simpson@google.com','Katrien','Simpson','Wetteren','1964-02-04 00:00:00.000',NULL,'GOLD' UNION ALL
+select 568,'Piet.Parkinson@telenet.com','Piet','Parkinson','Gent','2000-10-11 00:00:00.000',NULL,'SILVER' UNION ALL
+select 569,'Piet.Verstappen@telenet.com','Piet','Verstappen','Wetteren','1988-09-11 00:00:00.000',NULL,'SILVER' UNION ALL
+select 570,'Katrien.Parkinson@gmail.com','Katrien','Parkinson','Melle','1963-07-21 00:00:00.000',NULL,'SILVER' UNION ALL
+select 571,'Ilana.Jackson@hotmail.com','Ilana','Jackson','Zomergem','1965-04-06 00:00:00.000',NULL,'SILVER' UNION ALL
+select 572,'Cyren.Simpson@telenet.com','Cyren','Simpson','Petegem','2004-08-07 00:00:00.000',NULL,'GOLD' UNION ALL
+select 573,'Mark.Stone@gmail.com','Mark','Stone','Ursel','2004-06-07 00:00:00.000',NULL,'SILVER' UNION ALL
+select 574,'Alice.Peeters@google.com','Alice','Peeters','Zele','1973-05-23 00:00:00.000',NULL,'SILVER' UNION ALL
+select 575,'Heinz.Cruise@google.com','Heinz','Cruise','Ursel','1965-03-13 00:00:00.000',NULL,'SILVER' UNION ALL
+select 576,'Cindy.VanAcker@orange.BE','Cindy','Van Acker','Melle','1982-04-14 00:00:00.000',NULL,'SILVER' UNION ALL
+select 577,'Goedele.Tuinman@hotmail.com','Goedele','Tuinman','Zulte','1991-08-04 00:00:00.000',NULL,'BRONZE' UNION ALL
+select 578,'Pete.Stone@gmail.com','Pete','Stone','Wetteren','2004-07-17 00:00:00.000',NULL,'SILVER' UNION ALL
+select 579,'Katrien.Jackson@gmail.com','Katrien','Jackson','Zulte','2004-04-10 00:00:00.000',NULL,'BRONZE' UNION ALL
+select 580,'Nancy.Kuit@telenet.com','Nancy','Kuit','Ledeberg','1993-05-07 00:00:00.000','fun','GOLD' UNION ALL
+select 581,'Orson.Tuinman@gmail.com','Orson','Tuinman','Waregem','2000-04-25 00:00:00.000','fun','GOLD' UNION ALL
+select 582,'Goedele.Buyle@orange.BE','Goedele','Buyle','Ursel','1982-09-17 00:00:00.000','cycling','SILVER';
+
+set identity_insert [Klant] off;
+
+create table [FitnessToestel] (
+[ID] [int] identity,
+[ToestelType] [varchar] (50),
+[ToestelStatus] [varchar] (50));
+
+
+
+set identity_insert [FitnessToestel] on;
+
+
+insert [FitnessToestel] ([ID],[ToestelType],[ToestelStatus])
+select 1,'loopband','beschikbaar' UNION ALL
+select 2,'loopband','beschikbaar' UNION ALL
+select 3,'loopband','beschikbaar' UNION ALL
+select 4,'loopband','beschikbaar' UNION ALL
+select 5,'loopband','beschikbaar' UNION ALL
+select 6,'loopband','beschikbaar' UNION ALL
+select 7,'fiets','beschikbaar' UNION ALL
+select 8,'fiets','beschikbaar' UNION ALL
+select 9,'fiets','beschikbaar' UNION ALL
+select 10,'fiets','beschikbaar' UNION ALL
+select 11,'fiets','beschikbaar' UNION ALL
+select 12,'fiets','beschikbaar' UNION ALL
+select 15,'fiets','beschikbaar';
+
+set identity_insert [FitnessToestel] off;
+
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[Reservatie](
+	[ReservatieNummer] [int] IDENTITY(1,1) NOT NULL,
+	[KlantNummer] [int] NOT NULL,
+	[FitnessToestelID] [int] NOT NULL,
+	[Datum] [date] NOT NULL,
+	[BeginSlot] [int] NOT NULL,
+	[AantalSlots] [int] NOT NULL
+) ON [PRIMARY]
+GO
+ALTER TABLE [dbo].[Reservatie] ADD PRIMARY KEY CLUSTERED 
+(
+	[ReservatieNummer] ASC
+)WITH (STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ONLINE = OFF, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+GO
