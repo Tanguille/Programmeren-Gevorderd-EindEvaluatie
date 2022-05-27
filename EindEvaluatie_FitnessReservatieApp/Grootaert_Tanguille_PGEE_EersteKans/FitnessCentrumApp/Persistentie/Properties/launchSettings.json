@@ -1,0 +1,9 @@
+{
+  "profiles": {
+    "Persistentie": {
+      "commandName": "Project",
+      "workingDirectory": "${SolutionDir)\\Persistentie",
+      "remoteDebugEnabled": false
+    }
+  }
+}

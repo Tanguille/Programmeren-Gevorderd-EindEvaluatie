@@ -7,8 +7,9 @@ using System.IO;
 
 namespace Persistentie {
     public class KlantRepo : IKlantRepo {
-        public Klant _geselecteerdeKlant;
+        public Klant GeselecteerdeKlant { get; private set; }
         private readonly string _connectionString;
+
 
         public KlantRepo(string connectionString) {
             _connectionString = connectionString;
@@ -46,10 +47,10 @@ namespace Persistentie {
 
                         string klantType = (string)dataReader["KlantType"];
 
-                        _geselecteerdeKlant = new Klant(klantNummer, emailAdres, voorNaam, achterNaam, adres, geboorteDatum, interesses,
+                        GeselecteerdeKlant = new Klant(klantNummer, emailAdres, voorNaam, achterNaam, adres, geboorteDatum, interesses,
                             (EKlantType)Enum.Parse(typeof(EKlantType), klantType.ToString().ToUpper()));
                     }
-                    return _geselecteerdeKlant;
+                    return GeselecteerdeKlant;
                 }
                 else {
                     throw new RepoException("Geen overeenkomstige data in de databank.");
@@ -60,10 +61,9 @@ namespace Persistentie {
             }
         }
 
-        private string QuerySelector(string identificatieString) {
+        private static string QuerySelector(string identificatieString) {
             try {
-                int klantNummer;
-                if (int.TryParse(identificatieString, out klantNummer)) {
+                if (int.TryParse(identificatieString, out int klantNummer)) {
                     return "SELECT KlantNummer, EmailAdres, VoorNaam, Achternaam, Adres, GeboorteDatum, Interesses, KlantType FROM Klant WHERE KlantNummer = @value;";
                 }
                 else if (!Klant.IsValidEmail(identificatieString)) {

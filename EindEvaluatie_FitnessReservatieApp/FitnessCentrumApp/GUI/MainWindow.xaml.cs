@@ -7,7 +7,7 @@ namespace Gui {
     /// Interaction logic for MainWindow.xaml
     /// </summary>
     public partial class MainWindow : Window {
-        private DomeinController _domeinController;
+        private readonly DomeinController _domeinController;
         private int _aangemeldeKlantNummer;
         public MainWindow(DomeinController domeinController) {
             InitializeComponent();
@@ -25,12 +25,12 @@ namespace Gui {
                 //admin panel mogelijk maken
                 if (_domeinController.IsBeheerder()) {
                     AdminWindow adminWindow = new(_domeinController);
-                    this.Close();
+                    Close();
                     adminWindow.Show();
                 }
                 if (!_domeinController.IsBeheerder()) {
                     RegistratieWindow registratieWindow = new(_domeinController, _aangemeldeKlantNummer);
-                    this.Close();
+                    Close();
                     registratieWindow.Show();
                 }
             }

@@ -29,6 +29,12 @@ namespace Domein.Tests {
         }
 
         [TestMethod()]
+        [DataRow(1, 12, 0, "fiets")]
+        public void MaakReservatieTest_ToestelMinderDan1SlotReserveren_ThrowReserveerException(int dagIndex, int beginSlot, int aantalSlots, string geselecteerdToestel) {
+            Assert.ThrowsException<ReserveerException>(() => _controller?.MaakReservatie(DateTime.Today.AddDays(dagIndex), beginSlot, aantalSlots, geselecteerdToestel));
+        }
+
+        [TestMethod()]
         [DataRow(1, 19, 2, "fiets")]
         public void MaakReservatieTest_ToestelMeerDan4SlotsReserverenop1Dag_ThrowReserveerException(int dagIndex, int beginSlot, int aantalSlots, string geselecteerdToestel) {
             //2 reservaties van 2 uur maken met deze klant zodat zijn max quota bereikt wordt            

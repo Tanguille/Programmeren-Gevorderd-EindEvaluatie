@@ -1,0 +1,163 @@
+﻿<Window x:Class="Gui.AdminWindow"       
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:sys="clr-namespace:System;assembly=mscorlib"
+        mc:Ignorable="d"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+        TextElement.FontWeight="Regular"
+        TextElement.FontSize="13"
+        TextOptions.TextFormattingMode="Ideal"
+        TextOptions.TextRenderingMode="Auto"
+        Background="{DynamicResource MaterialDesignPaper}"
+        FontFamily="{DynamicResource MaterialDesignFont}" d:DesignWidth="1000" Height="600">
+
+    <!--Styling opties-->
+    <Window.Resources>
+        <SolidColorBrush x:Key="InputBoxHintAssistForegorundBrush" Color="Red"></SolidColorBrush>
+
+        <Style x:Key="InputIcon" TargetType="materialDesign:PackIcon">
+            <Setter Property="Height" Value="30"/>
+            <Setter Property="Width" Value="30"/>
+            <Setter Property="HorizontalAlignment" Value="Center"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+        </Style>
+
+        <LinearGradientBrush x:Key="SkyBrush" StartPoint="0 0" EndPoint="0 1">
+            <GradientStop Color="#2196F3" Offset="0"/>
+            <GradientStop Color="#2196F3" Offset=".6"/>
+            <GradientStop Color="#00E676" Offset=".6"/>
+            <GradientStop Color="#00E676" Offset="1"/>
+        </LinearGradientBrush>
+
+        <LinearGradientBrush x:Key="GroundBrush" StartPoint="0 0" EndPoint="0 1">
+            <GradientStop Color="#552196F3" Offset="0"/>
+            <GradientStop Color="#FFFFFF" Offset=".3"/>
+            <GradientStop Color="#00E676" Offset="1"/>
+        </LinearGradientBrush>
+    </Window.Resources>
+
+    <!--Opbouw pagina-->
+    <Grid Background="{StaticResource SkyBrush}">
+        <Grid Height="500" Background="{StaticResource GroundBrush}">
+            <!--Witte kaart-->
+            <materialDesign:Card Grid.Row="0" Grid.RowSpan="2" 
+                            HorizontalAlignment="Center"
+                            VerticalAlignment="Top"
+                             Width="800"
+                             Height="400"
+                            Padding="10" Margin="0 20 0 0">
+                <DockPanel>
+                    <!--Titel pagina-->
+                    <StackPanel DockPanel.Dock="Top">
+                        <Grid HorizontalAlignment="Center">
+                            <Label Height="30"  VerticalAlignment="Top" FontSize="20" FontWeight="Bold">
+                                Welkom Beheerder!
+                            </Label>
+                        </Grid>
+                    </StackPanel>
+
+                    <StackPanel DockPanel.Dock="Left" Width="400">
+                        <ListView x:Name="ToestellenListView" Height="350" Margin="0 20">
+                            <ListView.View>
+                                <GridView>
+                                    <GridViewColumn Header="ID" Width="80" DisplayMemberBinding="{Binding ID}"/>
+                                    <GridViewColumn Header="Type" Width="140" DisplayMemberBinding="{Binding ToestelType}"/>
+                                    <GridViewColumn Header="Status" Width="140"  DisplayMemberBinding="{Binding ToestelStatus}"/>                                  
+                                </GridView>
+                            </ListView.View>
+                        </ListView>
+                    </StackPanel>
+
+                    <DockPanel>
+                        <Grid DockPanel.Dock="Right">
+                            <StackPanel Margin="0 10 0 0">
+
+                                <Grid Margin="20 20">
+                                    <TabControl>
+                                        <!--Onderhoud-->
+                                        <TabItem Header="Onderhoud">
+                                            <Grid>
+                                                <StackPanel>                                                
+                                                    <!--Zet in onderhoud button-->
+                                                    <Grid Margin="50" Grid.RowSpan="2" Width="200" MinWidth="100">                                                       
+                                                        <Button Name="InOnderhoudButton" IsDefault="True"
+                                                            FontSize="20"
+                                                            Style="{StaticResource MaterialDesignRaisedDarkButton}"
+                                                            Height="50" 
+                                                            materialDesign:ButtonAssist.CornerRadius="25" Click="InOnderhoudButton_Click">
+                                                            <TextBlock>Zet in onderhoud</TextBlock>
+                                                        </Button>
+                                                    </Grid>
+
+                                                    <!--Zet uit onderhoud button-->
+                                                    <Grid Margin="50 20" Grid.RowSpan="2" Width="200" MinWidth="100">
+                                                        <Button Name="UitOnderhoudButton"
+                                                            FontSize="20"
+                                                            Style="{StaticResource MaterialDesignRaisedDarkButton}"
+                                                            Height="50" 
+                                                            materialDesign:ButtonAssist.CornerRadius="25" Click="UitOnderhoudButton_Click_1">
+                                                            <TextBlock>Zet uit onderhoud</TextBlock>
+                                                        </Button>
+                                                    </Grid>
+                                                </StackPanel>
+                                            </Grid>
+                                        </TabItem>
+
+                                        <!--Toevoegen-->
+                                        <TabItem Header="Toevoegen">
+                                            <Grid>
+                                                <StackPanel>
+                                                    <!--Selectie toestel-->
+                                                    <Grid Margin="50 30">
+                                                        <TextBlock VerticalAlignment="Top" FontWeight="Bold">Selecteer het toe te voegen toestel.</TextBlock>
+                                                        <ComboBox Name="ToestelSelectieComboBox" Margin="0 20 0 0" SelectedIndex="0">
+                                                            <ComboBoxItem>Fiets</ComboBoxItem>
+                                                            <ComboBoxItem>Loopband</ComboBoxItem>
+                                                        </ComboBox>
+                                                    </Grid>
+
+                                                    <!--Toevoeg Button-->
+                                                    <Grid Margin="50 10 50 50" Grid.RowSpan="2" Width="200" MinWidth="100">
+                                                        <Button Name="ToevoegButton" IsDefault="True"
+                                                            FontSize="20"
+                                                            Style="{StaticResource MaterialDesignRaisedDarkButton}"
+                                                            Height="50" 
+                                                            materialDesign:ButtonAssist.CornerRadius="25" Click="ToevoegButton_Click">
+                                                            <TextBlock>Voeg toe</TextBlock>
+                                                        </Button>
+                                                    </Grid>
+                                                </StackPanel>
+                                            </Grid>
+                                        </TabItem>
+
+                                        <!--Verwijderen-->
+                                        <TabItem Header="Verwijderen">
+                                            <Grid>
+                                                <StackPanel>                                                  
+                                                    <!--Verwijder button-->
+                                                    <Grid Margin="50" Grid.RowSpan="2" Width="200" MinWidth="100">
+                                                        <Button Name="VerwijderButton" IsDefault="True"
+                                                            FontSize="20"
+                                                            Style="{StaticResource MaterialDesignRaisedDarkButton}"
+                                                            Height="50" 
+                                                            materialDesign:ButtonAssist.CornerRadius="25" Click="VerwijderButton_Click">
+                                                            <TextBlock>Verwijder</TextBlock>
+                                                        </Button>
+                                                    </Grid>
+                                                </StackPanel>
+                                            </Grid>
+                                        </TabItem>
+                                    </TabControl>
+                                </Grid>
+                            </StackPanel>
+                        </Grid>
+                    </DockPanel>
+                </DockPanel>
+            </materialDesign:Card>
+        </Grid>
+    </Grid>
+</Window>
+

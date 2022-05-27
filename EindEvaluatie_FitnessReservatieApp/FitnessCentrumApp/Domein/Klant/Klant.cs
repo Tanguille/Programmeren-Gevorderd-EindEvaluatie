@@ -51,7 +51,7 @@ namespace Domein {
         /// <exception cref="RepoException"></exception>
         public static bool IsValidEmail(string email) {
             try {
-                string pattern = @"^\\S+@\\S+\\.\\S+$";
+                string pattern = @"^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$";
                 var regex = new Regex(pattern, RegexOptions.IgnoreCase);
                 return regex.IsMatch(email);
             }
